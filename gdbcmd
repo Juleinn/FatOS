@@ -1,0 +1,5 @@
+target remote | exec qemu-system-i386 -gdb stdio -fda fatos.flp
+set listsize 25
+add-symbol-file mbr.elf 0x7c00
+break main
+c
