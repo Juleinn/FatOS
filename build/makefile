@@ -6,15 +6,15 @@ OBJ=kernel.o $(filter-out kernel.o,$(wildcard *.o))
 
 
 
-flp: genclr mbr.bin stage2.bin kernel.bin
+flp: mbr.bin stage2.bin kernel.bin
 	# MBR
 	dd if=mbr.bin of=fatos.flp conv=notrunc seek=0 bs=512
+	# FAT & file list file (generated)
+	dd if=FATandList.bin of=fatos.flp seek=1 bs=512
 	# stage 2
 	dd if=stage2.bin of=fatos.flp conv=notrunc bs=512 seek=12
 	# copy kernel
 	dd if=kernel.bin of=fatos.flp conv=notrunc bs=512 seek=13
-	# also put some text into sector 1
-	echo "Hello from floppy" | dd of=fatos.flp conv=notrunc bs=512 seek=1
 
 # generates a file of 10 empty sectors of 512 bytes
 genclr:

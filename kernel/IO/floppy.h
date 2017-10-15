@@ -34,17 +34,20 @@ void floppy_recalibrate();
 
 void floppy_seek(unsigned char drive, unsigned char head, unsigned char cylinder);
 
-/* Reads a sector at a given position specified as linear 
+/* Reads a sector at a given position specified as linear
  * returns a pointer to the read sector */
 unsigned char* floppy_readsector(unsigned int lba, unsigned char drive_id);
 
-/* Writes the given array to the specified sector (linear). Performs a copy because 
+/* Same as above with copy to the selected buffer */
+void floppy_readsectorinto(unsigned int lba, unsigned char drive_id, char * destination);
+
+/* Writes the given array to the specified sector (linear). Performs a copy because
  * DMA cannot acces memory beyond 16k. Input array size must be inferior to sector size */
 void floppy_writesector(unsigned char* data, unsigned int lba, unsigned char drive_id);
 
 void lba_to_chs(unsigned int lba, unsigned short* cylinder, unsigned short* head, unsigned short* sector);
 
-// DMA acces functions 
+// DMA acces functions
 /* DMA ports - CODE COPY - */
 #define DMA_ADDRL       0x004	/* port for low 16 bits of DMA address */
 #define DMA_ADDRH       0x081	/* port for top 4 bits of 20-bit DMA addr */

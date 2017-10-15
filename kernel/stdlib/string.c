@@ -14,7 +14,7 @@ int strcmp(char* str1, char* str2)
 
 int atoi(char* buffer)
 {
-	int mult = 1;	// handle neg. numbers 
+	int mult = 1;	// handle neg. numbers
 	int result = 0;
 	if(*buffer == '-')
 	{
@@ -29,4 +29,15 @@ int atoi(char* buffer)
 		buffer++;
 	}
 	return result * mult;
+}
+
+int strlen(char * str)
+{
+	int len = 0;
+	while(*str)
+	{
+		len++;
+		str++;
+	}
+	return len;
 }

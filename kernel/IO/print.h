@@ -16,7 +16,7 @@ void clear_screen();
 void set_screen(unsigned char c, unsigned char color);
 void print_string(unsigned char *str, char color, int x, int y);
 
-/* Scroll the given number of lines 
+/* Scroll the given number of lines
  * Freed line at end of screen will be full of ' ' */
 void scroll();
 
@@ -36,14 +36,18 @@ void init_text();
 void set_cursor_pos(unsigned short x, unsigned short y);
 
 void set_color(unsigned char color);
+unsigned char get_color();
 
 /* Prints an integer in dec. format at pos */
 void printi(int x);
 
+/* Prints an integer in hex format. always pads to 32 bits hex rep = 0x00000000*/
+void printh(int x);
+
+/* Same as above with color changing */
+void printic(int x, unsigned char color);
+
 /* Handles backspaces */
 void backspace();
-
-/* Prints an unsigned integer value in hex format /!\Buggy !!*/
-void printh(unsigned int x);
 
 #endif

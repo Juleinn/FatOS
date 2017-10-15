@@ -10,7 +10,7 @@ void memorymanager_init()
 {
 	/* retrieve biggest usable memory from computed memory map */
 	unsigned char* memorymap_entrycount = (unsigned char*) MEMORYMAP_ENTRYCOUNT;
-	Memorymap_entry* mentry = (Memorymap_entry*) MEMORYMAP_BASEADDRESS;	// current entry 
+	Memorymap_entry* mentry = (Memorymap_entry*) MEMORYMAP_BASEADDRESS;	// current entry
 	int i;
 	int maxSize = 0, maxSizeId = 0;
 	for(i=0; i<*memorymap_entrycount; i++)
@@ -21,14 +21,14 @@ void memorymanager_init()
 			maxSizeId = i;
 		}
 	}
-	prints("Biggest memory entry : ");
-	printi(maxSizeId);
-	prints("\n");
+	// prints("Biggest memory entry : ");
+	// printi(maxSizeId);
+	// prints("\n");
 
-	/* Leave 128 * 512 (128 sectors) free after start of free memory for the bootstraped kernel 
+	/* Leave 128 * 512 (128 sectors) free after start of free memory for the bootstraped kernel
 	and align as a multiple of 4 (should alread be the case but make sure */
 	freememory_base = (char*) mentry[maxSizeId].base_address + KERNEL_SPACE;
-	freememory_base += mentry[maxSizeId].base_address % 4 != 0 ? 
+	freememory_base += mentry[maxSizeId].base_address % 4 != 0 ?
 							4 - (mentry[maxSizeId].base_address % 4) : 0;
 
 	/* Initialize on purpose the first header to be an empty used data never to be modified */
@@ -40,10 +40,10 @@ void memorymanager_init()
 	first_memory_header->next = first_memory_header + 1; // set it to the directly next header
 	first_memory_header->previous = (void*) 0;
 
-	/* Initialize first true  chunk */ 
+	/* Initialize first true  chunk */
 	MemoryHeader * firstTrueHeader = ((MemoryHeader*) freememory_base) + 1;
 	// whole left memory size - header size
-	firstTrueHeader->length = mentry[maxSizeId].length 
+	firstTrueHeader->length = mentry[maxSizeId].length
 					- ((int) freememory_base - (int) mentry[maxSizeId].base_address)
 					- (int) 2 * sizeof(MemoryHeader);
 	// flags = 0x00 (free memory : flag used = false;)
@@ -54,12 +54,12 @@ void memorymanager_init()
 
 void * sys_alloc(int length)
 {
-	/* Allocate a block of memory of the reqested size using best fit algorithm 
-	best fit = tiniest chunk of memory which size > requested size 
+	/* Allocate a block of memory of the reqested size using best fit algorithm
+	best fit = tiniest chunk of memory which size > requested size
 	need to add length of header in required space. Also align length on 4*/
 	length += length % 4 != 0 ? 4-(length % 4) : 0;
 	MemoryHeader * bestFit = find_bestfit(length);
-	prints("Best fit : "); printi((int)bestFit);prints("\n");
+	// prints("Best fit : "); printi((int)bestFit);prints("\n");
 	/* If space left for another fit later, let's do it */
 	int leftSize = bestFit->length - length;
 	if(leftSize> sizeof(MemoryHeader))
@@ -69,7 +69,7 @@ void * sys_alloc(int length)
 
 
 		// create a new header right after
-		MemoryHeader *nextHeader = (MemoryHeader*) ((int)((char*)bestFit) + 
+		MemoryHeader *nextHeader = (MemoryHeader*) ((int)((char*)bestFit) +
 			(bestFit->length) + sizeof(MemoryHeader));
 
 		nextHeader->previous = bestFit;
@@ -95,8 +95,8 @@ MemoryHeader * find_bestfit(int length)
 	MemoryHeader * bestFit = (void*)0;
 
 	while(currentHeader != (void*)0 ){
-		if(!currentHeader->flags & 0x01 == 1 && 
-			currentHeader->length >= length && 
+		if(!currentHeader->flags & 0x01 == 1 &&
+			currentHeader->length >= length &&
 			// no best fit or better fit
 			(bestFit == (void*)0 || currentHeader->length < bestFit->length))
 			bestFit = currentHeader;
@@ -112,20 +112,62 @@ void sys_free(void* addr)
 	MemoryHeader * headerToFree = (MemoryHeader*) ((int) addr - sizeof(MemoryHeader));
 	headerToFree->flags &= 0xFFFFFFFE;
 	// reduce recursively on neighbors here
+	memorymanager_concat(headerToFree);
 }
 
 void memorymanager_print()
 {
-	prints("\nMemory chuncks : ");
+	// prints("Memory chuncks : ");
 	MemoryHeader * currentHeader = first_memory_header;
+	// save previous used color
+	unsigned char saved_color = get_color();
 	while(currentHeader != (void*)0 ){
-		prints("\nbse(hder):"); printi((int)currentHeader);
-		prints(",lgth(B)=");	printi(currentHeader->length);
-		prints(",usd = "); printi(currentHeader->flags & 0x01);
-		prints(",nxt=");printi((int)currentHeader->next);
-		prints(",prev=");printi((int)currentHeader->previous);
+		if(!currentHeader->flags & 0x01 == 1)
+			printic(currentHeader->length, 0x02);
+		else
+			printic(currentHeader->length, 0x04);
+
+		prints("-");
 		currentHeader = currentHeader->next;
 
 	}
 	prints("\n");
+	// restore color
+	set_color(saved_color);
+}
+
+void memorymanager_concat(MemoryHeader* base)
+{
+	MemoryHeader * next = memorymanager_findNextNonEmpty(base);	// first of free space
+	MemoryHeader * first = memorymanager_findNonEmptyBefore(base);
+	// find free space after first
+	int freespace = memorymanager_getFreeLengthAbove(first->next) + first->length;
+	// prints("Free space = ");printi(freespace);prints("\n");
+	// bind first to next
+	first->next   = next;
+	first->length = freespace;
+}
+
+MemoryHeader* memorymanager_findNextNonEmpty(MemoryHeader* base)
+{
+	MemoryHeader * currentHeader = base;
+	while(currentHeader != (void*)0 && !currentHeader->flags & 0x01 == 1)
+		currentHeader = currentHeader->next;
+	return currentHeader;
+}
+
+MemoryHeader* memorymanager_findNonEmptyBefore(MemoryHeader* base)
+{
+	MemoryHeader * currentHeader = base;
+	while(!currentHeader->previous->flags & 0x01 == 1)
+		currentHeader = currentHeader->previous;
+	return currentHeader;
+}
+
+int memorymanager_getFreeLengthAbove(MemoryHeader * base)
+{
+	if(base == (void*) 0 || base->flags & 0x01 == 1)
+		return 0;
+	else
+		return base->length + sizeof(MemoryHeader) + memorymanager_getFreeLengthAbove(base->next);
 }

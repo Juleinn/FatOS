@@ -113,13 +113,13 @@ void printc(char c)
 {
 	if(c == 0)
 		return;
-	
+
 	if(c == '\n')
 	{
 		nwline();
 		return;
 	}
-	
+
 	print_char(c, text_color, text_x, text_y);
 	text_x++;
 	if(text_x >= MAX_COLS)
@@ -158,7 +158,7 @@ void init_text()
 
 void set_cursor_pos(unsigned short x, unsigned short y)
 {
-	// clamp values 
+	// clamp values
 	x = x < 0 ? 0 : (x >= MAX_COLS ? MAX_COLS-1 : x);
 	y = y < 0 ? 0 : (y >= MAX_ROWS ? MAX_ROWS-1 : y);
 
@@ -169,6 +169,11 @@ void set_cursor_pos(unsigned short x, unsigned short y)
 void set_color(unsigned char color)
 {
 	text_color = color;
+}
+
+unsigned char get_color()
+{
+	return text_color;
 }
 
 void printi(int x)
@@ -194,6 +199,28 @@ void printi(int x)
 	}
 }
 
+void printh(int x)
+{
+	int i;
+	prints("0x");
+	for(i=0; i<8; i++)
+	{
+		int displayvalue = (((x << 4*i) & 0xF0000000) >> 28);
+		if(displayvalue < 10)
+			printc((char) (displayvalue + '0'));
+		else
+			printc((char) (displayvalue - 10 + (int)'a'));
+	}
+}
+
+void printic(int x, unsigned char color)
+{
+	unsigned char saved_color = text_color;
+	set_color(color);
+	printi(x);
+	set_color(saved_color);
+}
+
 void backspace()
 {
 	if(text_x == 0 && text_y != 0)
@@ -206,30 +233,4 @@ void backspace()
 		text_x--;
 	}
 	print_char(' ', text_color, text_x, text_y);
-}
-
-void printh(unsigned int x)
-{
-	prints("0x0");
-
-	if(x == 0)
-	{
-		printc('0');
-		return;
-	}
-
-	int divider = 0xf000000;
-	int count = 6;
-	while(divider > 0)
-	{
-		int digit = ((x & divider) >> (count * 4));
-		if(digit <= 9)
-			printc(digit + '0');
-		else
-			printc(digit + 'A' - 10);
-
-		x -= (x & divider);
-		divider /= 16;
-		count--;
-	}
 }

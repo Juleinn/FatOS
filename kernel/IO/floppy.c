@@ -14,7 +14,7 @@ void floppy_read()
 	int i;
 	for(i=0; i<100; i++)
 		printc(floppy_tmpdata[i]);
-	
+
 
 	char testdata[50] = "cessoinssontsanssucces";
 	memcpy(testdata, floppy_tmpdata, 20);
@@ -23,7 +23,7 @@ void floppy_read()
 
 }
 
-/* Reads a sector at a given position specified as linear 
+/* Reads a sector at a given position specified as linear
  * returns a pointer to the read sector */
 unsigned char* floppy_readsector(unsigned int lba, unsigned char drive_id)
 {
@@ -35,7 +35,7 @@ unsigned char* floppy_readsector(unsigned int lba, unsigned char drive_id)
 	floppy_seek(drive_id, head, cyl);
 
 	// set up the DMA buffer for the transfer to the static buffer.
-	// set only transfer of 1 buffer 
+	// set only transfer of 1 buffer
 	floppy_DMAsetup(DMA_MODE_READ, floppy_tmpdata, SECTOR_SIZE);
 
 	// issue read
@@ -57,7 +57,7 @@ unsigned char* floppy_readsector(unsigned int lba, unsigned char drive_id)
 		prints("Read command completed\n");
 	#endif
 
-	// seven result bytes 
+	// seven result bytes
 	char st0 = floppy_read_byte();
 	char st1 = floppy_read_byte();
 	char st2 = floppy_read_byte();
@@ -78,6 +78,12 @@ unsigned char* floppy_readsector(unsigned int lba, unsigned char drive_id)
 	#endif
 
 	return floppy_tmpdata;
+}
+
+void floppy_readsectorinto(unsigned int lba, unsigned char drive_id, char * destination)
+{
+	char * buffer = floppy_readsector(lba, drive_id);
+	memcpy(buffer, destination, SECTOR_SIZE);
 }
 
 void floppy_writesector(unsigned char* data, unsigned int lba, unsigned char drive_id)
@@ -115,7 +121,7 @@ void floppy_writesector(unsigned char* data, unsigned int lba, unsigned char dri
 		prints("Read command completed\n");
 	#endif
 
-	// seven result bytes 
+	// seven result bytes
 	char st0 = floppy_read_byte();
 	char st1 = floppy_read_byte();
 	char st2 = floppy_read_byte();
@@ -186,9 +192,9 @@ void floppy_init()
 {
 	// init sequence : reset - prog. datarate - wait interrupt - send 4 sense interrupts. - configure - specify - ready
 	floppy_interrupt = 0;
-	floppy_reset();	
+	floppy_reset();
 
-	// ack with an interrupt 
+	// ack with an interrupt
 	floppy_waitinterrupt();
 
 	#ifdef DEBUG
@@ -215,25 +221,25 @@ void floppy_init()
 	#ifdef DEBUG
 		prints("Configuring floppy drive\n");
 	#endif
-	// configure 
+	// configure
 	floppy_configure(1, 1, 1, 8);
 
 	#ifdef DEBUG
 		prints("specify\n");
 	#endif
-	// specify 
+	// specify
 	floppy_specify();
 
 	#ifdef DEBUG
 		prints("Motor on\n");
 	#endif
-	// turn motor on for recalibrate 
+	// turn motor on for recalibrate
 	floppy_motoron();
 
 	#ifdef DEBUG
 		prints("Recal\n");
 	#endif
-	// recalibrate 
+	// recalibrate
 	floppy_recalibrate();
 
 	#ifdef DEBUG
@@ -254,7 +260,7 @@ void floppy_reset()
 
 void floppy_configure(unsigned char impseek_EN, unsigned char fifoDIS, unsigned char pollingDIS, unsigned char threshold)
 {
-	floppy_send_byte(0x13);		// configure 
+	floppy_send_byte(0x13);		// configure
 	floppy_send_byte(0x00);
 	floppy_send_byte((impseek_EN << 6) | (fifoDIS << 5) | (pollingDIS << 4) | (threshold - 1));
 	floppy_send_byte(0x00);
@@ -263,7 +269,7 @@ void floppy_configure(unsigned char impseek_EN, unsigned char fifoDIS, unsigned 
 void floppy_specify()
 {
 	floppy_send_byte(0x03);
-	floppy_send_byte(0xdf);	
+	floppy_send_byte(0xdf);
 	floppy_send_byte(0x02);
 }
 
@@ -284,7 +290,7 @@ void floppy_recalibrate()
 
 	floppy_waitinterrupt();
 
-	// check the recal status with a sense interrupt 
+	// check the recal status with a sense interrupt
 	floppy_send_byte(0x08);
 
 	char st0 = floppy_read_byte();
@@ -319,9 +325,9 @@ void floppy_DMAsetup(unsigned char mode, unsigned int address, unsigned int coun
 {
 	// reset dma controler
 	outb(DMA_RESET_VAL, DMA_INIT);
-	// reset flipflop 
+	// reset flipflop
 	outb(0x00, DMA_FLIPFLOP);
-	// set mode 
+	// set mode
 	outb(mode, DMA_MODE);
 	// set low 16  bytes of address
 	outb(address & 0xFF, DMA_ADDRL);
@@ -332,7 +338,7 @@ void floppy_DMAsetup(unsigned char mode, unsigned int address, unsigned int coun
 	outb(count & 0xFF, DMA_COUNT);
 	outb((count >> 8) & 0xFF, DMA_COUNT);
 	// do reset
-	outb(2, DMA_INIT);// "magic" value 
+	outb(2, DMA_INIT);// "magic" value
 }
 
 #define SECTORS_PER_TRACK 18
@@ -341,7 +347,7 @@ void lba_to_chs(unsigned int lba, unsigned short* cylinder, unsigned short* head
 {
 	*cylinder = (unsigned short) (lba) / (2 * SECTORS_PER_TRACK);
 	*head = (unsigned short) ((lba % (2 * SECTORS_PER_TRACK)) / SECTORS_PER_TRACK);
-	*sector = (unsigned short) (((lba % (2 * SECTORS_PER_TRACK)) % SECTORS_PER_TRACK) + 1);	
+	*sector = (unsigned short) (((lba % (2 * SECTORS_PER_TRACK)) % SECTORS_PER_TRACK) + 1);
 }
 
 void floppy_waitinterrupt()
@@ -350,9 +356,9 @@ void floppy_waitinterrupt()
 	return;
 }
 
-static const char *floppy_drive_types[] = 
+static const char *floppy_drive_types[] =
 {
-	"no drive", "360KB 5.25\"", "1.2MB 5.25\"", "720KB 3.5\"", "1.44MB 3.5\"", "2.88MB 3.5\"" 
+	"no drive", "360KB 5.25\"", "1.2MB 5.25\"", "720KB 3.5\"", "1.44MB 3.5\"", "2.88MB 3.5\""
 };
 
 void print_floppy_drives()

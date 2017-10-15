@@ -2,7 +2,7 @@
 
 void console()
 {
-	#define CSL_CMD_BUF_LGHT 50 		// length of the buffer 
+	#define CSL_CMD_BUF_LGHT 50 		// length of the buffer
 	char cmd_buf[CSL_CMD_BUF_LGHT]={0};
 
 	prints("Anton's console. type \"help\" for a list of commands\n");
@@ -35,7 +35,7 @@ void console_launch(int id)
 	switch(id)
 	{
 		case 0:
-			// exit : do nothing 
+			// exit : do nothing
 			break;
 		case 1:
 			/*static pos printing : clear screen */
@@ -60,6 +60,9 @@ void console_launch(int id)
 			break;
 		case 7:
 			// print_FFS_sector_table();
+			break;
+		case 8:
+			memorymanager_print();
 			break;
 		default:
 			prints("Unknown command. Type \"help\" for a list of commands\n");
