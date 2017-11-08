@@ -1,0 +1,14 @@
+digraph "kernel" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_dc43877d82dd332f9fb2071fcca799d6 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_dc43877d82dd332f9fb2071fcca799d6.html"];
+    dir_dc43877d82dd332f9fb2071fcca799d6 [shape=plaintext label="kernel"];
+    dir_5813c2648decd8e993faec09fdc4bf8a [shape=box label="interruptions" color="black" fillcolor="white" style="filled" URL="dir_5813c2648decd8e993faec09fdc4bf8a.html"];
+    dir_437c8b8cd7f1d4eda4759adcec27e61a [shape=box label="IO" color="black" fillcolor="white" style="filled" URL="dir_437c8b8cd7f1d4eda4759adcec27e61a.html"];
+    dir_b441c67f0e4a3dbd0ffac019137899e0 [shape=box label="memory" color="black" fillcolor="white" style="filled" URL="dir_b441c67f0e4a3dbd0ffac019137899e0.html"];
+    dir_09b6c22482a221bb7e180ac97b23c33c [shape=box label="stdlib" color="black" fillcolor="white" style="filled" URL="dir_09b6c22482a221bb7e180ac97b23c33c.html"];
+  }
+  dir_dc43877d82dd332f9fb2071fcca799d6->dir_437c8b8cd7f1d4eda4759adcec27e61a [headlabel="1", labeldistance=1.5 headhref="dir_000000_000002.html"];
+}

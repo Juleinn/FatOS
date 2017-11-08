@@ -58,6 +58,11 @@ enter_protected:
 	mov ecx, 32768
 	rep movsb
 
+	; set up stack into higher memory 
+	; instead of where the kernel was loaded
+	mov ebp, 0x9000
+	mov esp, ebp
+
 	; now kernel is loaded
 	; call the main function
 	call 0x100000

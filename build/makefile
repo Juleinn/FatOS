@@ -15,6 +15,8 @@ flp: mbr.bin stage2.bin kernel.bin
 	dd if=stage2.bin of=fatos.flp conv=notrunc bs=512 seek=12
 	# copy kernel
 	dd if=kernel.bin of=fatos.flp conv=notrunc bs=512 seek=13
+	# copy subdir file
+	dd if=subdir of=fatos.flp conv=notrunc bs=512 seek=76
 
 # generates a file of 10 empty sectors of 512 bytes
 genclr:

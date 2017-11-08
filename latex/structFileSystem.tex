@@ -1,0 +1,54 @@
+\hypertarget{structFileSystem}{}\section{File\+System Struct Reference}
+\label{structFileSystem}\index{File\+System@{File\+System}}
+
+
+Structure describing a Fat\+OS filesystem. This allows for multiple filesystems to be supported (with multiple drives) and handled as a linked list.  
+
+
+
+
+{\ttfamily \#include $<$fs.\+h$>$}
+
+
+
+Collaboration diagram for File\+System\+:
+% FIG 0
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{structFileSystem_adf2ca4f011508f880c0095651eca233d}{drive\+\_\+id}
+\item 
+char $\ast$ \hyperlink{structFileSystem_a3e1cf4a9014004a11da7c33dab43e5a5}{F\+A\+Tpointer}
+\item 
+struct \hyperlink{structFileSystem}{File\+System} $\ast$ \hyperlink{structFileSystem_ab4ddc9a8bdbe8207f08d140629eb8e42}{next}
+\item 
+char $\ast$ \hyperlink{structFileSystem_a5557603bd4758e4f1c723931beab9870}{file\+List}
+\item 
+int \hyperlink{structFileSystem_a2317b8632ea9ed2aeebb92bb2c085a13}{file\+List\+Size}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Structure describing a Fat\+OS filesystem. This allows for multiple filesystems to be supported (with multiple drives) and handled as a linked list. 
+
+\subsection{Member Data Documentation}
+\index{File\+System@{File\+System}!drive\+\_\+id@{drive\+\_\+id}}
+\index{drive\+\_\+id@{drive\+\_\+id}!File\+System@{File\+System}}
+\subsubsection[{\texorpdfstring{drive\+\_\+id}{drive_id}}]{\setlength{\rightskip}{0pt plus 5cm}int File\+System\+::drive\+\_\+id}\hypertarget{structFileSystem_adf2ca4f011508f880c0095651eca233d}{}\label{structFileSystem_adf2ca4f011508f880c0095651eca233d}
+The drive ID holding the fs \index{File\+System@{File\+System}!F\+A\+Tpointer@{F\+A\+Tpointer}}
+\index{F\+A\+Tpointer@{F\+A\+Tpointer}!File\+System@{File\+System}}
+\subsubsection[{\texorpdfstring{F\+A\+Tpointer}{FATpointer}}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ File\+System\+::\+F\+A\+Tpointer}\hypertarget{structFileSystem_a3e1cf4a9014004a11da7c33dab43e5a5}{}\label{structFileSystem_a3e1cf4a9014004a11da7c33dab43e5a5}
+pointer to the F\+AT for that filesystem \index{File\+System@{File\+System}!file\+List@{file\+List}}
+\index{file\+List@{file\+List}!File\+System@{File\+System}}
+\subsubsection[{\texorpdfstring{file\+List}{fileList}}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ File\+System\+::file\+List}\hypertarget{structFileSystem_a5557603bd4758e4f1c723931beab9870}{}\label{structFileSystem_a5557603bd4758e4f1c723931beab9870}
+a pointer to the file\+List loaded into memory \index{File\+System@{File\+System}!file\+List\+Size@{file\+List\+Size}}
+\index{file\+List\+Size@{file\+List\+Size}!File\+System@{File\+System}}
+\subsubsection[{\texorpdfstring{file\+List\+Size}{fileListSize}}]{\setlength{\rightskip}{0pt plus 5cm}int File\+System\+::file\+List\+Size}\hypertarget{structFileSystem_a2317b8632ea9ed2aeebb92bb2c085a13}{}\label{structFileSystem_a2317b8632ea9ed2aeebb92bb2c085a13}
+Length in bytes of the root filelist \index{File\+System@{File\+System}!next@{next}}
+\index{next@{next}!File\+System@{File\+System}}
+\subsubsection[{\texorpdfstring{next}{next}}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf File\+System}$\ast$ File\+System\+::next}\hypertarget{structFileSystem_ab4ddc9a8bdbe8207f08d140629eb8e42}{}\label{structFileSystem_ab4ddc9a8bdbe8207f08d140629eb8e42}
+allows for easy chaining of filesystems 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+kernel/\+I\+O/\hyperlink{fs_8h}{fs.\+h}\end{DoxyCompactItemize}

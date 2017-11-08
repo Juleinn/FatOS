@@ -31,6 +31,7 @@ int addFileToFat(uint16_t size)
     FAT[nextSector] |= (uint16_t) 0x8000;
     sectors--;
   }
+  return firstSector;
 }
 
 

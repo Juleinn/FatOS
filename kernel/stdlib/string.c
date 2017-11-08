@@ -2,6 +2,7 @@
 
 int strcmp(char* str1, char* str2)
 {
+	// not the string.h implementation
 	while(*str1 || *str2)
 	{
 		if(*str1 != *str2)
@@ -40,4 +41,24 @@ int strlen(char * str)
 		str++;
 	}
 	return len;
+}
+
+int strIndexOf(char* str, char c)
+{
+	int i = 0;
+	while(str[i] && str[i] != c)
+		i++;
+	
+	return i;
+}
+
+int chrCount(const char* str, const char c)
+{
+	int count = 0;
+	while(*str){
+		if(*str == c)
+			count++;
+		str++;
+	}
+	return count;
 }

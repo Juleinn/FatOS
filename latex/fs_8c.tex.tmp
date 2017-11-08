@@ -1,0 +1,562 @@
+\hypertarget{fs_8c}{}\section{kernel/\+I\+O/fs.c File Reference}
+\label{fs_8c}\index{kernel/\+I\+O/fs.\+c@{kernel/\+I\+O/fs.\+c}}
+
+
+contains the implementation for the filesystem functions described in \hyperlink{fs_8h}{fs.\+h}  
+
+
+{\ttfamily \#include \char`\"{}fs.\+h\char`\"{}}\\*
+Include dependency graph for fs.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+unsigned short \hyperlink{fs_8c_ae2fa317cfdd786a8832bbed31c38fd37}{filesystem\+\_\+get\+Next\+Sector} (unsigned short sector, \hyperlink{structFileSystem}{File\+System} $\ast$fs)
+\begin{DoxyCompactList}\small\item\em Gets sector after a given sector in the F\+AT. \end{DoxyCompactList}\item 
+unsigned short \hyperlink{fs_8c_a390f4b015f2b8581e23a01cb2d5825de}{filesystem\+\_\+get\+Next\+Sector\+Raw} (unsigned short sector, \hyperlink{structFileSystem}{File\+System} $\ast$fs)
+\begin{DoxyCompactList}\small\item\em Gets sector after a given sector in the F\+AT, without striping the \textquotesingle{}used\textquotesingle{} flag (highest bit) \end{DoxyCompactList}\item 
+void \hyperlink{fs_8c_a5e61145d8b1d84f4717b779f67fe0d09}{filesystems\+\_\+init} ()\hypertarget{fs_8c_a5e61145d8b1d84f4717b779f67fe0d09}{}\label{fs_8c_a5e61145d8b1d84f4717b779f67fe0d09}
+
+\begin{DoxyCompactList}\small\item\em initializes all filesystems accessible (one per detected floppy drive). SO F\+AR \+: O\+N\+LY boot filesystem \end{DoxyCompactList}\item 
+void \hyperlink{fs_8c_a48b7d3fbd59a08faf39f5f8de1f91fb2}{filesystem\+\_\+init} (\hyperlink{structFileSystem}{File\+System} $\ast$fs)
+\begin{DoxyCompactList}\small\item\em init file system (especially load file table at the given address) \end{DoxyCompactList}\item 
+unsigned short \hyperlink{fs_8c_af7f60cb91a08d641147a06c42b6ecb08}{filesystem\+\_\+get\+File\+Sectors} (unsigned short first\+Sector, \hyperlink{structFileSystem}{File\+System} $\ast$fs)
+\begin{DoxyCompactList}\small\item\em computes number of sector a file actual uses (based on F\+AT, not on advertised size). Based on the first sector. Reads it from F\+AT loaded into memory. \end{DoxyCompactList}\item 
+unsigned short \hyperlink{fs_8c_a5070e81d9dac49ec0d5b66277865db64}{filesystem\+\_\+get\+Nth\+Sector} (unsigned short first\+Sector, int n, \hyperlink{structFileSystem}{File\+System} $\ast$fs)
+\begin{DoxyCompactList}\small\item\em gets the Nth sector after a given sector in F\+AT. Indexing starts at 0. \end{DoxyCompactList}\item 
+int \hyperlink{fs_8c_ae1625d259df79b08baf9d65549f55ce6}{filesystem\+\_\+readbytes\+By\+First\+Sector} (unsigned short first\+Sector, int start\+Byte, int length, char $\ast$buffer, \hyperlink{structFileSystem}{File\+System} $\ast$fs)
+\begin{DoxyCompactList}\small\item\em Reads the given amount of bytes from file given at first sector into provided buffer. \end{DoxyCompactList}\item 
+\hyperlink{structFileSystem}{File\+System} $\ast$ \hyperlink{fs_8c_a1ad05734e91206f61419583e3cca0ca1}{get\+First\+File\+System} ()
+\begin{DoxyCompactList}\small\item\em Gets the first filesystem handled by the filesystem handler (boot filesystem) \end{DoxyCompactList}\item 
+void \hyperlink{fs_8c_ace483733f6ae5d8ffdfb83b70cc87439}{filesystem\+\_\+\+Load\+File\+List} (\hyperlink{structFileSystem}{File\+System} $\ast$fs)
+\begin{DoxyCompactList}\small\item\em Loads the filetable for a given filesystem. \end{DoxyCompactList}\item 
+int \hyperlink{fs_8c_a80761cf439249119de3365917b900756}{filesystem\+\_\+load\+Sub\+File\+List} (\hyperlink{structFileSystem}{File\+System} $\ast$fs, char $\ast$file\+List\+Data, int size, char $\ast$sub\+File\+List\+Name, char $\ast$$\ast$res\+Buffer)
+\begin{DoxyCompactList}\small\item\em loads a subfilelist into an allocated buffer. This buffer needs to be freed after using sys\+\_\+free. \end{DoxyCompactList}\item 
+\hyperlink{structFileSystem}{File\+System} $\ast$ \hyperlink{fs_8c_a21807adf804016925a5afdd1681d0337}{get\+File\+System\+By\+Drive\+Id} (int id)
+\begin{DoxyCompactList}\small\item\em Returns a pointer to the filesystem of given drive ID. \end{DoxyCompactList}\item 
+void \hyperlink{fs_8c_ac3afad77c0cc7fa4f2531823f114b55d}{filesystem\+\_\+list} (char $\ast$file\+List\+Data, int length)
+\begin{DoxyCompactList}\small\item\em Prints the content of a given file\+List (loaded at given position in memory, with given size) \end{DoxyCompactList}\item 
+unsigned short \hyperlink{fs_8c_a7a6f4c6e6cf150d690db30f80f86f3a3}{filesystem\+\_\+find\+First\+Sector} (char $\ast$filename, char $\ast$filelist, int size)
+\begin{DoxyCompactList}\small\item\em Find first sector of entry of specified name in table loaded in buffer, of given size. \end{DoxyCompactList}\item 
+unsigned short \hyperlink{fs_8c_aa9d896e6b5f1146e56933c414e43f6b8}{filesystem\+\_\+get\+Last\+Sector} (unsigned short first\+Sector, \hyperlink{structFileSystem}{File\+System} $\ast$fs)
+\begin{DoxyCompactList}\small\item\em gets the last sector of a chain of sectors in the F\+AT \end{DoxyCompactList}\item 
+unsigned short \hyperlink{fs_8c_adcd59fe130a0f3372490826cafd0b368}{filesystem\+\_\+find\+Empty\+Sector} (unsigned short first, \hyperlink{structFileSystem}{File\+System} $\ast$fs)
+\begin{DoxyCompactList}\small\item\em This finds an empty sector to write to, after a given first one (initial value, set to 0 if all drive) \end{DoxyCompactList}\item 
+int \hyperlink{fs_8c_a9cb94822594eed6ea6d6fc70ad312132}{filesystem\+\_\+append\+Sectors} (unsigned short first, int count, int rewrite, \hyperlink{structFileSystem}{File\+System} $\ast$fs)
+\begin{DoxyCompactList}\small\item\em This adds sectors at the end of chained list of sectors in F\+AT. Rewrites F\+AT into drive if specified so. \end{DoxyCompactList}\item 
+void \hyperlink{fs_8c_af97097602947d83628da0cc7575e6d68}{filesystem\+\_\+set\+Next\+Sector} (unsigned short start, unsigned short next, \hyperlink{structFileSystem}{File\+System} $\ast$fs)
+\begin{DoxyCompactList}\small\item\em Sets the next sector in the F\+AT loaded in memory (does not rewrite it in drive) \end{DoxyCompactList}\item 
+int \hyperlink{fs_8c_a31b748bb1fc56b6ea63fb09ab264e1af}{filesystem\+\_\+append\+Bytes} (\hyperlink{structFileSystem}{File\+System} $\ast$fs, char $\ast$file\+List\+Data, int size, char $\ast$filename, int bytes\+To\+Append)
+\begin{DoxyCompactList}\small\item\em Appends bytes to the selected file. \end{DoxyCompactList}\item 
+int \hyperlink{fs_8c_ac9ddca40b7784df3ea88ee42e377c8ab}{filesystem\+\_\+get\+Bytes} (char $\ast$file\+List\+Data, int length, char $\ast$filename)
+\begin{DoxyCompactList}\small\item\em Returns the number of bytes of a file in a given filelist. \end{DoxyCompactList}\item 
+int \hyperlink{fs_8c_a660275e7124558934e27e719da914611}{filesystem\+\_\+set\+Bytes} (char $\ast$file\+List\+Data, int length, char $\ast$filename, int new\+Size)
+\begin{DoxyCompactList}\small\item\em sets the number of bytes of file in a given filelist. \end{DoxyCompactList}\item 
+int \hyperlink{fs_8c_ab45141e3c3e153cb1f2ba574236898fd}{filesystem\+\_\+sub\+List} (\hyperlink{structFileSystem}{File\+System} $\ast$fs, char $\ast$file\+List\+Data, int size, char $\ast$sub\+List\+Name)
+\begin{DoxyCompactList}\small\item\em Lists through a path ex. /subdir/ recursively until destination reached. \end{DoxyCompactList}\item 
+int \hyperlink{fs_8c_a544404a685670d00a0c09e3dc1886595}{filesystems\+\_\+drive\+List} (char $\ast$full\+Path)
+\begin{DoxyCompactList}\small\item\em Lists the contents of a given directory. End user function, supports complete path, including drive id. Supports 1-\/digits drives ids (0-\/9) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structFileSystem}{File\+System} $\ast$ {\bfseries first\+File\+System}\hypertarget{fs_8c_a64c6d9cce251b42d15b8b8b0bad529a6}{}\label{fs_8c_a64c6d9cce251b42d15b8b8b0bad529a6}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+contains the implementation for the filesystem functions described in \hyperlink{fs_8h}{fs.\+h} 
+
+\begin{DoxyAuthor}{Author}
+Anton Claes 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2017 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\index{fs.\+c@{fs.\+c}!filesystem\+\_\+append\+Bytes@{filesystem\+\_\+append\+Bytes}}
+\index{filesystem\+\_\+append\+Bytes@{filesystem\+\_\+append\+Bytes}!fs.\+c@{fs.\+c}}
+\subsubsection[{\texorpdfstring{filesystem\+\_\+append\+Bytes(\+File\+System $\ast$fs, char $\ast$file\+List\+Data, int size, char $\ast$filename, int bytes\+To\+Append)}{filesystem_appendBytes(FileSystem *fs, char *fileListData, int size, char *filename, int bytesToAppend)}}]{\setlength{\rightskip}{0pt plus 5cm}int filesystem\+\_\+append\+Bytes (
+\begin{DoxyParamCaption}
+\item[{{\bf File\+System} $\ast$}]{fs, }
+\item[{char $\ast$}]{file\+List\+Data, }
+\item[{int}]{size, }
+\item[{char $\ast$}]{filename, }
+\item[{int}]{bytes\+To\+Append}
+\end{DoxyParamCaption}
+)}\hypertarget{fs_8c_a31b748bb1fc56b6ea63fb09ab264e1af}{}\label{fs_8c_a31b748bb1fc56b6ea63fb09ab264e1af}
+
+
+Appends bytes to the selected file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fs} & the filesystem on which to operate changes \\
+\hline
+{\em file\+List\+Data} & the filelist on which to operate changes \\
+\hline
+{\em size} & the length in bytes of the filelist \\
+\hline
+{\em filename} & the name of the files to add bytes to \\
+\hline
+{\em bytes\+To\+Append} & the amount of bytes to be appened  modifies F\+AT and filelist where the file is identified \\
+\hline
+\end{DoxyParams}
+T\+O\+DO H\+E\+RE \index{fs.\+c@{fs.\+c}!filesystem\+\_\+append\+Sectors@{filesystem\+\_\+append\+Sectors}}
+\index{filesystem\+\_\+append\+Sectors@{filesystem\+\_\+append\+Sectors}!fs.\+c@{fs.\+c}}
+\subsubsection[{\texorpdfstring{filesystem\+\_\+append\+Sectors(unsigned short first, int count, int rewrite, File\+System $\ast$fs)}{filesystem_appendSectors(unsigned short first, int count, int rewrite, FileSystem *fs)}}]{\setlength{\rightskip}{0pt plus 5cm}int filesystem\+\_\+append\+Sectors (
+\begin{DoxyParamCaption}
+\item[{unsigned short}]{first, }
+\item[{int}]{count, }
+\item[{int}]{rewrite, }
+\item[{{\bf File\+System} $\ast$}]{fs}
+\end{DoxyParamCaption}
+)}\hypertarget{fs_8c_a9cb94822594eed6ea6d6fc70ad312132}{}\label{fs_8c_a9cb94822594eed6ea6d6fc70ad312132}
+
+
+This adds sectors at the end of chained list of sectors in F\+AT. Rewrites F\+AT into drive if specified so. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em first} & a sector in a chain at the end of which to add sectors \\
+\hline
+{\em count} & the number of sectors to add \\
+\hline
+{\em rewrite} & \+: 1 to rewrite F\+AT to disk, 0 to just update memory \\
+\hline
+{\em fs} & the filesystem on which to operate changes \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 upon success 
+\end{DoxyReturn}
+\index{fs.\+c@{fs.\+c}!filesystem\+\_\+find\+Empty\+Sector@{filesystem\+\_\+find\+Empty\+Sector}}
+\index{filesystem\+\_\+find\+Empty\+Sector@{filesystem\+\_\+find\+Empty\+Sector}!fs.\+c@{fs.\+c}}
+\subsubsection[{\texorpdfstring{filesystem\+\_\+find\+Empty\+Sector(unsigned short first, File\+System $\ast$fs)}{filesystem_findEmptySector(unsigned short first, FileSystem *fs)}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned short filesystem\+\_\+find\+Empty\+Sector (
+\begin{DoxyParamCaption}
+\item[{unsigned short}]{first, }
+\item[{{\bf File\+System} $\ast$}]{fs}
+\end{DoxyParamCaption}
+)}\hypertarget{fs_8c_adcd59fe130a0f3372490826cafd0b368}{}\label{fs_8c_adcd59fe130a0f3372490826cafd0b368}
+
+
+This finds an empty sector to write to, after a given first one (initial value, set to 0 if all drive) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em first} & to first sector after which to look for an empty one \\
+\hline
+{\em fs} & the filesystem on which to perform operations \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the sector found (0 upon failure) 
+\end{DoxyReturn}
+\index{fs.\+c@{fs.\+c}!filesystem\+\_\+find\+First\+Sector@{filesystem\+\_\+find\+First\+Sector}}
+\index{filesystem\+\_\+find\+First\+Sector@{filesystem\+\_\+find\+First\+Sector}!fs.\+c@{fs.\+c}}
+\subsubsection[{\texorpdfstring{filesystem\+\_\+find\+First\+Sector(char $\ast$filename, char $\ast$filelist, int size)}{filesystem_findFirstSector(char *filename, char *filelist, int size)}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned short filesystem\+\_\+find\+First\+Sector (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{filename, }
+\item[{char $\ast$}]{filelist, }
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}\hypertarget{fs_8c_a7a6f4c6e6cf150d690db30f80f86f3a3}{}\label{fs_8c_a7a6f4c6e6cf150d690db30f80f86f3a3}
+
+
+Find first sector of entry of specified name in table loaded in buffer, of given size. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & a string representing the filename in the filelist \\
+\hline
+{\em filelist} & the filelist loaded in memory \\
+\hline
+{\em size} & the size of the filelist \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the first sector of the file as advertised in the filelist 
+\end{DoxyReturn}
+\index{fs.\+c@{fs.\+c}!filesystem\+\_\+get\+Bytes@{filesystem\+\_\+get\+Bytes}}
+\index{filesystem\+\_\+get\+Bytes@{filesystem\+\_\+get\+Bytes}!fs.\+c@{fs.\+c}}
+\subsubsection[{\texorpdfstring{filesystem\+\_\+get\+Bytes(char $\ast$file\+List\+Data, int length, char $\ast$filename)}{filesystem_getBytes(char *fileListData, int length, char *filename)}}]{\setlength{\rightskip}{0pt plus 5cm}int filesystem\+\_\+get\+Bytes (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{file\+List\+Data, }
+\item[{int}]{length, }
+\item[{char $\ast$}]{filename}
+\end{DoxyParamCaption}
+)}\hypertarget{fs_8c_ac9ddca40b7784df3ea88ee42e377c8ab}{}\label{fs_8c_ac9ddca40b7784df3ea88ee42e377c8ab}
+
+
+Returns the number of bytes of a file in a given filelist. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+List\+Data} & the filelist into which to look for the file \\
+\hline
+{\em length} & the length of the filelist \\
+\hline
+{\em filename} & the name of the file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/1 if not found, the number of bytes of the files as indicated by the filelist otherwise 
+\end{DoxyReturn}
+\index{fs.\+c@{fs.\+c}!filesystem\+\_\+get\+File\+Sectors@{filesystem\+\_\+get\+File\+Sectors}}
+\index{filesystem\+\_\+get\+File\+Sectors@{filesystem\+\_\+get\+File\+Sectors}!fs.\+c@{fs.\+c}}
+\subsubsection[{\texorpdfstring{filesystem\+\_\+get\+File\+Sectors(unsigned short first\+Sector, File\+System $\ast$fs)}{filesystem_getFileSectors(unsigned short firstSector, FileSystem *fs)}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned short filesystem\+\_\+get\+File\+Sectors (
+\begin{DoxyParamCaption}
+\item[{unsigned short}]{first\+Sector, }
+\item[{{\bf File\+System} $\ast$}]{fs}
+\end{DoxyParamCaption}
+)}\hypertarget{fs_8c_af7f60cb91a08d641147a06c42b6ecb08}{}\label{fs_8c_af7f60cb91a08d641147a06c42b6ecb08}
+
+
+computes number of sector a file actual uses (based on F\+AT, not on advertised size). Based on the first sector. Reads it from F\+AT loaded into memory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em firstector} & the firstsector of the file. If the sector is not the first one it will return the number of sectors until the end of the file \\
+\hline
+{\em fs} & the filesystem to read from \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the id of the last sector of the file 
+\end{DoxyReturn}
+\index{fs.\+c@{fs.\+c}!filesystem\+\_\+get\+Last\+Sector@{filesystem\+\_\+get\+Last\+Sector}}
+\index{filesystem\+\_\+get\+Last\+Sector@{filesystem\+\_\+get\+Last\+Sector}!fs.\+c@{fs.\+c}}
+\subsubsection[{\texorpdfstring{filesystem\+\_\+get\+Last\+Sector(unsigned short first\+Sector, File\+System $\ast$fs)}{filesystem_getLastSector(unsigned short firstSector, FileSystem *fs)}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned short filesystem\+\_\+get\+Last\+Sector (
+\begin{DoxyParamCaption}
+\item[{unsigned short}]{first\+Sector, }
+\item[{{\bf File\+System} $\ast$}]{fs}
+\end{DoxyParamCaption}
+)}\hypertarget{fs_8c_aa9d896e6b5f1146e56933c414e43f6b8}{}\label{fs_8c_aa9d896e6b5f1146e56933c414e43f6b8}
+
+
+gets the last sector of a chain of sectors in the F\+AT 
+
+
+\begin{DoxyParams}{Parameters}
+{\em first} & sector any sector in the chain to start with \\
+\hline
+{\em fs} & the filesystem to get the F\+AT from \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the id of the last sector in the chain 
+\end{DoxyReturn}
+\index{fs.\+c@{fs.\+c}!filesystem\+\_\+get\+Next\+Sector@{filesystem\+\_\+get\+Next\+Sector}}
+\index{filesystem\+\_\+get\+Next\+Sector@{filesystem\+\_\+get\+Next\+Sector}!fs.\+c@{fs.\+c}}
+\subsubsection[{\texorpdfstring{filesystem\+\_\+get\+Next\+Sector(unsigned short sector, File\+System $\ast$fs)}{filesystem_getNextSector(unsigned short sector, FileSystem *fs)}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned short filesystem\+\_\+get\+Next\+Sector (
+\begin{DoxyParamCaption}
+\item[{unsigned short}]{sector, }
+\item[{{\bf File\+System} $\ast$}]{fs}
+\end{DoxyParamCaption}
+)}\hypertarget{fs_8c_ae2fa317cfdd786a8832bbed31c38fd37}{}\label{fs_8c_ae2fa317cfdd786a8832bbed31c38fd37}
+
+
+Gets sector after a given sector in the F\+AT. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sector} & the current sector \\
+\hline
+{\em fs} & the filesystem to get the F\+AT from \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the next sector\textquotesingle{}s id in L\+BA, 0 if no next sector 
+\end{DoxyReturn}
+\index{fs.\+c@{fs.\+c}!filesystem\+\_\+get\+Next\+Sector\+Raw@{filesystem\+\_\+get\+Next\+Sector\+Raw}}
+\index{filesystem\+\_\+get\+Next\+Sector\+Raw@{filesystem\+\_\+get\+Next\+Sector\+Raw}!fs.\+c@{fs.\+c}}
+\subsubsection[{\texorpdfstring{filesystem\+\_\+get\+Next\+Sector\+Raw(unsigned short sector, File\+System $\ast$fs)}{filesystem_getNextSectorRaw(unsigned short sector, FileSystem *fs)}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned short filesystem\+\_\+get\+Next\+Sector\+Raw (
+\begin{DoxyParamCaption}
+\item[{unsigned short}]{sector, }
+\item[{{\bf File\+System} $\ast$}]{fs}
+\end{DoxyParamCaption}
+)}\hypertarget{fs_8c_a390f4b015f2b8581e23a01cb2d5825de}{}\label{fs_8c_a390f4b015f2b8581e23a01cb2d5825de}
+
+
+Gets sector after a given sector in the F\+AT, without striping the \textquotesingle{}used\textquotesingle{} flag (highest bit) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sector} & the current sector \\
+\hline
+{\em fs} & the filesystem to get the F\+AT from \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the next sector\textquotesingle{}s id in L\+BA, 0 if no next sector, with the used flag not striped 
+\end{DoxyReturn}
+\index{fs.\+c@{fs.\+c}!filesystem\+\_\+get\+Nth\+Sector@{filesystem\+\_\+get\+Nth\+Sector}}
+\index{filesystem\+\_\+get\+Nth\+Sector@{filesystem\+\_\+get\+Nth\+Sector}!fs.\+c@{fs.\+c}}
+\subsubsection[{\texorpdfstring{filesystem\+\_\+get\+Nth\+Sector(unsigned short first\+Sector, int n, File\+System $\ast$fs)}{filesystem_getNthSector(unsigned short firstSector, int n, FileSystem *fs)}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned short filesystem\+\_\+get\+Nth\+Sector (
+\begin{DoxyParamCaption}
+\item[{unsigned short}]{first\+Sector, }
+\item[{int}]{n, }
+\item[{{\bf File\+System} $\ast$}]{fs}
+\end{DoxyParamCaption}
+)}\hypertarget{fs_8c_a5070e81d9dac49ec0d5b66277865db64}{}\label{fs_8c_a5070e81d9dac49ec0d5b66277865db64}
+
+
+gets the Nth sector after a given sector in F\+AT. Indexing starts at 0. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em first\+Sector} & the first\+Sector to seek from (not necessarely the first sector of the file) \\
+\hline
+{\em n} & the number of sectors to skip (n=0 returns the first\+Sector) \\
+\hline
+{\em fs} & the filesystem to get the F\+AT from \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the id of the Nth sector 
+\end{DoxyReturn}
+\index{fs.\+c@{fs.\+c}!filesystem\+\_\+init@{filesystem\+\_\+init}}
+\index{filesystem\+\_\+init@{filesystem\+\_\+init}!fs.\+c@{fs.\+c}}
+\subsubsection[{\texorpdfstring{filesystem\+\_\+init(\+File\+System $\ast$fs)}{filesystem_init(FileSystem *fs)}}]{\setlength{\rightskip}{0pt plus 5cm}void filesystem\+\_\+init (
+\begin{DoxyParamCaption}
+\item[{{\bf File\+System} $\ast$}]{fs}
+\end{DoxyParamCaption}
+)}\hypertarget{fs_8c_a48b7d3fbd59a08faf39f5f8de1f91fb2}{}\label{fs_8c_a48b7d3fbd59a08faf39f5f8de1f91fb2}
+
+
+init file system (especially load file table at the given address) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fs} & the filesystem to initialize \\
+\hline
+\end{DoxyParams}
+\index{fs.\+c@{fs.\+c}!filesystem\+\_\+list@{filesystem\+\_\+list}}
+\index{filesystem\+\_\+list@{filesystem\+\_\+list}!fs.\+c@{fs.\+c}}
+\subsubsection[{\texorpdfstring{filesystem\+\_\+list(char $\ast$file\+List\+Data, int length)}{filesystem_list(char *fileListData, int length)}}]{\setlength{\rightskip}{0pt plus 5cm}void filesystem\+\_\+list (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{file\+List\+Data, }
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)}\hypertarget{fs_8c_ac3afad77c0cc7fa4f2531823f114b55d}{}\label{fs_8c_ac3afad77c0cc7fa4f2531823f114b55d}
+
+
+Prints the content of a given file\+List (loaded at given position in memory, with given size) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+List\+Data} & the filelist (loaded in memory) \\
+\hline
+{\em length} & the length of the filelist \\
+\hline
+\end{DoxyParams}
+\index{fs.\+c@{fs.\+c}!filesystem\+\_\+\+Load\+File\+List@{filesystem\+\_\+\+Load\+File\+List}}
+\index{filesystem\+\_\+\+Load\+File\+List@{filesystem\+\_\+\+Load\+File\+List}!fs.\+c@{fs.\+c}}
+\subsubsection[{\texorpdfstring{filesystem\+\_\+\+Load\+File\+List(\+File\+System $\ast$fs)}{filesystem_LoadFileList(FileSystem *fs)}}]{\setlength{\rightskip}{0pt plus 5cm}void filesystem\+\_\+\+Load\+File\+List (
+\begin{DoxyParamCaption}
+\item[{{\bf File\+System} $\ast$}]{fs}
+\end{DoxyParamCaption}
+)}\hypertarget{fs_8c_ace483733f6ae5d8ffdfb83b70cc87439}{}\label{fs_8c_ace483733f6ae5d8ffdfb83b70cc87439}
+
+
+Loads the filetable for a given filesystem. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fs} & the filesystem for which to load the root filelist (located at sector 11) \\
+\hline
+\end{DoxyParams}
+\index{fs.\+c@{fs.\+c}!filesystem\+\_\+load\+Sub\+File\+List@{filesystem\+\_\+load\+Sub\+File\+List}}
+\index{filesystem\+\_\+load\+Sub\+File\+List@{filesystem\+\_\+load\+Sub\+File\+List}!fs.\+c@{fs.\+c}}
+\subsubsection[{\texorpdfstring{filesystem\+\_\+load\+Sub\+File\+List(\+File\+System $\ast$fs, char $\ast$file\+List\+Data, int size, char $\ast$sub\+File\+List\+Name, char $\ast$$\ast$res\+Buffer)}{filesystem_loadSubFileList(FileSystem *fs, char *fileListData, int size, char *subFileListName, char **resBuffer)}}]{\setlength{\rightskip}{0pt plus 5cm}int filesystem\+\_\+load\+Sub\+File\+List (
+\begin{DoxyParamCaption}
+\item[{{\bf File\+System} $\ast$}]{fs, }
+\item[{char $\ast$}]{file\+List\+Data, }
+\item[{int}]{size, }
+\item[{char $\ast$}]{sub\+File\+List\+Name, }
+\item[{char $\ast$$\ast$}]{res\+Buffer}
+\end{DoxyParamCaption}
+)}\hypertarget{fs_8c_a80761cf439249119de3365917b900756}{}\label{fs_8c_a80761cf439249119de3365917b900756}
+
+
+loads a subfilelist into an allocated buffer. This buffer needs to be freed after using sys\+\_\+free. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fs} & the filesystem from which to load the sub filelist \\
+\hline
+{\em file\+List\+Data} & the current filelist into which to look for the sub\+File\+List (works recursively) \\
+\hline
+{\em size} & the size of the current filelist in bytes \\
+\hline
+{\em sub\+File\+List\+Name} & the name of the sub\+File\+List(directory to look for) \\
+\hline
+{\em res\+Buffer} & that will be allocated and into which the subfilelist will be loaded into \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the size of the loaded subfilelist in bytes, -\/1 if failed 
+\end{DoxyReturn}
+\index{fs.\+c@{fs.\+c}!filesystem\+\_\+readbytes\+By\+First\+Sector@{filesystem\+\_\+readbytes\+By\+First\+Sector}}
+\index{filesystem\+\_\+readbytes\+By\+First\+Sector@{filesystem\+\_\+readbytes\+By\+First\+Sector}!fs.\+c@{fs.\+c}}
+\subsubsection[{\texorpdfstring{filesystem\+\_\+readbytes\+By\+First\+Sector(unsigned short first\+Sector, int start\+Byte, int length, char $\ast$buffer, File\+System $\ast$fs)}{filesystem_readbytesByFirstSector(unsigned short firstSector, int startByte, int length, char *buffer, FileSystem *fs)}}]{\setlength{\rightskip}{0pt plus 5cm}int filesystem\+\_\+readbytes\+By\+First\+Sector (
+\begin{DoxyParamCaption}
+\item[{unsigned short}]{first\+Sector, }
+\item[{int}]{start\+Byte, }
+\item[{int}]{length, }
+\item[{char $\ast$}]{buffer, }
+\item[{{\bf File\+System} $\ast$}]{fs}
+\end{DoxyParamCaption}
+)}\hypertarget{fs_8c_ae1625d259df79b08baf9d65549f55ce6}{}\label{fs_8c_ae1625d259df79b08baf9d65549f55ce6}
+
+
+Reads the given amount of bytes from file given at first sector into provided buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em first\+Sector} & the first\+Sector of the file \\
+\hline
+{\em start\+Byte} & the first\+Byte to read \\
+\hline
+{\em length} & the number of bytes to read \\
+\hline
+{\em a} & buffer to read into \\
+\hline
+{\em fs} & the filesystem to read from \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/1 upon error, 0 upon success 
+\end{DoxyReturn}
+\index{fs.\+c@{fs.\+c}!filesystem\+\_\+set\+Bytes@{filesystem\+\_\+set\+Bytes}}
+\index{filesystem\+\_\+set\+Bytes@{filesystem\+\_\+set\+Bytes}!fs.\+c@{fs.\+c}}
+\subsubsection[{\texorpdfstring{filesystem\+\_\+set\+Bytes(char $\ast$file\+List\+Data, int length, char $\ast$filename, int new\+Size)}{filesystem_setBytes(char *fileListData, int length, char *filename, int newSize)}}]{\setlength{\rightskip}{0pt plus 5cm}int filesystem\+\_\+set\+Bytes (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{file\+List\+Data, }
+\item[{int}]{length, }
+\item[{char $\ast$}]{filename, }
+\item[{int}]{new\+Size}
+\end{DoxyParamCaption}
+)}\hypertarget{fs_8c_a660275e7124558934e27e719da914611}{}\label{fs_8c_a660275e7124558934e27e719da914611}
+
+
+sets the number of bytes of file in a given filelist. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+List\+Data} & the filelist into which to look for the file \\
+\hline
+{\em length} & the length of the filelist \\
+\hline
+{\em filename} & the name of the file \\
+\hline
+{\em new\+Size} & the size to be set to the file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/1 if not found 
+\end{DoxyReturn}
+\index{fs.\+c@{fs.\+c}!filesystem\+\_\+set\+Next\+Sector@{filesystem\+\_\+set\+Next\+Sector}}
+\index{filesystem\+\_\+set\+Next\+Sector@{filesystem\+\_\+set\+Next\+Sector}!fs.\+c@{fs.\+c}}
+\subsubsection[{\texorpdfstring{filesystem\+\_\+set\+Next\+Sector(unsigned short start, unsigned short next, File\+System $\ast$fs)}{filesystem_setNextSector(unsigned short start, unsigned short next, FileSystem *fs)}}]{\setlength{\rightskip}{0pt plus 5cm}void filesystem\+\_\+set\+Next\+Sector (
+\begin{DoxyParamCaption}
+\item[{unsigned short}]{start, }
+\item[{unsigned short}]{next, }
+\item[{{\bf File\+System} $\ast$}]{fs}
+\end{DoxyParamCaption}
+)}\hypertarget{fs_8c_af97097602947d83628da0cc7575e6d68}{}\label{fs_8c_af97097602947d83628da0cc7575e6d68}
+
+
+Sets the next sector in the F\+AT loaded in memory (does not rewrite it in drive) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & the sector to set the next one to \\
+\hline
+{\em next} & the sector to be written as following the \char`\"{}start\char`\"{} one \\
+\hline
+{\em fs} & the filesystem on whose F\+AT to operate changes on \\
+\hline
+\end{DoxyParams}
+\index{fs.\+c@{fs.\+c}!filesystem\+\_\+sub\+List@{filesystem\+\_\+sub\+List}}
+\index{filesystem\+\_\+sub\+List@{filesystem\+\_\+sub\+List}!fs.\+c@{fs.\+c}}
+\subsubsection[{\texorpdfstring{filesystem\+\_\+sub\+List(\+File\+System $\ast$fs, char $\ast$file\+List\+Data, int size, char $\ast$sub\+List\+Name)}{filesystem_subList(FileSystem *fs, char *fileListData, int size, char *subListName)}}]{\setlength{\rightskip}{0pt plus 5cm}int filesystem\+\_\+sub\+List (
+\begin{DoxyParamCaption}
+\item[{{\bf File\+System} $\ast$}]{fs, }
+\item[{char $\ast$}]{file\+List\+Data, }
+\item[{int}]{size, }
+\item[{char $\ast$}]{sub\+List\+Name}
+\end{DoxyParamCaption}
+)}\hypertarget{fs_8c_ab45141e3c3e153cb1f2ba574236898fd}{}\label{fs_8c_ab45141e3c3e153cb1f2ba574236898fd}
+
+
+Lists through a path ex. /subdir/ recursively until destination reached. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fs} & the filesystem into which to look for the sublist \\
+\hline
+{\em file\+List\+Data} & the current filelist \\
+\hline
+{\em size} & the size of the current filelist \\
+\hline
+{\em sub\+List\+Name} & the name of the sublist to look for \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/1 upon failure, 0 upon success 
+\end{DoxyReturn}
+\index{fs.\+c@{fs.\+c}!filesystems\+\_\+drive\+List@{filesystems\+\_\+drive\+List}}
+\index{filesystems\+\_\+drive\+List@{filesystems\+\_\+drive\+List}!fs.\+c@{fs.\+c}}
+\subsubsection[{\texorpdfstring{filesystems\+\_\+drive\+List(char $\ast$full\+Path)}{filesystems_driveList(char *fullPath)}}]{\setlength{\rightskip}{0pt plus 5cm}int filesystems\+\_\+drive\+List (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{full\+Path}
+\end{DoxyParamCaption}
+)}\hypertarget{fs_8c_a544404a685670d00a0c09e3dc1886595}{}\label{fs_8c_a544404a685670d00a0c09e3dc1886595}
+
+
+Lists the contents of a given directory. End user function, supports complete path, including drive id. Supports 1-\/digits drives ids (0-\/9) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em full\+Path} & the absolute path to the directory \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/1 upon failure 
+\end{DoxyReturn}
+\index{fs.\+c@{fs.\+c}!get\+File\+System\+By\+Drive\+Id@{get\+File\+System\+By\+Drive\+Id}}
+\index{get\+File\+System\+By\+Drive\+Id@{get\+File\+System\+By\+Drive\+Id}!fs.\+c@{fs.\+c}}
+\subsubsection[{\texorpdfstring{get\+File\+System\+By\+Drive\+Id(int id)}{getFileSystemByDriveId(int id)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf File\+System}$\ast$ get\+File\+System\+By\+Drive\+Id (
+\begin{DoxyParamCaption}
+\item[{int}]{id}
+\end{DoxyParamCaption}
+)}\hypertarget{fs_8c_a21807adf804016925a5afdd1681d0337}{}\label{fs_8c_a21807adf804016925a5afdd1681d0337}
+
+
+Returns a pointer to the filesystem of given drive ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & the drive\textquotesingle{}s id \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a pointer to the filesystem\textquotesingle{}s structure 
+\end{DoxyReturn}
+\index{fs.\+c@{fs.\+c}!get\+First\+File\+System@{get\+First\+File\+System}}
+\index{get\+First\+File\+System@{get\+First\+File\+System}!fs.\+c@{fs.\+c}}
+\subsubsection[{\texorpdfstring{get\+First\+File\+System()}{getFirstFileSystem()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf File\+System}$\ast$ get\+First\+File\+System (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{fs_8c_a1ad05734e91206f61419583e3cca0ca1}{}\label{fs_8c_a1ad05734e91206f61419583e3cca0ca1}
+
+
+Gets the first filesystem handled by the filesystem handler (boot filesystem) 
+
+\begin{DoxyReturn}{Returns}
+a pointer a filesystem structure representing the first filesystem 
+\end{DoxyReturn}

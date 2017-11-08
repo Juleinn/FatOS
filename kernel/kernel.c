@@ -1,6 +1,7 @@
-/* file kernel.c
- * Anton Claes, 2017
- * This is the first file of my kernel */
+/** @file kernel.c
+ *  @author Anton Claes
+ 	@date 2017
+ *  @brief This contains the kernel's entry point*/
 
 // #include "IO/print.h"
 
@@ -12,6 +13,10 @@
 #include "memorymanager.h"
 #include "fs.h"
 
+/**
+@brief OS kernel entry point
+@return 0 after console exited
+**/
 int main(){
 	clear_screen();
 	init_text();
@@ -25,9 +30,13 @@ int main(){
 	/* test mem manager */
 	memorymanager_init();
 	filesystems_init();
+
 	FileSystem * fs0 = getFirstFileSystem();
-	// list root entry of fs0
-	// filesystem_list(fs0->fileList, fs0->fileListSize);
+
+
+	filesystem_appendBytes(fs0, fs0->root,
+    "/subdir/subfile1.bin", 100);
+
 	console();
 
 	return 0;

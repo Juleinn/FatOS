@@ -14,4 +14,12 @@ int atoi(char* buffer);
 /* Measures the length of given string before \0 (without \0)*/
 int strlen(char * str);
 
+/* Returns the index of the first occurence of char c in string str 
+strIndexOf("abc", 'b') = 1
+*/
+int strIndexOf(char* str, char c);
+
+/* Counts the occurences of a given char */
+int chrCount(const char* str, const char c);
+
 #endif

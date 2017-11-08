@@ -16,8 +16,9 @@
 #include "memorymanager.h"
 
 /* Hard coded basic commands */
-static const char *command_list[] = {"exit", "memmap", "cls", "help", "console", "floppyinfo", "flpread", "fs", "meminfo"};
-#define CONSOLE_COMMAND_COUNT 9
+static const char *command_list[] = {"exit", "memmap", "cls", "help", 
+		"console", "floppyinfo", "flpread", "fs", "meminfo", "ls"};
+#define CONSOLE_COMMAND_COUNT 10
 
 /* Main console function. Exits on "exit" user entry */
 void console();
@@ -27,9 +28,13 @@ void console();
 int console_command_id(char* cmd);
 
 /* Launches command with specified ID */
-void console_launch(int id);
+void console_launch(int id, char * args);
 
 /* lists the available commands */
 void help();
+
+/* Special string compare for console commands (allows ' ' as ending char ). Returns 0
+upon equality */
+int cmdCmp(const char *str1, const char * str2);
 
 #endif

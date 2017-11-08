@@ -1,0 +1,109 @@
+\hypertarget{memorymanager_8c}{}\section{kernel/memory/memorymanager.c File Reference}
+\label{memorymanager_8c}\index{kernel/memory/memorymanager.\+c@{kernel/memory/memorymanager.\+c}}
+{\ttfamily \#include \char`\"{}memorymanager.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}memorymap.\+h\char`\"{}}\\*
+Include dependency graph for memorymanager.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{memorymanager_8c_a430a65b4719cafba3051164bb0bc985d}{memorymanager\+\_\+init} ()
+\item 
+void $\ast$ \hyperlink{memorymanager_8c_ae92f2420cacefc3f2bf9938f2298410b}{sys\+\_\+alloc} (int \hyperlink{memorymanager_8h_a9f59b34b1f25fe00023291b678246bcc}{length})
+\item 
+\hyperlink{structMemoryHeader}{Memory\+Header} $\ast$ \hyperlink{memorymanager_8c_a57f10e55cabe8f0a87b4b906a1bafb38}{find\+\_\+bestfit} (int \hyperlink{memorymanager_8h_a9f59b34b1f25fe00023291b678246bcc}{length})
+\item 
+void \hyperlink{memorymanager_8c_a1f2ee18132ca89d29de37a52d0f4efae}{sys\+\_\+free} (void $\ast$addr)
+\item 
+void \hyperlink{memorymanager_8c_a30449e41691863b549b3c49d3bd15c6f}{memorymanager\+\_\+print} ()
+\item 
+void \hyperlink{memorymanager_8c_ad877ba71139da8355df2bc996328eb5c}{memorymanager\+\_\+concat} (\hyperlink{structMemoryHeader}{Memory\+Header} $\ast$\hyperlink{interruption_8h_a2e013c2c6e8010c8116c6f56813df57b}{base})
+\item 
+\hyperlink{structMemoryHeader}{Memory\+Header} $\ast$ \hyperlink{memorymanager_8c_af58e9c41c9f80b1f1ca6a52b947fbc53}{memorymanager\+\_\+find\+Next\+Non\+Empty} (\hyperlink{structMemoryHeader}{Memory\+Header} $\ast$\hyperlink{interruption_8h_a2e013c2c6e8010c8116c6f56813df57b}{base})
+\item 
+\hyperlink{structMemoryHeader}{Memory\+Header} $\ast$ \hyperlink{memorymanager_8c_ae2a009bebfcac92e8a9b36f7b21d8507}{memorymanager\+\_\+find\+Non\+Empty\+Before} (\hyperlink{structMemoryHeader}{Memory\+Header} $\ast$\hyperlink{interruption_8h_a2e013c2c6e8010c8116c6f56813df57b}{base})
+\item 
+int \hyperlink{memorymanager_8c_ad00588bc8ed5ad027dcae796915932bd}{memorymanager\+\_\+get\+Free\+Length\+Above} (\hyperlink{structMemoryHeader}{Memory\+Header} $\ast$\hyperlink{interruption_8h_a2e013c2c6e8010c8116c6f56813df57b}{base})
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structMemoryHeader}{Memory\+Header} $\ast$ \hyperlink{memorymanager_8c_aec19341502e768e3a7d7a1d917ef8fdf}{first\+\_\+memory\+\_\+header}
+\item 
+char $\ast$ \hyperlink{memorymanager_8c_a5afa2479ae58f8fa58bbffaf6708fd3b}{freememory\+\_\+base}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{memorymanager.\+c@{memorymanager.\+c}!find\+\_\+bestfit@{find\+\_\+bestfit}}
+\index{find\+\_\+bestfit@{find\+\_\+bestfit}!memorymanager.\+c@{memorymanager.\+c}}
+\subsubsection[{\texorpdfstring{find\+\_\+bestfit(int length)}{find_bestfit(int length)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Memory\+Header}$\ast$ find\+\_\+bestfit (
+\begin{DoxyParamCaption}
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)}\hypertarget{memorymanager_8c_a57f10e55cabe8f0a87b4b906a1bafb38}{}\label{memorymanager_8c_a57f10e55cabe8f0a87b4b906a1bafb38}
+\index{memorymanager.\+c@{memorymanager.\+c}!memorymanager\+\_\+concat@{memorymanager\+\_\+concat}}
+\index{memorymanager\+\_\+concat@{memorymanager\+\_\+concat}!memorymanager.\+c@{memorymanager.\+c}}
+\subsubsection[{\texorpdfstring{memorymanager\+\_\+concat(\+Memory\+Header $\ast$base)}{memorymanager_concat(MemoryHeader *base)}}]{\setlength{\rightskip}{0pt plus 5cm}void memorymanager\+\_\+concat (
+\begin{DoxyParamCaption}
+\item[{{\bf Memory\+Header} $\ast$}]{base}
+\end{DoxyParamCaption}
+)}\hypertarget{memorymanager_8c_ad877ba71139da8355df2bc996328eb5c}{}\label{memorymanager_8c_ad877ba71139da8355df2bc996328eb5c}
+\index{memorymanager.\+c@{memorymanager.\+c}!memorymanager\+\_\+find\+Next\+Non\+Empty@{memorymanager\+\_\+find\+Next\+Non\+Empty}}
+\index{memorymanager\+\_\+find\+Next\+Non\+Empty@{memorymanager\+\_\+find\+Next\+Non\+Empty}!memorymanager.\+c@{memorymanager.\+c}}
+\subsubsection[{\texorpdfstring{memorymanager\+\_\+find\+Next\+Non\+Empty(\+Memory\+Header $\ast$base)}{memorymanager_findNextNonEmpty(MemoryHeader *base)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Memory\+Header}$\ast$ memorymanager\+\_\+find\+Next\+Non\+Empty (
+\begin{DoxyParamCaption}
+\item[{{\bf Memory\+Header} $\ast$}]{base}
+\end{DoxyParamCaption}
+)}\hypertarget{memorymanager_8c_af58e9c41c9f80b1f1ca6a52b947fbc53}{}\label{memorymanager_8c_af58e9c41c9f80b1f1ca6a52b947fbc53}
+\index{memorymanager.\+c@{memorymanager.\+c}!memorymanager\+\_\+find\+Non\+Empty\+Before@{memorymanager\+\_\+find\+Non\+Empty\+Before}}
+\index{memorymanager\+\_\+find\+Non\+Empty\+Before@{memorymanager\+\_\+find\+Non\+Empty\+Before}!memorymanager.\+c@{memorymanager.\+c}}
+\subsubsection[{\texorpdfstring{memorymanager\+\_\+find\+Non\+Empty\+Before(\+Memory\+Header $\ast$base)}{memorymanager_findNonEmptyBefore(MemoryHeader *base)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Memory\+Header}$\ast$ memorymanager\+\_\+find\+Non\+Empty\+Before (
+\begin{DoxyParamCaption}
+\item[{{\bf Memory\+Header} $\ast$}]{base}
+\end{DoxyParamCaption}
+)}\hypertarget{memorymanager_8c_ae2a009bebfcac92e8a9b36f7b21d8507}{}\label{memorymanager_8c_ae2a009bebfcac92e8a9b36f7b21d8507}
+\index{memorymanager.\+c@{memorymanager.\+c}!memorymanager\+\_\+get\+Free\+Length\+Above@{memorymanager\+\_\+get\+Free\+Length\+Above}}
+\index{memorymanager\+\_\+get\+Free\+Length\+Above@{memorymanager\+\_\+get\+Free\+Length\+Above}!memorymanager.\+c@{memorymanager.\+c}}
+\subsubsection[{\texorpdfstring{memorymanager\+\_\+get\+Free\+Length\+Above(\+Memory\+Header $\ast$base)}{memorymanager_getFreeLengthAbove(MemoryHeader *base)}}]{\setlength{\rightskip}{0pt plus 5cm}int memorymanager\+\_\+get\+Free\+Length\+Above (
+\begin{DoxyParamCaption}
+\item[{{\bf Memory\+Header} $\ast$}]{base}
+\end{DoxyParamCaption}
+)}\hypertarget{memorymanager_8c_ad00588bc8ed5ad027dcae796915932bd}{}\label{memorymanager_8c_ad00588bc8ed5ad027dcae796915932bd}
+\index{memorymanager.\+c@{memorymanager.\+c}!memorymanager\+\_\+init@{memorymanager\+\_\+init}}
+\index{memorymanager\+\_\+init@{memorymanager\+\_\+init}!memorymanager.\+c@{memorymanager.\+c}}
+\subsubsection[{\texorpdfstring{memorymanager\+\_\+init()}{memorymanager_init()}}]{\setlength{\rightskip}{0pt plus 5cm}void memorymanager\+\_\+init (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{memorymanager_8c_a430a65b4719cafba3051164bb0bc985d}{}\label{memorymanager_8c_a430a65b4719cafba3051164bb0bc985d}
+\index{memorymanager.\+c@{memorymanager.\+c}!memorymanager\+\_\+print@{memorymanager\+\_\+print}}
+\index{memorymanager\+\_\+print@{memorymanager\+\_\+print}!memorymanager.\+c@{memorymanager.\+c}}
+\subsubsection[{\texorpdfstring{memorymanager\+\_\+print()}{memorymanager_print()}}]{\setlength{\rightskip}{0pt plus 5cm}void memorymanager\+\_\+print (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{memorymanager_8c_a30449e41691863b549b3c49d3bd15c6f}{}\label{memorymanager_8c_a30449e41691863b549b3c49d3bd15c6f}
+\index{memorymanager.\+c@{memorymanager.\+c}!sys\+\_\+alloc@{sys\+\_\+alloc}}
+\index{sys\+\_\+alloc@{sys\+\_\+alloc}!memorymanager.\+c@{memorymanager.\+c}}
+\subsubsection[{\texorpdfstring{sys\+\_\+alloc(int length)}{sys_alloc(int length)}}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ sys\+\_\+alloc (
+\begin{DoxyParamCaption}
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)}\hypertarget{memorymanager_8c_ae92f2420cacefc3f2bf9938f2298410b}{}\label{memorymanager_8c_ae92f2420cacefc3f2bf9938f2298410b}
+\index{memorymanager.\+c@{memorymanager.\+c}!sys\+\_\+free@{sys\+\_\+free}}
+\index{sys\+\_\+free@{sys\+\_\+free}!memorymanager.\+c@{memorymanager.\+c}}
+\subsubsection[{\texorpdfstring{sys\+\_\+free(void $\ast$addr)}{sys_free(void *addr)}}]{\setlength{\rightskip}{0pt plus 5cm}void sys\+\_\+free (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{addr}
+\end{DoxyParamCaption}
+)}\hypertarget{memorymanager_8c_a1f2ee18132ca89d29de37a52d0f4efae}{}\label{memorymanager_8c_a1f2ee18132ca89d29de37a52d0f4efae}
+
+
+\subsection{Variable Documentation}
+\index{memorymanager.\+c@{memorymanager.\+c}!first\+\_\+memory\+\_\+header@{first\+\_\+memory\+\_\+header}}
+\index{first\+\_\+memory\+\_\+header@{first\+\_\+memory\+\_\+header}!memorymanager.\+c@{memorymanager.\+c}}
+\subsubsection[{\texorpdfstring{first\+\_\+memory\+\_\+header}{first_memory_header}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Memory\+Header}$\ast$ first\+\_\+memory\+\_\+header}\hypertarget{memorymanager_8c_aec19341502e768e3a7d7a1d917ef8fdf}{}\label{memorymanager_8c_aec19341502e768e3a7d7a1d917ef8fdf}
+\index{memorymanager.\+c@{memorymanager.\+c}!freememory\+\_\+base@{freememory\+\_\+base}}
+\index{freememory\+\_\+base@{freememory\+\_\+base}!memorymanager.\+c@{memorymanager.\+c}}
+\subsubsection[{\texorpdfstring{freememory\+\_\+base}{freememory_base}}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ freememory\+\_\+base}\hypertarget{memorymanager_8c_a5afa2479ae58f8fa58bbffaf6708fd3b}{}\label{memorymanager_8c_a5afa2479ae58f8fa58bbffaf6708fd3b}

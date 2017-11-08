@@ -1,0 +1,117 @@
+\hypertarget{keyboard_8c}{}\section{kernel/interruptions/keyboard.c File Reference}
+\label{keyboard_8c}\index{kernel/interruptions/keyboard.\+c@{kernel/interruptions/keyboard.\+c}}
+{\ttfamily \#include \char`\"{}keyboard.\+h\char`\"{}}\\*
+Include dependency graph for keyboard.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{keyboard_8c_ad36c01c5d7b1fc13a22426a497ac1b8b}{C\+A\+P\+S\+L\+O\+CK}~58
+\item 
+\#define \hyperlink{keyboard_8c_a0f77a13b2beaed43fa72e36ed62889d3}{L\+S\+H\+I\+FT}~42
+\item 
+\#define \hyperlink{keyboard_8c_a629568514359445d2fbda71d70eeb1ce}{B\+A\+C\+K\+S\+P\+A\+CE}~14
+\item 
+\#define \hyperlink{keyboard_8c_a0d039e4d62ff4c9a85fe4b008e0df8b0}{N\+W\+L\+I\+NE}~28
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{keyboard_8c_a4f1d151051e6ef21c9e13ba290c9b517}{kbd\+\_\+irq\+\_\+handler} ()
+\item 
+char \hyperlink{keyboard_8c_aa708a3f3b61037b65b3d90144787b380}{get\+\_\+ascii} (char keycode)
+\item 
+void \hyperlink{keyboard_8c_a55cc5f6f4103049834b63fd7999cbcec}{set\+\_\+leds} ()
+\item 
+void \hyperlink{keyboard_8c_a70d3e32296a6707ee8cb297833683f77}{cut\+\_\+leds} ()
+\item 
+unsigned char \hyperlink{keyboard_8c_a061e2459174024e51bc02a72e11ff5ba}{is\+\_\+printable} (char keycode)
+\item 
+char \hyperlink{keyboard_8c_adaa5d03a8a6789a1e3d9b79eb4f8937e}{wait\+\_\+char} ()
+\item 
+int \hyperlink{keyboard_8c_a11b75637f0ec377d36e1bd752c00431a}{getline} (char $\ast$buffer, int count)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+char \hyperlink{keyboard_8c_a694bb23fec0653eb8c266ab22814dc63}{keyboard\+\_\+data\+\_\+available} = 0
+\item 
+char \hyperlink{keyboard_8c_a30f8ee21aae5a80b15006400889f4460}{keyboard\+\_\+data} = 0
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\index{keyboard.\+c@{keyboard.\+c}!B\+A\+C\+K\+S\+P\+A\+CE@{B\+A\+C\+K\+S\+P\+A\+CE}}
+\index{B\+A\+C\+K\+S\+P\+A\+CE@{B\+A\+C\+K\+S\+P\+A\+CE}!keyboard.\+c@{keyboard.\+c}}
+\subsubsection[{\texorpdfstring{B\+A\+C\+K\+S\+P\+A\+CE}{BACKSPACE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+A\+C\+K\+S\+P\+A\+CE~14}\hypertarget{keyboard_8c_a629568514359445d2fbda71d70eeb1ce}{}\label{keyboard_8c_a629568514359445d2fbda71d70eeb1ce}
+\index{keyboard.\+c@{keyboard.\+c}!C\+A\+P\+S\+L\+O\+CK@{C\+A\+P\+S\+L\+O\+CK}}
+\index{C\+A\+P\+S\+L\+O\+CK@{C\+A\+P\+S\+L\+O\+CK}!keyboard.\+c@{keyboard.\+c}}
+\subsubsection[{\texorpdfstring{C\+A\+P\+S\+L\+O\+CK}{CAPSLOCK}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+A\+P\+S\+L\+O\+CK~58}\hypertarget{keyboard_8c_ad36c01c5d7b1fc13a22426a497ac1b8b}{}\label{keyboard_8c_ad36c01c5d7b1fc13a22426a497ac1b8b}
+\index{keyboard.\+c@{keyboard.\+c}!L\+S\+H\+I\+FT@{L\+S\+H\+I\+FT}}
+\index{L\+S\+H\+I\+FT@{L\+S\+H\+I\+FT}!keyboard.\+c@{keyboard.\+c}}
+\subsubsection[{\texorpdfstring{L\+S\+H\+I\+FT}{LSHIFT}}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+S\+H\+I\+FT~42}\hypertarget{keyboard_8c_a0f77a13b2beaed43fa72e36ed62889d3}{}\label{keyboard_8c_a0f77a13b2beaed43fa72e36ed62889d3}
+\index{keyboard.\+c@{keyboard.\+c}!N\+W\+L\+I\+NE@{N\+W\+L\+I\+NE}}
+\index{N\+W\+L\+I\+NE@{N\+W\+L\+I\+NE}!keyboard.\+c@{keyboard.\+c}}
+\subsubsection[{\texorpdfstring{N\+W\+L\+I\+NE}{NWLINE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+W\+L\+I\+NE~28}\hypertarget{keyboard_8c_a0d039e4d62ff4c9a85fe4b008e0df8b0}{}\label{keyboard_8c_a0d039e4d62ff4c9a85fe4b008e0df8b0}
+
+
+\subsection{Function Documentation}
+\index{keyboard.\+c@{keyboard.\+c}!cut\+\_\+leds@{cut\+\_\+leds}}
+\index{cut\+\_\+leds@{cut\+\_\+leds}!keyboard.\+c@{keyboard.\+c}}
+\subsubsection[{\texorpdfstring{cut\+\_\+leds()}{cut_leds()}}]{\setlength{\rightskip}{0pt plus 5cm}void cut\+\_\+leds (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{keyboard_8c_a70d3e32296a6707ee8cb297833683f77}{}\label{keyboard_8c_a70d3e32296a6707ee8cb297833683f77}
+\index{keyboard.\+c@{keyboard.\+c}!get\+\_\+ascii@{get\+\_\+ascii}}
+\index{get\+\_\+ascii@{get\+\_\+ascii}!keyboard.\+c@{keyboard.\+c}}
+\subsubsection[{\texorpdfstring{get\+\_\+ascii(char keycode)}{get_ascii(char keycode)}}]{\setlength{\rightskip}{0pt plus 5cm}char get\+\_\+ascii (
+\begin{DoxyParamCaption}
+\item[{char}]{keycode}
+\end{DoxyParamCaption}
+)}\hypertarget{keyboard_8c_aa708a3f3b61037b65b3d90144787b380}{}\label{keyboard_8c_aa708a3f3b61037b65b3d90144787b380}
+\index{keyboard.\+c@{keyboard.\+c}!getline@{getline}}
+\index{getline@{getline}!keyboard.\+c@{keyboard.\+c}}
+\subsubsection[{\texorpdfstring{getline(char $\ast$buffer, int count)}{getline(char *buffer, int count)}}]{\setlength{\rightskip}{0pt plus 5cm}int getline (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{buffer, }
+\item[{int}]{count}
+\end{DoxyParamCaption}
+)}\hypertarget{keyboard_8c_a11b75637f0ec377d36e1bd752c00431a}{}\label{keyboard_8c_a11b75637f0ec377d36e1bd752c00431a}
+\index{keyboard.\+c@{keyboard.\+c}!is\+\_\+printable@{is\+\_\+printable}}
+\index{is\+\_\+printable@{is\+\_\+printable}!keyboard.\+c@{keyboard.\+c}}
+\subsubsection[{\texorpdfstring{is\+\_\+printable(char keycode)}{is_printable(char keycode)}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char is\+\_\+printable (
+\begin{DoxyParamCaption}
+\item[{char}]{keycode}
+\end{DoxyParamCaption}
+)}\hypertarget{keyboard_8c_a061e2459174024e51bc02a72e11ff5ba}{}\label{keyboard_8c_a061e2459174024e51bc02a72e11ff5ba}
+\index{keyboard.\+c@{keyboard.\+c}!kbd\+\_\+irq\+\_\+handler@{kbd\+\_\+irq\+\_\+handler}}
+\index{kbd\+\_\+irq\+\_\+handler@{kbd\+\_\+irq\+\_\+handler}!keyboard.\+c@{keyboard.\+c}}
+\subsubsection[{\texorpdfstring{kbd\+\_\+irq\+\_\+handler()}{kbd_irq_handler()}}]{\setlength{\rightskip}{0pt plus 5cm}void kbd\+\_\+irq\+\_\+handler (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{keyboard_8c_a4f1d151051e6ef21c9e13ba290c9b517}{}\label{keyboard_8c_a4f1d151051e6ef21c9e13ba290c9b517}
+\index{keyboard.\+c@{keyboard.\+c}!set\+\_\+leds@{set\+\_\+leds}}
+\index{set\+\_\+leds@{set\+\_\+leds}!keyboard.\+c@{keyboard.\+c}}
+\subsubsection[{\texorpdfstring{set\+\_\+leds()}{set_leds()}}]{\setlength{\rightskip}{0pt plus 5cm}void set\+\_\+leds (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{keyboard_8c_a55cc5f6f4103049834b63fd7999cbcec}{}\label{keyboard_8c_a55cc5f6f4103049834b63fd7999cbcec}
+\index{keyboard.\+c@{keyboard.\+c}!wait\+\_\+char@{wait\+\_\+char}}
+\index{wait\+\_\+char@{wait\+\_\+char}!keyboard.\+c@{keyboard.\+c}}
+\subsubsection[{\texorpdfstring{wait\+\_\+char()}{wait_char()}}]{\setlength{\rightskip}{0pt plus 5cm}char wait\+\_\+char (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{keyboard_8c_adaa5d03a8a6789a1e3d9b79eb4f8937e}{}\label{keyboard_8c_adaa5d03a8a6789a1e3d9b79eb4f8937e}
+
+
+\subsection{Variable Documentation}
+\index{keyboard.\+c@{keyboard.\+c}!keyboard\+\_\+data@{keyboard\+\_\+data}}
+\index{keyboard\+\_\+data@{keyboard\+\_\+data}!keyboard.\+c@{keyboard.\+c}}
+\subsubsection[{\texorpdfstring{keyboard\+\_\+data}{keyboard_data}}]{\setlength{\rightskip}{0pt plus 5cm}char keyboard\+\_\+data = 0}\hypertarget{keyboard_8c_a30f8ee21aae5a80b15006400889f4460}{}\label{keyboard_8c_a30f8ee21aae5a80b15006400889f4460}
+\index{keyboard.\+c@{keyboard.\+c}!keyboard\+\_\+data\+\_\+available@{keyboard\+\_\+data\+\_\+available}}
+\index{keyboard\+\_\+data\+\_\+available@{keyboard\+\_\+data\+\_\+available}!keyboard.\+c@{keyboard.\+c}}
+\subsubsection[{\texorpdfstring{keyboard\+\_\+data\+\_\+available}{keyboard_data_available}}]{\setlength{\rightskip}{0pt plus 5cm}char keyboard\+\_\+data\+\_\+available = 0}\hypertarget{keyboard_8c_a694bb23fec0653eb8c266ab22814dc63}{}\label{keyboard_8c_a694bb23fec0653eb8c266ab22814dc63}

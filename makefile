@@ -9,6 +9,9 @@ all: binary
 run: binary
 	qemu-system-i386 -fda fatos.flp
 
+runonly:
+	qemu-system-i386 -fda fatos.flp
+
 debug: flp mbr.asm printstring.asm readdrive.asm
 	# generate mbr and corresponding debug symbol file
 	# must strip off the org directive at beginning of file

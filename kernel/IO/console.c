@@ -9,11 +9,14 @@ void console()
 
 	do
 	{
+		// wipe buffer to avoid old buffer bits 
+		memset(0, cmd_buf, CSL_CMD_BUF_LGHT);
+
 		prints("#>");
 		int cmdlen = getline(cmd_buf, CSL_CMD_BUF_LGHT);
 		int cmdid = console_command_id(cmd_buf);
 		printc('\n');
-		console_launch(cmdid);
+		console_launch(cmdid, (char*) (cmd_buf + strlen(command_list[cmdid])+1));
 
 	}while(strcmp(cmd_buf, "exit") != 0);
 	prints("exiting console\n");
@@ -24,13 +27,13 @@ int console_command_id(char* cmd)
 	int i;
 	for(i=0; i<CONSOLE_COMMAND_COUNT; i++)
 	{
-		if(strcmp(command_list[i], cmd) == 0)
+		if(cmdCmp(command_list[i], cmd) == 0)
 			return i;
 	}
 	return -1;
 }
 
-void console_launch(int id)
+void console_launch(int id, char * args)
 {
 	switch(id)
 	{
@@ -64,6 +67,9 @@ void console_launch(int id)
 		case 8:
 			memorymanager_print();
 			break;
+		case 9:
+			filesystems_driveList(args);
+			break;
 		default:
 			prints("Unknown command. Type \"help\" for a list of commands\n");
 	}
@@ -78,4 +84,15 @@ void help()
 		prints(command_list[i]);
 		prints("\n");
 	}
+}
+
+int cmdCmp(const char *str1, const char * str2)
+{
+	while(*str1 && *str2 && *str1 != ' ' && *str2 != ' '){
+		if(*str1 != *str2)
+			return 1;
+		str1++;
+		str2++;
+	}
+	return 0;
 }

@@ -1,0 +1,294 @@
+\hypertarget{floppy_8h}{}\section{kernel/\+I\+O/floppy.h File Reference}
+\label{floppy_8h}\index{kernel/\+I\+O/floppy.\+h@{kernel/\+I\+O/floppy.\+h}}
+{\ttfamily \#include \char`\"{}print.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}io.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}timer.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}keyboard.\+h\char`\"{}}\\*
+Include dependency graph for floppy.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{floppy_8h_aa55cbb13f58823c6d429e808197ca097}{D\+M\+A\+\_\+\+A\+D\+D\+RL}~0x004	/$\ast$ port for low 16 bits of D\+M\+A address $\ast$/
+\item 
+\#define \hyperlink{floppy_8h_a0321ada6cae79da9bb565c495d036140}{D\+M\+A\+\_\+\+A\+D\+D\+RH}~0x081	/$\ast$ port for top 4 bits of 20-\/bit D\+M\+A addr $\ast$/
+\item 
+\#define \hyperlink{floppy_8h_a1ed8aa444e1114863dd7966c0ac02a60}{D\+M\+A\+\_\+\+C\+O\+U\+NT}~0x005	/$\ast$ port for D\+M\+A count (count =  bytes -\/ 1) $\ast$/
+\item 
+\#define \hyperlink{floppy_8h_adcd4904451e7a645d22b442076a03d10}{D\+M\+A\+\_\+\+F\+L\+I\+P\+F\+L\+OP}~0x00\+C	/$\ast$ D\+M\+A byte pointer flip-\/flop $\ast$/
+\item 
+\#define \hyperlink{floppy_8h_ae05d9fe2ff2adea51b9ea16d10040b88}{D\+M\+A\+\_\+\+M\+O\+DE}~0x00\+B	/$\ast$ D\+M\+A mode port $\ast$/
+\item 
+\#define \hyperlink{floppy_8h_ac276ae3f5528675d0450567ef121bf66}{D\+M\+A\+\_\+\+I\+N\+IT}~0x00\+A	/$\ast$ D\+M\+A init port $\ast$/
+\item 
+\#define \hyperlink{floppy_8h_afc113f526063f98ac9daef12d1ab5215}{D\+M\+A\+\_\+\+R\+E\+S\+E\+T\+\_\+\+V\+AL}~0x06
+\item 
+\#define \hyperlink{floppy_8h_ac248f1f6d2aca66b3804f51d22b0b876}{D\+M\+A\+\_\+\+M\+O\+D\+E\+\_\+\+R\+E\+AD}~0x46
+\item 
+\#define \hyperlink{floppy_8h_a279b4689e5a47c68e57215ecc207c245}{D\+M\+A\+\_\+\+M\+O\+D\+E\+\_\+\+W\+R\+I\+TE}~0x4A
+\item 
+\#define \hyperlink{floppy_8h_aa35bad1e92008da628f27b2f6bb270aa}{S\+E\+C\+T\+O\+R\+\_\+\+S\+I\+ZE}~512
+\item 
+\#define \hyperlink{floppy_8h_a8b965bef615d29885a4bd6c643d0e804}{S\+T\+A\+T\+U\+S\+\_\+\+R\+E\+G\+I\+S\+T\+E\+R\+\_\+A}~0x3\+F0
+\item 
+\#define \hyperlink{floppy_8h_a4c4d682186f9105eb68bb8deb28cbe83}{S\+T\+A\+T\+U\+S\+\_\+\+R\+E\+G\+I\+S\+T\+E\+R\+\_\+B}~0x3\+F1
+\item 
+\#define \hyperlink{floppy_8h_ada3056b63b34f56bcd5610ded26777d8}{D\+I\+G\+I\+T\+A\+L\+\_\+\+O\+U\+T\+P\+U\+T\+\_\+\+R\+E\+G\+I\+S\+T\+ER}~0x3\+F2
+\item 
+\#define \hyperlink{floppy_8h_a38321c6c4e9ae53620df15a0e60f914e}{T\+A\+P\+E\+\_\+\+D\+R\+I\+V\+E\+\_\+\+R\+E\+G\+I\+S\+T\+ER}~0x3\+F3
+\item 
+\#define \hyperlink{floppy_8h_ae8cc3a6ba3ddce34d71944ce4c52343a}{M\+A\+I\+N\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+R\+E\+G\+I\+S\+T\+ER}~0x3\+F4
+\item 
+\#define \hyperlink{floppy_8h_ae4633a49ff8a3592df92da318d009019}{D\+A\+T\+A\+R\+A\+T\+E\+\_\+\+S\+E\+L\+E\+C\+T\+\_\+\+R\+E\+G\+I\+S\+T\+ER}~0x3\+F4
+\item 
+\#define \hyperlink{floppy_8h_a030897b9cfb97a122ac061a0399c9bf9}{D\+A\+T\+A\+\_\+\+F\+I\+FO}~0x3\+F5
+\item 
+\#define \hyperlink{floppy_8h_a11d174b4b85bd66ebee6761e66668138}{D\+I\+G\+I\+T\+A\+L\+\_\+\+I\+N\+P\+U\+T\+\_\+\+R\+E\+G\+I\+S\+T\+ER}~0x3\+F7
+\item 
+\#define \hyperlink{floppy_8h_a2f0521773eed47e50ea718692b77b382}{C\+O\+N\+F\+I\+G\+U\+R\+A\+T\+I\+O\+N\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+R\+E\+G\+I\+S\+T\+ER}~0x3\+F7
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{floppy_8h_a58166f9de27edfd431aaa81043a9b35d}{floppy\+\_\+read} ()
+\item 
+void \hyperlink{floppy_8h_a211e1642627e225baddcbde1b332662a}{floppy\+\_\+irq\+\_\+handler} ()
+\item 
+void \hyperlink{floppy_8h_a763ffe28d1732e51b8ccb84a7ae3badd}{print\+\_\+floppy\+\_\+drives} ()
+\item 
+void \hyperlink{floppy_8h_aea1e7f34735fc0f01372aa774cba9e2d}{floppy\+\_\+send\+\_\+byte} (unsigned char byte)
+\item 
+char \hyperlink{floppy_8h_ae785b658ab4cea138fb08a1d4f29eac8}{floppy\+\_\+read\+\_\+byte} ()
+\item 
+void \hyperlink{floppy_8h_a8e6579a1bf0e8446772d6400c81f179d}{floppy\+\_\+init} ()
+\item 
+void \hyperlink{floppy_8h_a15492e3d5bf5117de7120e2fc8326bd8}{floppy\+\_\+reset} ()
+\item 
+void \hyperlink{floppy_8h_a195e234556fc212c4f622b01a95ad436}{floppy\+\_\+waitinterrupt} ()
+\item 
+void \hyperlink{floppy_8h_ad17172befe158eec588025e4cd080975}{floppy\+\_\+configure} (unsigned char impseek\+\_\+\+EN, unsigned char fifo\+D\+IS, unsigned char polling\+D\+IS, unsigned char threshold)
+\item 
+void \hyperlink{floppy_8h_aa8103acf8f1ed202431a8dbead83cc28}{floppy\+\_\+specify} ()
+\item 
+void \hyperlink{floppy_8h_aac914ca1e7520501ef594b5faa5277b4}{floppy\+\_\+motoron} ()
+\item 
+void \hyperlink{floppy_8h_a16de6ffac076f685749ca75d8d4a178d}{floppy\+\_\+recalibrate} ()
+\item 
+void \hyperlink{floppy_8h_addc20c17ba1dd639ba97d91e851d5bcc}{floppy\+\_\+seek} (unsigned char drive, unsigned char head, unsigned char cylinder)
+\item 
+unsigned char $\ast$ \hyperlink{floppy_8h_a68b8ede776a66725850c3ad01a417a9a}{floppy\+\_\+readsector} (unsigned int lba, unsigned char drive\+\_\+id)
+\item 
+void \hyperlink{floppy_8h_a990eb5c6536d62083cee5aea6ad744a7}{floppy\+\_\+readsectorinto} (unsigned int lba, unsigned char drive\+\_\+id, char $\ast$destination)
+\item 
+void \hyperlink{floppy_8h_a3aa15d713ecfac3075087ef17ffa4e7a}{floppy\+\_\+writesector} (unsigned char $\ast$data, unsigned int lba, unsigned char drive\+\_\+id)
+\item 
+void \hyperlink{floppy_8h_abbc0a4c58f9883dc5e3caeac4829f34a}{lba\+\_\+to\+\_\+chs} (unsigned int lba, unsigned short $\ast$cylinder, unsigned short $\ast$head, unsigned short $\ast$sector)
+\item 
+void \hyperlink{floppy_8h_a8e05cc7ee8622d4dc9064a1dac5d38c8}{floppy\+\_\+\+D\+M\+Asetup} (unsigned char mode, unsigned int address, unsigned int count)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\index{floppy.\+h@{floppy.\+h}!C\+O\+N\+F\+I\+G\+U\+R\+A\+T\+I\+O\+N\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+R\+E\+G\+I\+S\+T\+ER@{C\+O\+N\+F\+I\+G\+U\+R\+A\+T\+I\+O\+N\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+R\+E\+G\+I\+S\+T\+ER}}
+\index{C\+O\+N\+F\+I\+G\+U\+R\+A\+T\+I\+O\+N\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+R\+E\+G\+I\+S\+T\+ER@{C\+O\+N\+F\+I\+G\+U\+R\+A\+T\+I\+O\+N\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+R\+E\+G\+I\+S\+T\+ER}!floppy.\+h@{floppy.\+h}}
+\subsubsection[{\texorpdfstring{C\+O\+N\+F\+I\+G\+U\+R\+A\+T\+I\+O\+N\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+R\+E\+G\+I\+S\+T\+ER}{CONFIGURATION_CONTROL_REGISTER}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+O\+N\+F\+I\+G\+U\+R\+A\+T\+I\+O\+N\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+R\+E\+G\+I\+S\+T\+ER~0x3\+F7}\hypertarget{floppy_8h_a2f0521773eed47e50ea718692b77b382}{}\label{floppy_8h_a2f0521773eed47e50ea718692b77b382}
+\index{floppy.\+h@{floppy.\+h}!D\+A\+T\+A\+\_\+\+F\+I\+FO@{D\+A\+T\+A\+\_\+\+F\+I\+FO}}
+\index{D\+A\+T\+A\+\_\+\+F\+I\+FO@{D\+A\+T\+A\+\_\+\+F\+I\+FO}!floppy.\+h@{floppy.\+h}}
+\subsubsection[{\texorpdfstring{D\+A\+T\+A\+\_\+\+F\+I\+FO}{DATA_FIFO}}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+A\+T\+A\+\_\+\+F\+I\+FO~0x3\+F5}\hypertarget{floppy_8h_a030897b9cfb97a122ac061a0399c9bf9}{}\label{floppy_8h_a030897b9cfb97a122ac061a0399c9bf9}
+\index{floppy.\+h@{floppy.\+h}!D\+A\+T\+A\+R\+A\+T\+E\+\_\+\+S\+E\+L\+E\+C\+T\+\_\+\+R\+E\+G\+I\+S\+T\+ER@{D\+A\+T\+A\+R\+A\+T\+E\+\_\+\+S\+E\+L\+E\+C\+T\+\_\+\+R\+E\+G\+I\+S\+T\+ER}}
+\index{D\+A\+T\+A\+R\+A\+T\+E\+\_\+\+S\+E\+L\+E\+C\+T\+\_\+\+R\+E\+G\+I\+S\+T\+ER@{D\+A\+T\+A\+R\+A\+T\+E\+\_\+\+S\+E\+L\+E\+C\+T\+\_\+\+R\+E\+G\+I\+S\+T\+ER}!floppy.\+h@{floppy.\+h}}
+\subsubsection[{\texorpdfstring{D\+A\+T\+A\+R\+A\+T\+E\+\_\+\+S\+E\+L\+E\+C\+T\+\_\+\+R\+E\+G\+I\+S\+T\+ER}{DATARATE_SELECT_REGISTER}}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+A\+T\+A\+R\+A\+T\+E\+\_\+\+S\+E\+L\+E\+C\+T\+\_\+\+R\+E\+G\+I\+S\+T\+ER~0x3\+F4}\hypertarget{floppy_8h_ae4633a49ff8a3592df92da318d009019}{}\label{floppy_8h_ae4633a49ff8a3592df92da318d009019}
+\index{floppy.\+h@{floppy.\+h}!D\+I\+G\+I\+T\+A\+L\+\_\+\+I\+N\+P\+U\+T\+\_\+\+R\+E\+G\+I\+S\+T\+ER@{D\+I\+G\+I\+T\+A\+L\+\_\+\+I\+N\+P\+U\+T\+\_\+\+R\+E\+G\+I\+S\+T\+ER}}
+\index{D\+I\+G\+I\+T\+A\+L\+\_\+\+I\+N\+P\+U\+T\+\_\+\+R\+E\+G\+I\+S\+T\+ER@{D\+I\+G\+I\+T\+A\+L\+\_\+\+I\+N\+P\+U\+T\+\_\+\+R\+E\+G\+I\+S\+T\+ER}!floppy.\+h@{floppy.\+h}}
+\subsubsection[{\texorpdfstring{D\+I\+G\+I\+T\+A\+L\+\_\+\+I\+N\+P\+U\+T\+\_\+\+R\+E\+G\+I\+S\+T\+ER}{DIGITAL_INPUT_REGISTER}}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+I\+G\+I\+T\+A\+L\+\_\+\+I\+N\+P\+U\+T\+\_\+\+R\+E\+G\+I\+S\+T\+ER~0x3\+F7}\hypertarget{floppy_8h_a11d174b4b85bd66ebee6761e66668138}{}\label{floppy_8h_a11d174b4b85bd66ebee6761e66668138}
+\index{floppy.\+h@{floppy.\+h}!D\+I\+G\+I\+T\+A\+L\+\_\+\+O\+U\+T\+P\+U\+T\+\_\+\+R\+E\+G\+I\+S\+T\+ER@{D\+I\+G\+I\+T\+A\+L\+\_\+\+O\+U\+T\+P\+U\+T\+\_\+\+R\+E\+G\+I\+S\+T\+ER}}
+\index{D\+I\+G\+I\+T\+A\+L\+\_\+\+O\+U\+T\+P\+U\+T\+\_\+\+R\+E\+G\+I\+S\+T\+ER@{D\+I\+G\+I\+T\+A\+L\+\_\+\+O\+U\+T\+P\+U\+T\+\_\+\+R\+E\+G\+I\+S\+T\+ER}!floppy.\+h@{floppy.\+h}}
+\subsubsection[{\texorpdfstring{D\+I\+G\+I\+T\+A\+L\+\_\+\+O\+U\+T\+P\+U\+T\+\_\+\+R\+E\+G\+I\+S\+T\+ER}{DIGITAL_OUTPUT_REGISTER}}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+I\+G\+I\+T\+A\+L\+\_\+\+O\+U\+T\+P\+U\+T\+\_\+\+R\+E\+G\+I\+S\+T\+ER~0x3\+F2}\hypertarget{floppy_8h_ada3056b63b34f56bcd5610ded26777d8}{}\label{floppy_8h_ada3056b63b34f56bcd5610ded26777d8}
+\index{floppy.\+h@{floppy.\+h}!D\+M\+A\+\_\+\+A\+D\+D\+RH@{D\+M\+A\+\_\+\+A\+D\+D\+RH}}
+\index{D\+M\+A\+\_\+\+A\+D\+D\+RH@{D\+M\+A\+\_\+\+A\+D\+D\+RH}!floppy.\+h@{floppy.\+h}}
+\subsubsection[{\texorpdfstring{D\+M\+A\+\_\+\+A\+D\+D\+RH}{DMA_ADDRH}}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+M\+A\+\_\+\+A\+D\+D\+RH~0x081	/$\ast$ port for top 4 bits of 20-\/bit D\+M\+A addr $\ast$/}\hypertarget{floppy_8h_a0321ada6cae79da9bb565c495d036140}{}\label{floppy_8h_a0321ada6cae79da9bb565c495d036140}
+\index{floppy.\+h@{floppy.\+h}!D\+M\+A\+\_\+\+A\+D\+D\+RL@{D\+M\+A\+\_\+\+A\+D\+D\+RL}}
+\index{D\+M\+A\+\_\+\+A\+D\+D\+RL@{D\+M\+A\+\_\+\+A\+D\+D\+RL}!floppy.\+h@{floppy.\+h}}
+\subsubsection[{\texorpdfstring{D\+M\+A\+\_\+\+A\+D\+D\+RL}{DMA_ADDRL}}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+M\+A\+\_\+\+A\+D\+D\+RL~0x004	/$\ast$ port for low 16 bits of D\+M\+A address $\ast$/}\hypertarget{floppy_8h_aa55cbb13f58823c6d429e808197ca097}{}\label{floppy_8h_aa55cbb13f58823c6d429e808197ca097}
+\index{floppy.\+h@{floppy.\+h}!D\+M\+A\+\_\+\+C\+O\+U\+NT@{D\+M\+A\+\_\+\+C\+O\+U\+NT}}
+\index{D\+M\+A\+\_\+\+C\+O\+U\+NT@{D\+M\+A\+\_\+\+C\+O\+U\+NT}!floppy.\+h@{floppy.\+h}}
+\subsubsection[{\texorpdfstring{D\+M\+A\+\_\+\+C\+O\+U\+NT}{DMA_COUNT}}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+M\+A\+\_\+\+C\+O\+U\+NT~0x005	/$\ast$ port for D\+M\+A count (count =  bytes -\/ 1) $\ast$/}\hypertarget{floppy_8h_a1ed8aa444e1114863dd7966c0ac02a60}{}\label{floppy_8h_a1ed8aa444e1114863dd7966c0ac02a60}
+\index{floppy.\+h@{floppy.\+h}!D\+M\+A\+\_\+\+F\+L\+I\+P\+F\+L\+OP@{D\+M\+A\+\_\+\+F\+L\+I\+P\+F\+L\+OP}}
+\index{D\+M\+A\+\_\+\+F\+L\+I\+P\+F\+L\+OP@{D\+M\+A\+\_\+\+F\+L\+I\+P\+F\+L\+OP}!floppy.\+h@{floppy.\+h}}
+\subsubsection[{\texorpdfstring{D\+M\+A\+\_\+\+F\+L\+I\+P\+F\+L\+OP}{DMA_FLIPFLOP}}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+M\+A\+\_\+\+F\+L\+I\+P\+F\+L\+OP~0x00\+C	/$\ast$ D\+M\+A byte pointer flip-\/flop $\ast$/}\hypertarget{floppy_8h_adcd4904451e7a645d22b442076a03d10}{}\label{floppy_8h_adcd4904451e7a645d22b442076a03d10}
+\index{floppy.\+h@{floppy.\+h}!D\+M\+A\+\_\+\+I\+N\+IT@{D\+M\+A\+\_\+\+I\+N\+IT}}
+\index{D\+M\+A\+\_\+\+I\+N\+IT@{D\+M\+A\+\_\+\+I\+N\+IT}!floppy.\+h@{floppy.\+h}}
+\subsubsection[{\texorpdfstring{D\+M\+A\+\_\+\+I\+N\+IT}{DMA_INIT}}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+M\+A\+\_\+\+I\+N\+IT~0x00\+A	/$\ast$ D\+M\+A init port $\ast$/}\hypertarget{floppy_8h_ac276ae3f5528675d0450567ef121bf66}{}\label{floppy_8h_ac276ae3f5528675d0450567ef121bf66}
+\index{floppy.\+h@{floppy.\+h}!D\+M\+A\+\_\+\+M\+O\+DE@{D\+M\+A\+\_\+\+M\+O\+DE}}
+\index{D\+M\+A\+\_\+\+M\+O\+DE@{D\+M\+A\+\_\+\+M\+O\+DE}!floppy.\+h@{floppy.\+h}}
+\subsubsection[{\texorpdfstring{D\+M\+A\+\_\+\+M\+O\+DE}{DMA_MODE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+M\+A\+\_\+\+M\+O\+DE~0x00\+B	/$\ast$ D\+M\+A mode port $\ast$/}\hypertarget{floppy_8h_ae05d9fe2ff2adea51b9ea16d10040b88}{}\label{floppy_8h_ae05d9fe2ff2adea51b9ea16d10040b88}
+\index{floppy.\+h@{floppy.\+h}!D\+M\+A\+\_\+\+M\+O\+D\+E\+\_\+\+R\+E\+AD@{D\+M\+A\+\_\+\+M\+O\+D\+E\+\_\+\+R\+E\+AD}}
+\index{D\+M\+A\+\_\+\+M\+O\+D\+E\+\_\+\+R\+E\+AD@{D\+M\+A\+\_\+\+M\+O\+D\+E\+\_\+\+R\+E\+AD}!floppy.\+h@{floppy.\+h}}
+\subsubsection[{\texorpdfstring{D\+M\+A\+\_\+\+M\+O\+D\+E\+\_\+\+R\+E\+AD}{DMA_MODE_READ}}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+M\+A\+\_\+\+M\+O\+D\+E\+\_\+\+R\+E\+AD~0x46}\hypertarget{floppy_8h_ac248f1f6d2aca66b3804f51d22b0b876}{}\label{floppy_8h_ac248f1f6d2aca66b3804f51d22b0b876}
+\index{floppy.\+h@{floppy.\+h}!D\+M\+A\+\_\+\+M\+O\+D\+E\+\_\+\+W\+R\+I\+TE@{D\+M\+A\+\_\+\+M\+O\+D\+E\+\_\+\+W\+R\+I\+TE}}
+\index{D\+M\+A\+\_\+\+M\+O\+D\+E\+\_\+\+W\+R\+I\+TE@{D\+M\+A\+\_\+\+M\+O\+D\+E\+\_\+\+W\+R\+I\+TE}!floppy.\+h@{floppy.\+h}}
+\subsubsection[{\texorpdfstring{D\+M\+A\+\_\+\+M\+O\+D\+E\+\_\+\+W\+R\+I\+TE}{DMA_MODE_WRITE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+M\+A\+\_\+\+M\+O\+D\+E\+\_\+\+W\+R\+I\+TE~0x4A}\hypertarget{floppy_8h_a279b4689e5a47c68e57215ecc207c245}{}\label{floppy_8h_a279b4689e5a47c68e57215ecc207c245}
+\index{floppy.\+h@{floppy.\+h}!D\+M\+A\+\_\+\+R\+E\+S\+E\+T\+\_\+\+V\+AL@{D\+M\+A\+\_\+\+R\+E\+S\+E\+T\+\_\+\+V\+AL}}
+\index{D\+M\+A\+\_\+\+R\+E\+S\+E\+T\+\_\+\+V\+AL@{D\+M\+A\+\_\+\+R\+E\+S\+E\+T\+\_\+\+V\+AL}!floppy.\+h@{floppy.\+h}}
+\subsubsection[{\texorpdfstring{D\+M\+A\+\_\+\+R\+E\+S\+E\+T\+\_\+\+V\+AL}{DMA_RESET_VAL}}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+M\+A\+\_\+\+R\+E\+S\+E\+T\+\_\+\+V\+AL~0x06}\hypertarget{floppy_8h_afc113f526063f98ac9daef12d1ab5215}{}\label{floppy_8h_afc113f526063f98ac9daef12d1ab5215}
+\index{floppy.\+h@{floppy.\+h}!M\+A\+I\+N\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+R\+E\+G\+I\+S\+T\+ER@{M\+A\+I\+N\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+R\+E\+G\+I\+S\+T\+ER}}
+\index{M\+A\+I\+N\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+R\+E\+G\+I\+S\+T\+ER@{M\+A\+I\+N\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+R\+E\+G\+I\+S\+T\+ER}!floppy.\+h@{floppy.\+h}}
+\subsubsection[{\texorpdfstring{M\+A\+I\+N\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+R\+E\+G\+I\+S\+T\+ER}{MAIN_STATUS_REGISTER}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+A\+I\+N\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+R\+E\+G\+I\+S\+T\+ER~0x3\+F4}\hypertarget{floppy_8h_ae8cc3a6ba3ddce34d71944ce4c52343a}{}\label{floppy_8h_ae8cc3a6ba3ddce34d71944ce4c52343a}
+\index{floppy.\+h@{floppy.\+h}!S\+E\+C\+T\+O\+R\+\_\+\+S\+I\+ZE@{S\+E\+C\+T\+O\+R\+\_\+\+S\+I\+ZE}}
+\index{S\+E\+C\+T\+O\+R\+\_\+\+S\+I\+ZE@{S\+E\+C\+T\+O\+R\+\_\+\+S\+I\+ZE}!floppy.\+h@{floppy.\+h}}
+\subsubsection[{\texorpdfstring{S\+E\+C\+T\+O\+R\+\_\+\+S\+I\+ZE}{SECTOR_SIZE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+E\+C\+T\+O\+R\+\_\+\+S\+I\+ZE~512}\hypertarget{floppy_8h_aa35bad1e92008da628f27b2f6bb270aa}{}\label{floppy_8h_aa35bad1e92008da628f27b2f6bb270aa}
+\index{floppy.\+h@{floppy.\+h}!S\+T\+A\+T\+U\+S\+\_\+\+R\+E\+G\+I\+S\+T\+E\+R\+\_\+A@{S\+T\+A\+T\+U\+S\+\_\+\+R\+E\+G\+I\+S\+T\+E\+R\+\_\+A}}
+\index{S\+T\+A\+T\+U\+S\+\_\+\+R\+E\+G\+I\+S\+T\+E\+R\+\_\+A@{S\+T\+A\+T\+U\+S\+\_\+\+R\+E\+G\+I\+S\+T\+E\+R\+\_\+A}!floppy.\+h@{floppy.\+h}}
+\subsubsection[{\texorpdfstring{S\+T\+A\+T\+U\+S\+\_\+\+R\+E\+G\+I\+S\+T\+E\+R\+\_\+A}{STATUS_REGISTER_A}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+T\+A\+T\+U\+S\+\_\+\+R\+E\+G\+I\+S\+T\+E\+R\+\_\+A~0x3\+F0}\hypertarget{floppy_8h_a8b965bef615d29885a4bd6c643d0e804}{}\label{floppy_8h_a8b965bef615d29885a4bd6c643d0e804}
+\index{floppy.\+h@{floppy.\+h}!S\+T\+A\+T\+U\+S\+\_\+\+R\+E\+G\+I\+S\+T\+E\+R\+\_\+B@{S\+T\+A\+T\+U\+S\+\_\+\+R\+E\+G\+I\+S\+T\+E\+R\+\_\+B}}
+\index{S\+T\+A\+T\+U\+S\+\_\+\+R\+E\+G\+I\+S\+T\+E\+R\+\_\+B@{S\+T\+A\+T\+U\+S\+\_\+\+R\+E\+G\+I\+S\+T\+E\+R\+\_\+B}!floppy.\+h@{floppy.\+h}}
+\subsubsection[{\texorpdfstring{S\+T\+A\+T\+U\+S\+\_\+\+R\+E\+G\+I\+S\+T\+E\+R\+\_\+B}{STATUS_REGISTER_B}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+T\+A\+T\+U\+S\+\_\+\+R\+E\+G\+I\+S\+T\+E\+R\+\_\+B~0x3\+F1}\hypertarget{floppy_8h_a4c4d682186f9105eb68bb8deb28cbe83}{}\label{floppy_8h_a4c4d682186f9105eb68bb8deb28cbe83}
+\index{floppy.\+h@{floppy.\+h}!T\+A\+P\+E\+\_\+\+D\+R\+I\+V\+E\+\_\+\+R\+E\+G\+I\+S\+T\+ER@{T\+A\+P\+E\+\_\+\+D\+R\+I\+V\+E\+\_\+\+R\+E\+G\+I\+S\+T\+ER}}
+\index{T\+A\+P\+E\+\_\+\+D\+R\+I\+V\+E\+\_\+\+R\+E\+G\+I\+S\+T\+ER@{T\+A\+P\+E\+\_\+\+D\+R\+I\+V\+E\+\_\+\+R\+E\+G\+I\+S\+T\+ER}!floppy.\+h@{floppy.\+h}}
+\subsubsection[{\texorpdfstring{T\+A\+P\+E\+\_\+\+D\+R\+I\+V\+E\+\_\+\+R\+E\+G\+I\+S\+T\+ER}{TAPE_DRIVE_REGISTER}}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+A\+P\+E\+\_\+\+D\+R\+I\+V\+E\+\_\+\+R\+E\+G\+I\+S\+T\+ER~0x3\+F3}\hypertarget{floppy_8h_a38321c6c4e9ae53620df15a0e60f914e}{}\label{floppy_8h_a38321c6c4e9ae53620df15a0e60f914e}
+
+
+\subsection{Function Documentation}
+\index{floppy.\+h@{floppy.\+h}!floppy\+\_\+configure@{floppy\+\_\+configure}}
+\index{floppy\+\_\+configure@{floppy\+\_\+configure}!floppy.\+h@{floppy.\+h}}
+\subsubsection[{\texorpdfstring{floppy\+\_\+configure(unsigned char impseek\+\_\+\+E\+N, unsigned char fifo\+D\+I\+S, unsigned char polling\+D\+I\+S, unsigned char threshold)}{floppy_configure(unsigned char impseek_EN, unsigned char fifoDIS, unsigned char pollingDIS, unsigned char threshold)}}]{\setlength{\rightskip}{0pt plus 5cm}void floppy\+\_\+configure (
+\begin{DoxyParamCaption}
+\item[{unsigned char}]{impseek\+\_\+\+EN, }
+\item[{unsigned char}]{fifo\+D\+IS, }
+\item[{unsigned char}]{polling\+D\+IS, }
+\item[{unsigned char}]{threshold}
+\end{DoxyParamCaption}
+)}\hypertarget{floppy_8h_ad17172befe158eec588025e4cd080975}{}\label{floppy_8h_ad17172befe158eec588025e4cd080975}
+\index{floppy.\+h@{floppy.\+h}!floppy\+\_\+\+D\+M\+Asetup@{floppy\+\_\+\+D\+M\+Asetup}}
+\index{floppy\+\_\+\+D\+M\+Asetup@{floppy\+\_\+\+D\+M\+Asetup}!floppy.\+h@{floppy.\+h}}
+\subsubsection[{\texorpdfstring{floppy\+\_\+\+D\+M\+Asetup(unsigned char mode, unsigned int address, unsigned int count)}{floppy_DMAsetup(unsigned char mode, unsigned int address, unsigned int count)}}]{\setlength{\rightskip}{0pt plus 5cm}void floppy\+\_\+\+D\+M\+Asetup (
+\begin{DoxyParamCaption}
+\item[{unsigned char}]{mode, }
+\item[{unsigned int}]{address, }
+\item[{unsigned int}]{count}
+\end{DoxyParamCaption}
+)}\hypertarget{floppy_8h_a8e05cc7ee8622d4dc9064a1dac5d38c8}{}\label{floppy_8h_a8e05cc7ee8622d4dc9064a1dac5d38c8}
+\index{floppy.\+h@{floppy.\+h}!floppy\+\_\+init@{floppy\+\_\+init}}
+\index{floppy\+\_\+init@{floppy\+\_\+init}!floppy.\+h@{floppy.\+h}}
+\subsubsection[{\texorpdfstring{floppy\+\_\+init()}{floppy_init()}}]{\setlength{\rightskip}{0pt plus 5cm}void floppy\+\_\+init (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{floppy_8h_a8e6579a1bf0e8446772d6400c81f179d}{}\label{floppy_8h_a8e6579a1bf0e8446772d6400c81f179d}
+\index{floppy.\+h@{floppy.\+h}!floppy\+\_\+irq\+\_\+handler@{floppy\+\_\+irq\+\_\+handler}}
+\index{floppy\+\_\+irq\+\_\+handler@{floppy\+\_\+irq\+\_\+handler}!floppy.\+h@{floppy.\+h}}
+\subsubsection[{\texorpdfstring{floppy\+\_\+irq\+\_\+handler()}{floppy_irq_handler()}}]{\setlength{\rightskip}{0pt plus 5cm}void floppy\+\_\+irq\+\_\+handler (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{floppy_8h_a211e1642627e225baddcbde1b332662a}{}\label{floppy_8h_a211e1642627e225baddcbde1b332662a}
+\index{floppy.\+h@{floppy.\+h}!floppy\+\_\+motoron@{floppy\+\_\+motoron}}
+\index{floppy\+\_\+motoron@{floppy\+\_\+motoron}!floppy.\+h@{floppy.\+h}}
+\subsubsection[{\texorpdfstring{floppy\+\_\+motoron()}{floppy_motoron()}}]{\setlength{\rightskip}{0pt plus 5cm}void floppy\+\_\+motoron (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{floppy_8h_aac914ca1e7520501ef594b5faa5277b4}{}\label{floppy_8h_aac914ca1e7520501ef594b5faa5277b4}
+\index{floppy.\+h@{floppy.\+h}!floppy\+\_\+read@{floppy\+\_\+read}}
+\index{floppy\+\_\+read@{floppy\+\_\+read}!floppy.\+h@{floppy.\+h}}
+\subsubsection[{\texorpdfstring{floppy\+\_\+read()}{floppy_read()}}]{\setlength{\rightskip}{0pt plus 5cm}void floppy\+\_\+read (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{floppy_8h_a58166f9de27edfd431aaa81043a9b35d}{}\label{floppy_8h_a58166f9de27edfd431aaa81043a9b35d}
+\index{floppy.\+h@{floppy.\+h}!floppy\+\_\+read\+\_\+byte@{floppy\+\_\+read\+\_\+byte}}
+\index{floppy\+\_\+read\+\_\+byte@{floppy\+\_\+read\+\_\+byte}!floppy.\+h@{floppy.\+h}}
+\subsubsection[{\texorpdfstring{floppy\+\_\+read\+\_\+byte()}{floppy_read_byte()}}]{\setlength{\rightskip}{0pt plus 5cm}char floppy\+\_\+read\+\_\+byte (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{floppy_8h_ae785b658ab4cea138fb08a1d4f29eac8}{}\label{floppy_8h_ae785b658ab4cea138fb08a1d4f29eac8}
+\index{floppy.\+h@{floppy.\+h}!floppy\+\_\+readsector@{floppy\+\_\+readsector}}
+\index{floppy\+\_\+readsector@{floppy\+\_\+readsector}!floppy.\+h@{floppy.\+h}}
+\subsubsection[{\texorpdfstring{floppy\+\_\+readsector(unsigned int lba, unsigned char drive\+\_\+id)}{floppy_readsector(unsigned int lba, unsigned char drive_id)}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char$\ast$ floppy\+\_\+readsector (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{lba, }
+\item[{unsigned char}]{drive\+\_\+id}
+\end{DoxyParamCaption}
+)}\hypertarget{floppy_8h_a68b8ede776a66725850c3ad01a417a9a}{}\label{floppy_8h_a68b8ede776a66725850c3ad01a417a9a}
+\index{floppy.\+h@{floppy.\+h}!floppy\+\_\+readsectorinto@{floppy\+\_\+readsectorinto}}
+\index{floppy\+\_\+readsectorinto@{floppy\+\_\+readsectorinto}!floppy.\+h@{floppy.\+h}}
+\subsubsection[{\texorpdfstring{floppy\+\_\+readsectorinto(unsigned int lba, unsigned char drive\+\_\+id, char $\ast$destination)}{floppy_readsectorinto(unsigned int lba, unsigned char drive_id, char *destination)}}]{\setlength{\rightskip}{0pt plus 5cm}void floppy\+\_\+readsectorinto (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{lba, }
+\item[{unsigned char}]{drive\+\_\+id, }
+\item[{char $\ast$}]{destination}
+\end{DoxyParamCaption}
+)}\hypertarget{floppy_8h_a990eb5c6536d62083cee5aea6ad744a7}{}\label{floppy_8h_a990eb5c6536d62083cee5aea6ad744a7}
+\index{floppy.\+h@{floppy.\+h}!floppy\+\_\+recalibrate@{floppy\+\_\+recalibrate}}
+\index{floppy\+\_\+recalibrate@{floppy\+\_\+recalibrate}!floppy.\+h@{floppy.\+h}}
+\subsubsection[{\texorpdfstring{floppy\+\_\+recalibrate()}{floppy_recalibrate()}}]{\setlength{\rightskip}{0pt plus 5cm}void floppy\+\_\+recalibrate (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{floppy_8h_a16de6ffac076f685749ca75d8d4a178d}{}\label{floppy_8h_a16de6ffac076f685749ca75d8d4a178d}
+\index{floppy.\+h@{floppy.\+h}!floppy\+\_\+reset@{floppy\+\_\+reset}}
+\index{floppy\+\_\+reset@{floppy\+\_\+reset}!floppy.\+h@{floppy.\+h}}
+\subsubsection[{\texorpdfstring{floppy\+\_\+reset()}{floppy_reset()}}]{\setlength{\rightskip}{0pt plus 5cm}void floppy\+\_\+reset (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{floppy_8h_a15492e3d5bf5117de7120e2fc8326bd8}{}\label{floppy_8h_a15492e3d5bf5117de7120e2fc8326bd8}
+\index{floppy.\+h@{floppy.\+h}!floppy\+\_\+seek@{floppy\+\_\+seek}}
+\index{floppy\+\_\+seek@{floppy\+\_\+seek}!floppy.\+h@{floppy.\+h}}
+\subsubsection[{\texorpdfstring{floppy\+\_\+seek(unsigned char drive, unsigned char head, unsigned char cylinder)}{floppy_seek(unsigned char drive, unsigned char head, unsigned char cylinder)}}]{\setlength{\rightskip}{0pt plus 5cm}void floppy\+\_\+seek (
+\begin{DoxyParamCaption}
+\item[{unsigned char}]{drive, }
+\item[{unsigned char}]{head, }
+\item[{unsigned char}]{cylinder}
+\end{DoxyParamCaption}
+)}\hypertarget{floppy_8h_addc20c17ba1dd639ba97d91e851d5bcc}{}\label{floppy_8h_addc20c17ba1dd639ba97d91e851d5bcc}
+\index{floppy.\+h@{floppy.\+h}!floppy\+\_\+send\+\_\+byte@{floppy\+\_\+send\+\_\+byte}}
+\index{floppy\+\_\+send\+\_\+byte@{floppy\+\_\+send\+\_\+byte}!floppy.\+h@{floppy.\+h}}
+\subsubsection[{\texorpdfstring{floppy\+\_\+send\+\_\+byte(unsigned char byte)}{floppy_send_byte(unsigned char byte)}}]{\setlength{\rightskip}{0pt plus 5cm}void floppy\+\_\+send\+\_\+byte (
+\begin{DoxyParamCaption}
+\item[{unsigned char}]{byte}
+\end{DoxyParamCaption}
+)}\hypertarget{floppy_8h_aea1e7f34735fc0f01372aa774cba9e2d}{}\label{floppy_8h_aea1e7f34735fc0f01372aa774cba9e2d}
+\index{floppy.\+h@{floppy.\+h}!floppy\+\_\+specify@{floppy\+\_\+specify}}
+\index{floppy\+\_\+specify@{floppy\+\_\+specify}!floppy.\+h@{floppy.\+h}}
+\subsubsection[{\texorpdfstring{floppy\+\_\+specify()}{floppy_specify()}}]{\setlength{\rightskip}{0pt plus 5cm}void floppy\+\_\+specify (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{floppy_8h_aa8103acf8f1ed202431a8dbead83cc28}{}\label{floppy_8h_aa8103acf8f1ed202431a8dbead83cc28}
+\index{floppy.\+h@{floppy.\+h}!floppy\+\_\+waitinterrupt@{floppy\+\_\+waitinterrupt}}
+\index{floppy\+\_\+waitinterrupt@{floppy\+\_\+waitinterrupt}!floppy.\+h@{floppy.\+h}}
+\subsubsection[{\texorpdfstring{floppy\+\_\+waitinterrupt()}{floppy_waitinterrupt()}}]{\setlength{\rightskip}{0pt plus 5cm}void floppy\+\_\+waitinterrupt (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{floppy_8h_a195e234556fc212c4f622b01a95ad436}{}\label{floppy_8h_a195e234556fc212c4f622b01a95ad436}
+\index{floppy.\+h@{floppy.\+h}!floppy\+\_\+writesector@{floppy\+\_\+writesector}}
+\index{floppy\+\_\+writesector@{floppy\+\_\+writesector}!floppy.\+h@{floppy.\+h}}
+\subsubsection[{\texorpdfstring{floppy\+\_\+writesector(unsigned char $\ast$data, unsigned int lba, unsigned char drive\+\_\+id)}{floppy_writesector(unsigned char *data, unsigned int lba, unsigned char drive_id)}}]{\setlength{\rightskip}{0pt plus 5cm}void floppy\+\_\+writesector (
+\begin{DoxyParamCaption}
+\item[{unsigned char $\ast$}]{data, }
+\item[{unsigned int}]{lba, }
+\item[{unsigned char}]{drive\+\_\+id}
+\end{DoxyParamCaption}
+)}\hypertarget{floppy_8h_a3aa15d713ecfac3075087ef17ffa4e7a}{}\label{floppy_8h_a3aa15d713ecfac3075087ef17ffa4e7a}
+\index{floppy.\+h@{floppy.\+h}!lba\+\_\+to\+\_\+chs@{lba\+\_\+to\+\_\+chs}}
+\index{lba\+\_\+to\+\_\+chs@{lba\+\_\+to\+\_\+chs}!floppy.\+h@{floppy.\+h}}
+\subsubsection[{\texorpdfstring{lba\+\_\+to\+\_\+chs(unsigned int lba, unsigned short $\ast$cylinder, unsigned short $\ast$head, unsigned short $\ast$sector)}{lba_to_chs(unsigned int lba, unsigned short *cylinder, unsigned short *head, unsigned short *sector)}}]{\setlength{\rightskip}{0pt plus 5cm}void lba\+\_\+to\+\_\+chs (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{lba, }
+\item[{unsigned short $\ast$}]{cylinder, }
+\item[{unsigned short $\ast$}]{head, }
+\item[{unsigned short $\ast$}]{sector}
+\end{DoxyParamCaption}
+)}\hypertarget{floppy_8h_abbc0a4c58f9883dc5e3caeac4829f34a}{}\label{floppy_8h_abbc0a4c58f9883dc5e3caeac4829f34a}
+\index{floppy.\+h@{floppy.\+h}!print\+\_\+floppy\+\_\+drives@{print\+\_\+floppy\+\_\+drives}}
+\index{print\+\_\+floppy\+\_\+drives@{print\+\_\+floppy\+\_\+drives}!floppy.\+h@{floppy.\+h}}
+\subsubsection[{\texorpdfstring{print\+\_\+floppy\+\_\+drives()}{print_floppy_drives()}}]{\setlength{\rightskip}{0pt plus 5cm}void print\+\_\+floppy\+\_\+drives (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{floppy_8h_a763ffe28d1732e51b8ccb84a7ae3badd}{}\label{floppy_8h_a763ffe28d1732e51b8ccb84a7ae3badd}

@@ -1,0 +1,78 @@
+\hypertarget{console_8h}{}\section{kernel/\+I\+O/console.h File Reference}
+\label{console_8h}\index{kernel/\+I\+O/console.\+h@{kernel/\+I\+O/console.\+h}}
+{\ttfamily \#include \char`\"{}string.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}keyboard.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}print.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}memorymap.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}cmos.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}floppy.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}fs.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}memorymanager.\+h\char`\"{}}\\*
+Include dependency graph for console.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{console_8h_ac5f6ecea0e31eac329d00a9f68959216}{C\+O\+N\+S\+O\+L\+E\+\_\+\+C\+O\+M\+M\+A\+N\+D\+\_\+\+C\+O\+U\+NT}~10
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{console_8h_afdd066255a12a1963ed773be219e8f3f}{console} ()
+\item 
+int \hyperlink{console_8h_a3f4f8a88cfd5f16324243d8250b8e6db}{console\+\_\+command\+\_\+id} (char $\ast$cmd)
+\item 
+void \hyperlink{console_8h_a84372b9ee642440a203853efca514711}{console\+\_\+launch} (int id, char $\ast$args)
+\item 
+void \hyperlink{console_8h_a97ee70a8770dc30d06c744b24eb2fcfc}{help} ()
+\item 
+int \hyperlink{console_8h_a6d4873b39638424edb6e2bd8095b6bbd}{cmd\+Cmp} (const char $\ast$str1, const char $\ast$str2)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\index{console.\+h@{console.\+h}!C\+O\+N\+S\+O\+L\+E\+\_\+\+C\+O\+M\+M\+A\+N\+D\+\_\+\+C\+O\+U\+NT@{C\+O\+N\+S\+O\+L\+E\+\_\+\+C\+O\+M\+M\+A\+N\+D\+\_\+\+C\+O\+U\+NT}}
+\index{C\+O\+N\+S\+O\+L\+E\+\_\+\+C\+O\+M\+M\+A\+N\+D\+\_\+\+C\+O\+U\+NT@{C\+O\+N\+S\+O\+L\+E\+\_\+\+C\+O\+M\+M\+A\+N\+D\+\_\+\+C\+O\+U\+NT}!console.\+h@{console.\+h}}
+\subsubsection[{\texorpdfstring{C\+O\+N\+S\+O\+L\+E\+\_\+\+C\+O\+M\+M\+A\+N\+D\+\_\+\+C\+O\+U\+NT}{CONSOLE_COMMAND_COUNT}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+O\+N\+S\+O\+L\+E\+\_\+\+C\+O\+M\+M\+A\+N\+D\+\_\+\+C\+O\+U\+NT~10}\hypertarget{console_8h_ac5f6ecea0e31eac329d00a9f68959216}{}\label{console_8h_ac5f6ecea0e31eac329d00a9f68959216}
+
+
+\subsection{Function Documentation}
+\index{console.\+h@{console.\+h}!cmd\+Cmp@{cmd\+Cmp}}
+\index{cmd\+Cmp@{cmd\+Cmp}!console.\+h@{console.\+h}}
+\subsubsection[{\texorpdfstring{cmd\+Cmp(const char $\ast$str1, const char $\ast$str2)}{cmdCmp(const char *str1, const char *str2)}}]{\setlength{\rightskip}{0pt plus 5cm}int cmd\+Cmp (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{str1, }
+\item[{const char $\ast$}]{str2}
+\end{DoxyParamCaption}
+)}\hypertarget{console_8h_a6d4873b39638424edb6e2bd8095b6bbd}{}\label{console_8h_a6d4873b39638424edb6e2bd8095b6bbd}
+\index{console.\+h@{console.\+h}!console@{console}}
+\index{console@{console}!console.\+h@{console.\+h}}
+\subsubsection[{\texorpdfstring{console()}{console()}}]{\setlength{\rightskip}{0pt plus 5cm}void console (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{console_8h_afdd066255a12a1963ed773be219e8f3f}{}\label{console_8h_afdd066255a12a1963ed773be219e8f3f}
+\index{console.\+h@{console.\+h}!console\+\_\+command\+\_\+id@{console\+\_\+command\+\_\+id}}
+\index{console\+\_\+command\+\_\+id@{console\+\_\+command\+\_\+id}!console.\+h@{console.\+h}}
+\subsubsection[{\texorpdfstring{console\+\_\+command\+\_\+id(char $\ast$cmd)}{console_command_id(char *cmd)}}]{\setlength{\rightskip}{0pt plus 5cm}int console\+\_\+command\+\_\+id (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{cmd}
+\end{DoxyParamCaption}
+)}\hypertarget{console_8h_a3f4f8a88cfd5f16324243d8250b8e6db}{}\label{console_8h_a3f4f8a88cfd5f16324243d8250b8e6db}
+\index{console.\+h@{console.\+h}!console\+\_\+launch@{console\+\_\+launch}}
+\index{console\+\_\+launch@{console\+\_\+launch}!console.\+h@{console.\+h}}
+\subsubsection[{\texorpdfstring{console\+\_\+launch(int id, char $\ast$args)}{console_launch(int id, char *args)}}]{\setlength{\rightskip}{0pt plus 5cm}void console\+\_\+launch (
+\begin{DoxyParamCaption}
+\item[{int}]{id, }
+\item[{char $\ast$}]{args}
+\end{DoxyParamCaption}
+)}\hypertarget{console_8h_a84372b9ee642440a203853efca514711}{}\label{console_8h_a84372b9ee642440a203853efca514711}
+\index{console.\+h@{console.\+h}!help@{help}}
+\index{help@{help}!console.\+h@{console.\+h}}
+\subsubsection[{\texorpdfstring{help()}{help()}}]{\setlength{\rightskip}{0pt plus 5cm}void help (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{console_8h_a97ee70a8770dc30d06c744b24eb2fcfc}{}\label{console_8h_a97ee70a8770dc30d06c744b24eb2fcfc}

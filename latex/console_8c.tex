@@ -1,0 +1,69 @@
+\hypertarget{console_8c}{}\section{kernel/\+I\+O/console.c File Reference}
+\label{console_8c}\index{kernel/\+I\+O/console.\+c@{kernel/\+I\+O/console.\+c}}
+{\ttfamily \#include \char`\"{}console.\+h\char`\"{}}\\*
+Include dependency graph for console.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{console_8c_a7d401333aa3744d07b34b52e4e590445}{C\+S\+L\+\_\+\+C\+M\+D\+\_\+\+B\+U\+F\+\_\+\+L\+G\+HT}~50
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{console_8c_afdd066255a12a1963ed773be219e8f3f}{console} ()
+\item 
+int \hyperlink{console_8c_a3f4f8a88cfd5f16324243d8250b8e6db}{console\+\_\+command\+\_\+id} (char $\ast$cmd)
+\item 
+void \hyperlink{console_8c_a84372b9ee642440a203853efca514711}{console\+\_\+launch} (int id, char $\ast$args)
+\item 
+void \hyperlink{console_8c_a97ee70a8770dc30d06c744b24eb2fcfc}{help} ()
+\item 
+int \hyperlink{console_8c_a6d4873b39638424edb6e2bd8095b6bbd}{cmd\+Cmp} (const char $\ast$str1, const char $\ast$str2)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\index{console.\+c@{console.\+c}!C\+S\+L\+\_\+\+C\+M\+D\+\_\+\+B\+U\+F\+\_\+\+L\+G\+HT@{C\+S\+L\+\_\+\+C\+M\+D\+\_\+\+B\+U\+F\+\_\+\+L\+G\+HT}}
+\index{C\+S\+L\+\_\+\+C\+M\+D\+\_\+\+B\+U\+F\+\_\+\+L\+G\+HT@{C\+S\+L\+\_\+\+C\+M\+D\+\_\+\+B\+U\+F\+\_\+\+L\+G\+HT}!console.\+c@{console.\+c}}
+\subsubsection[{\texorpdfstring{C\+S\+L\+\_\+\+C\+M\+D\+\_\+\+B\+U\+F\+\_\+\+L\+G\+HT}{CSL_CMD_BUF_LGHT}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+S\+L\+\_\+\+C\+M\+D\+\_\+\+B\+U\+F\+\_\+\+L\+G\+HT~50}\hypertarget{console_8c_a7d401333aa3744d07b34b52e4e590445}{}\label{console_8c_a7d401333aa3744d07b34b52e4e590445}
+
+
+\subsection{Function Documentation}
+\index{console.\+c@{console.\+c}!cmd\+Cmp@{cmd\+Cmp}}
+\index{cmd\+Cmp@{cmd\+Cmp}!console.\+c@{console.\+c}}
+\subsubsection[{\texorpdfstring{cmd\+Cmp(const char $\ast$str1, const char $\ast$str2)}{cmdCmp(const char *str1, const char *str2)}}]{\setlength{\rightskip}{0pt plus 5cm}int cmd\+Cmp (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{str1, }
+\item[{const char $\ast$}]{str2}
+\end{DoxyParamCaption}
+)}\hypertarget{console_8c_a6d4873b39638424edb6e2bd8095b6bbd}{}\label{console_8c_a6d4873b39638424edb6e2bd8095b6bbd}
+\index{console.\+c@{console.\+c}!console@{console}}
+\index{console@{console}!console.\+c@{console.\+c}}
+\subsubsection[{\texorpdfstring{console()}{console()}}]{\setlength{\rightskip}{0pt plus 5cm}void console (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{console_8c_afdd066255a12a1963ed773be219e8f3f}{}\label{console_8c_afdd066255a12a1963ed773be219e8f3f}
+\index{console.\+c@{console.\+c}!console\+\_\+command\+\_\+id@{console\+\_\+command\+\_\+id}}
+\index{console\+\_\+command\+\_\+id@{console\+\_\+command\+\_\+id}!console.\+c@{console.\+c}}
+\subsubsection[{\texorpdfstring{console\+\_\+command\+\_\+id(char $\ast$cmd)}{console_command_id(char *cmd)}}]{\setlength{\rightskip}{0pt plus 5cm}int console\+\_\+command\+\_\+id (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{cmd}
+\end{DoxyParamCaption}
+)}\hypertarget{console_8c_a3f4f8a88cfd5f16324243d8250b8e6db}{}\label{console_8c_a3f4f8a88cfd5f16324243d8250b8e6db}
+\index{console.\+c@{console.\+c}!console\+\_\+launch@{console\+\_\+launch}}
+\index{console\+\_\+launch@{console\+\_\+launch}!console.\+c@{console.\+c}}
+\subsubsection[{\texorpdfstring{console\+\_\+launch(int id, char $\ast$args)}{console_launch(int id, char *args)}}]{\setlength{\rightskip}{0pt plus 5cm}void console\+\_\+launch (
+\begin{DoxyParamCaption}
+\item[{int}]{id, }
+\item[{char $\ast$}]{args}
+\end{DoxyParamCaption}
+)}\hypertarget{console_8c_a84372b9ee642440a203853efca514711}{}\label{console_8c_a84372b9ee642440a203853efca514711}
+\index{console.\+c@{console.\+c}!help@{help}}
+\index{help@{help}!console.\+c@{console.\+c}}
+\subsubsection[{\texorpdfstring{help()}{help()}}]{\setlength{\rightskip}{0pt plus 5cm}void help (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{console_8c_a97ee70a8770dc30d06c744b24eb2fcfc}{}\label{console_8c_a97ee70a8770dc30d06c744b24eb2fcfc}

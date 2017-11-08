@@ -1,0 +1,130 @@
+\hypertarget{interruption_8h}{}\section{kernel/interruptions/interruption.h File Reference}
+\label{interruption_8h}\index{kernel/interruptions/interruption.\+h@{kernel/interruptions/interruption.\+h}}
+This graph shows which files directly or indirectly include this file\+:
+% FIG 0
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structIDT__Entry}{I\+D\+T\+\_\+\+Entry}
+\item 
+struct \hyperlink{structIDT__Descriptor}{I\+D\+T\+\_\+\+Descriptor}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{interruption_8h_a68a1a14be9d0dc22325b1556a218be2b}{C\+O\+D\+E\+\_\+\+S\+E\+G\+M\+E\+NT}~0x7dfb
+\item 
+\#define \hyperlink{interruption_8h_a0f24531c685844ffcdb721f2dedb8f73}{D\+A\+T\+A\+\_\+\+S\+E\+G\+M\+E\+NT}~0x7dfc
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structIDT__Entry}{I\+D\+T\+\_\+\+Entry} \hyperlink{interruption_8h_a0bef247877d56f06bd13f0b76dafea13}{\+\_\+\+\_\+attribute\+\_\+\+\_\+} ((packed))
+\item 
+void \hyperlink{interruption_8h_a559dc3a4f73d1813f12a104840e68550}{idt\+\_\+setup} ()
+\item 
+void \hyperlink{interruption_8h_a353ae56e1a3f42858b2932fd09a82dba}{idt\+\_\+set\+\_\+entry} (int p, unsigned long subroutine, char \hyperlink{memorymanager_8h_ac92588540e8c1d014a08cd8a45462b19}{flags})
+\item 
+void \hyperlink{interruption_8h_adc202422fb7553ac9c96378be3c96232}{default\+\_\+it\+\_\+hdlr} ()
+\item 
+void \hyperlink{interruption_8h_a4935474f1deb403ebf5a70e11aa0ada2}{dfault\+\_\+exc\+\_\+handler} ()
+\item 
+void \hyperlink{interruption_8h_a2093dee6f1d3be75b897739491ffce3d}{bkp\+\_\+exc\+\_\+handler} ()
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+unsigned short \hyperlink{interruption_8h_aeddfac440b71d46f48e57df0289bc73e}{base\+\_\+lower}
+\item 
+unsigned short \hyperlink{interruption_8h_ad8237384d7bd9280d9e7f563341fe39d}{segment\+\_\+selector}
+\item 
+unsigned char \hyperlink{interruption_8h_a66149b6f7ea9301dfa0f3d10e73f9554}{always\+\_\+0}
+\item 
+unsigned char \hyperlink{interruption_8h_a78ac89a4a0f57ffa7c2ecf31749aa390}{flags}
+\item 
+unsigned short \hyperlink{interruption_8h_a6a7aeaa5e2c941f302871b94080d4481}{base\+\_\+higher}
+\item 
+unsigned short \hyperlink{interruption_8h_ab50c2dcb9d4a34ea1a5ac52272502379}{limit}
+\item 
+unsigned int \hyperlink{interruption_8h_a2e013c2c6e8010c8116c6f56813df57b}{base}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\index{interruption.\+h@{interruption.\+h}!C\+O\+D\+E\+\_\+\+S\+E\+G\+M\+E\+NT@{C\+O\+D\+E\+\_\+\+S\+E\+G\+M\+E\+NT}}
+\index{C\+O\+D\+E\+\_\+\+S\+E\+G\+M\+E\+NT@{C\+O\+D\+E\+\_\+\+S\+E\+G\+M\+E\+NT}!interruption.\+h@{interruption.\+h}}
+\subsubsection[{\texorpdfstring{C\+O\+D\+E\+\_\+\+S\+E\+G\+M\+E\+NT}{CODE_SEGMENT}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+O\+D\+E\+\_\+\+S\+E\+G\+M\+E\+NT~0x7dfb}\hypertarget{interruption_8h_a68a1a14be9d0dc22325b1556a218be2b}{}\label{interruption_8h_a68a1a14be9d0dc22325b1556a218be2b}
+\index{interruption.\+h@{interruption.\+h}!D\+A\+T\+A\+\_\+\+S\+E\+G\+M\+E\+NT@{D\+A\+T\+A\+\_\+\+S\+E\+G\+M\+E\+NT}}
+\index{D\+A\+T\+A\+\_\+\+S\+E\+G\+M\+E\+NT@{D\+A\+T\+A\+\_\+\+S\+E\+G\+M\+E\+NT}!interruption.\+h@{interruption.\+h}}
+\subsubsection[{\texorpdfstring{D\+A\+T\+A\+\_\+\+S\+E\+G\+M\+E\+NT}{DATA_SEGMENT}}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+A\+T\+A\+\_\+\+S\+E\+G\+M\+E\+NT~0x7dfc}\hypertarget{interruption_8h_a0f24531c685844ffcdb721f2dedb8f73}{}\label{interruption_8h_a0f24531c685844ffcdb721f2dedb8f73}
+
+
+\subsection{Function Documentation}
+\index{interruption.\+h@{interruption.\+h}!\+\_\+\+\_\+attribute\+\_\+\+\_\+@{\+\_\+\+\_\+attribute\+\_\+\+\_\+}}
+\index{\+\_\+\+\_\+attribute\+\_\+\+\_\+@{\+\_\+\+\_\+attribute\+\_\+\+\_\+}!interruption.\+h@{interruption.\+h}}
+\subsubsection[{\texorpdfstring{\+\_\+\+\_\+attribute\+\_\+\+\_\+((packed))}{__attribute__((packed))}}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf I\+D\+T\+\_\+\+Entry} \+\_\+\+\_\+attribute\+\_\+\+\_\+ (
+\begin{DoxyParamCaption}
+\item[{(packed)}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{interruption_8h_a0bef247877d56f06bd13f0b76dafea13}{}\label{interruption_8h_a0bef247877d56f06bd13f0b76dafea13}
+\index{interruption.\+h@{interruption.\+h}!bkp\+\_\+exc\+\_\+handler@{bkp\+\_\+exc\+\_\+handler}}
+\index{bkp\+\_\+exc\+\_\+handler@{bkp\+\_\+exc\+\_\+handler}!interruption.\+h@{interruption.\+h}}
+\subsubsection[{\texorpdfstring{bkp\+\_\+exc\+\_\+handler()}{bkp_exc_handler()}}]{\setlength{\rightskip}{0pt plus 5cm}void bkp\+\_\+exc\+\_\+handler (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{interruption_8h_a2093dee6f1d3be75b897739491ffce3d}{}\label{interruption_8h_a2093dee6f1d3be75b897739491ffce3d}
+\index{interruption.\+h@{interruption.\+h}!default\+\_\+it\+\_\+hdlr@{default\+\_\+it\+\_\+hdlr}}
+\index{default\+\_\+it\+\_\+hdlr@{default\+\_\+it\+\_\+hdlr}!interruption.\+h@{interruption.\+h}}
+\subsubsection[{\texorpdfstring{default\+\_\+it\+\_\+hdlr()}{default_it_hdlr()}}]{\setlength{\rightskip}{0pt plus 5cm}void default\+\_\+it\+\_\+hdlr (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{interruption_8h_adc202422fb7553ac9c96378be3c96232}{}\label{interruption_8h_adc202422fb7553ac9c96378be3c96232}
+\index{interruption.\+h@{interruption.\+h}!dfault\+\_\+exc\+\_\+handler@{dfault\+\_\+exc\+\_\+handler}}
+\index{dfault\+\_\+exc\+\_\+handler@{dfault\+\_\+exc\+\_\+handler}!interruption.\+h@{interruption.\+h}}
+\subsubsection[{\texorpdfstring{dfault\+\_\+exc\+\_\+handler()}{dfault_exc_handler()}}]{\setlength{\rightskip}{0pt plus 5cm}void dfault\+\_\+exc\+\_\+handler (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{interruption_8h_a4935474f1deb403ebf5a70e11aa0ada2}{}\label{interruption_8h_a4935474f1deb403ebf5a70e11aa0ada2}
+\index{interruption.\+h@{interruption.\+h}!idt\+\_\+set\+\_\+entry@{idt\+\_\+set\+\_\+entry}}
+\index{idt\+\_\+set\+\_\+entry@{idt\+\_\+set\+\_\+entry}!interruption.\+h@{interruption.\+h}}
+\subsubsection[{\texorpdfstring{idt\+\_\+set\+\_\+entry(int p, unsigned long subroutine, char flags)}{idt_set_entry(int p, unsigned long subroutine, char flags)}}]{\setlength{\rightskip}{0pt plus 5cm}void idt\+\_\+set\+\_\+entry (
+\begin{DoxyParamCaption}
+\item[{int}]{p, }
+\item[{unsigned long}]{subroutine, }
+\item[{char}]{flags}
+\end{DoxyParamCaption}
+)}\hypertarget{interruption_8h_a353ae56e1a3f42858b2932fd09a82dba}{}\label{interruption_8h_a353ae56e1a3f42858b2932fd09a82dba}
+\index{interruption.\+h@{interruption.\+h}!idt\+\_\+setup@{idt\+\_\+setup}}
+\index{idt\+\_\+setup@{idt\+\_\+setup}!interruption.\+h@{interruption.\+h}}
+\subsubsection[{\texorpdfstring{idt\+\_\+setup()}{idt_setup()}}]{\setlength{\rightskip}{0pt plus 5cm}void idt\+\_\+setup (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{interruption_8h_a559dc3a4f73d1813f12a104840e68550}{}\label{interruption_8h_a559dc3a4f73d1813f12a104840e68550}
+
+
+\subsection{Variable Documentation}
+\index{interruption.\+h@{interruption.\+h}!always\+\_\+0@{always\+\_\+0}}
+\index{always\+\_\+0@{always\+\_\+0}!interruption.\+h@{interruption.\+h}}
+\subsubsection[{\texorpdfstring{always\+\_\+0}{always_0}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char always\+\_\+0}\hypertarget{interruption_8h_a66149b6f7ea9301dfa0f3d10e73f9554}{}\label{interruption_8h_a66149b6f7ea9301dfa0f3d10e73f9554}
+\index{interruption.\+h@{interruption.\+h}!base@{base}}
+\index{base@{base}!interruption.\+h@{interruption.\+h}}
+\subsubsection[{\texorpdfstring{base}{base}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int base}\hypertarget{interruption_8h_a2e013c2c6e8010c8116c6f56813df57b}{}\label{interruption_8h_a2e013c2c6e8010c8116c6f56813df57b}
+\index{interruption.\+h@{interruption.\+h}!base\+\_\+higher@{base\+\_\+higher}}
+\index{base\+\_\+higher@{base\+\_\+higher}!interruption.\+h@{interruption.\+h}}
+\subsubsection[{\texorpdfstring{base\+\_\+higher}{base_higher}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned short base\+\_\+higher}\hypertarget{interruption_8h_a6a7aeaa5e2c941f302871b94080d4481}{}\label{interruption_8h_a6a7aeaa5e2c941f302871b94080d4481}
+\index{interruption.\+h@{interruption.\+h}!base\+\_\+lower@{base\+\_\+lower}}
+\index{base\+\_\+lower@{base\+\_\+lower}!interruption.\+h@{interruption.\+h}}
+\subsubsection[{\texorpdfstring{base\+\_\+lower}{base_lower}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned short base\+\_\+lower}\hypertarget{interruption_8h_aeddfac440b71d46f48e57df0289bc73e}{}\label{interruption_8h_aeddfac440b71d46f48e57df0289bc73e}
+\index{interruption.\+h@{interruption.\+h}!flags@{flags}}
+\index{flags@{flags}!interruption.\+h@{interruption.\+h}}
+\subsubsection[{\texorpdfstring{flags}{flags}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char flags}\hypertarget{interruption_8h_a78ac89a4a0f57ffa7c2ecf31749aa390}{}\label{interruption_8h_a78ac89a4a0f57ffa7c2ecf31749aa390}
+\index{interruption.\+h@{interruption.\+h}!limit@{limit}}
+\index{limit@{limit}!interruption.\+h@{interruption.\+h}}
+\subsubsection[{\texorpdfstring{limit}{limit}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned short limit}\hypertarget{interruption_8h_ab50c2dcb9d4a34ea1a5ac52272502379}{}\label{interruption_8h_ab50c2dcb9d4a34ea1a5ac52272502379}
+\index{interruption.\+h@{interruption.\+h}!segment\+\_\+selector@{segment\+\_\+selector}}
+\index{segment\+\_\+selector@{segment\+\_\+selector}!interruption.\+h@{interruption.\+h}}
+\subsubsection[{\texorpdfstring{segment\+\_\+selector}{segment_selector}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned short segment\+\_\+selector}\hypertarget{interruption_8h_ad8237384d7bd9280d9e7f563341fe39d}{}\label{interruption_8h_ad8237384d7bd9280d9e7f563341fe39d}

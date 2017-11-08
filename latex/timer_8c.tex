@@ -1,0 +1,60 @@
+\hypertarget{timer_8c}{}\section{kernel/interruptions/timer.c File Reference}
+\label{timer_8c}\index{kernel/interruptions/timer.\+c@{kernel/interruptions/timer.\+c}}
+{\ttfamily \#include \char`\"{}timer.\+h\char`\"{}}\\*
+Include dependency graph for timer.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{timer_8c_a536c57b2e2dab1658020baee5f963a3d}{D\+I\+V\+I\+S\+OR}~838
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{timer_8c_a896a4c37c6ecf8868ef0dc758e5a598c}{timer\+\_\+init} ()
+\item 
+void \hyperlink{timer_8c_a3f3adfd945a3df659640aa0437726a22}{clock0\+\_\+irq\+\_\+handler} ()
+\item 
+void \hyperlink{timer_8c_a6b489ae079ce56982d6c354b0466767a}{timer\+\_\+wait} (int ms)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{timer_8c_a24a5348b77d88c1a4b1c0d84c4531179}{clk\+\_\+ticks} = 0
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\index{timer.\+c@{timer.\+c}!D\+I\+V\+I\+S\+OR@{D\+I\+V\+I\+S\+OR}}
+\index{D\+I\+V\+I\+S\+OR@{D\+I\+V\+I\+S\+OR}!timer.\+c@{timer.\+c}}
+\subsubsection[{\texorpdfstring{D\+I\+V\+I\+S\+OR}{DIVISOR}}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+I\+V\+I\+S\+OR~838}\hypertarget{timer_8c_a536c57b2e2dab1658020baee5f963a3d}{}\label{timer_8c_a536c57b2e2dab1658020baee5f963a3d}
+
+
+\subsection{Function Documentation}
+\index{timer.\+c@{timer.\+c}!clock0\+\_\+irq\+\_\+handler@{clock0\+\_\+irq\+\_\+handler}}
+\index{clock0\+\_\+irq\+\_\+handler@{clock0\+\_\+irq\+\_\+handler}!timer.\+c@{timer.\+c}}
+\subsubsection[{\texorpdfstring{clock0\+\_\+irq\+\_\+handler()}{clock0_irq_handler()}}]{\setlength{\rightskip}{0pt plus 5cm}void clock0\+\_\+irq\+\_\+handler (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{timer_8c_a3f3adfd945a3df659640aa0437726a22}{}\label{timer_8c_a3f3adfd945a3df659640aa0437726a22}
+\index{timer.\+c@{timer.\+c}!timer\+\_\+init@{timer\+\_\+init}}
+\index{timer\+\_\+init@{timer\+\_\+init}!timer.\+c@{timer.\+c}}
+\subsubsection[{\texorpdfstring{timer\+\_\+init()}{timer_init()}}]{\setlength{\rightskip}{0pt plus 5cm}void timer\+\_\+init (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{timer_8c_a896a4c37c6ecf8868ef0dc758e5a598c}{}\label{timer_8c_a896a4c37c6ecf8868ef0dc758e5a598c}
+\index{timer.\+c@{timer.\+c}!timer\+\_\+wait@{timer\+\_\+wait}}
+\index{timer\+\_\+wait@{timer\+\_\+wait}!timer.\+c@{timer.\+c}}
+\subsubsection[{\texorpdfstring{timer\+\_\+wait(int ms)}{timer_wait(int ms)}}]{\setlength{\rightskip}{0pt plus 5cm}void timer\+\_\+wait (
+\begin{DoxyParamCaption}
+\item[{int}]{ms}
+\end{DoxyParamCaption}
+)}\hypertarget{timer_8c_a6b489ae079ce56982d6c354b0466767a}{}\label{timer_8c_a6b489ae079ce56982d6c354b0466767a}
+
+
+\subsection{Variable Documentation}
+\index{timer.\+c@{timer.\+c}!clk\+\_\+ticks@{clk\+\_\+ticks}}
+\index{clk\+\_\+ticks@{clk\+\_\+ticks}!timer.\+c@{timer.\+c}}
+\subsubsection[{\texorpdfstring{clk\+\_\+ticks}{clk_ticks}}]{\setlength{\rightskip}{0pt plus 5cm}int clk\+\_\+ticks = 0}\hypertarget{timer_8c_a24a5348b77d88c1a4b1c0d84c4531179}{}\label{timer_8c_a24a5348b77d88c1a4b1c0d84c4531179}

@@ -1,0 +1,231 @@
+\hypertarget{print_8c}{}\section{kernel/\+I\+O/print.c File Reference}
+\label{print_8c}\index{kernel/\+I\+O/print.\+c@{kernel/\+I\+O/print.\+c}}
+{\ttfamily \#include \char`\"{}print.\+h\char`\"{}}\\*
+Include dependency graph for print.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{print_8c_ab24b1044c39a7ad798afc89a8741af4d}{M\+A\+X\+\_\+\+V\+R\+AM}~\hyperlink{print_8h_a34a8631f78f4fbdffee3739046fc794b}{V\+I\+D\+E\+O\+\_\+\+M\+E\+M\+O\+RY} + 4000
+\item 
+\#define \hyperlink{print_8c_ab24b1044c39a7ad798afc89a8741af4d}{M\+A\+X\+\_\+\+V\+R\+AM}~\hyperlink{print_8h_a34a8631f78f4fbdffee3739046fc794b}{V\+I\+D\+E\+O\+\_\+\+M\+E\+M\+O\+RY} + 4000
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{print_8c_a0f5d6c002dfaaf7a94d392733bc4ffef}{print\+\_\+char} (unsigned char c, unsigned char color, int x, int y)
+\item 
+void \hyperlink{print_8c_a2422306bcdce1dc86e94454c1ddf9a77}{print\+\_\+int} (int v, unsigned char color, int x, int y)
+\item 
+int \hyperlink{print_8c_a989189a21c848cf9d534da163e3b1dca}{ten\+\_\+power} (int x)
+\item 
+int \hyperlink{print_8c_a3f8f5ef04cb80d7219b1e6a87e3907f3}{get\+\_\+digit\+\_\+count} (int x)
+\item 
+void \hyperlink{print_8c_a4953d1edcbbfc7e420c423ded1d5621a}{clear\+\_\+screen} ()
+\item 
+void \hyperlink{print_8c_afcfcdbc316d468f171f7116ba34e2b77}{print\+\_\+string} (unsigned char $\ast$str, char color, int x, int y)
+\item 
+void \hyperlink{print_8c_a26d226bc617f43f9ec848f9596da7858}{set\+\_\+screen} (unsigned char c, unsigned char color)
+\item 
+void \hyperlink{print_8c_a3971e219fb69093f8cbc4484bd36a080}{scroll} ()
+\item 
+void \hyperlink{print_8c_a7ead26e52916805b53cb705997cb90bb}{printc} (char c)
+\item 
+void \hyperlink{print_8c_a9ea3d571128a12ff8c68b2151da0dcda}{nwline} ()
+\item 
+void \hyperlink{print_8c_a59d782324f5eb209c4ce2011b577f6b2}{prints} (char $\ast$s)
+\item 
+void \hyperlink{print_8c_ac63452665e8d34260ec6489a5def12fd}{init\+\_\+text} ()
+\item 
+void \hyperlink{print_8c_aeb4ff9842404ee13cfcb6e43f4572da0}{set\+\_\+cursor\+\_\+pos} (unsigned short x, unsigned short y)
+\item 
+void \hyperlink{print_8c_a9d1e85dd5dd2332df34da5264ef206c7}{set\+\_\+color} (unsigned char color)
+\item 
+unsigned char \hyperlink{print_8c_ab10ccb7d523d4b02bfd596dfdb636926}{get\+\_\+color} ()
+\item 
+void \hyperlink{print_8c_ac4cbae7f43f2a950ed177d915dbc372c}{printi} (int x)
+\item 
+void \hyperlink{print_8c_aeebe98d3f5a254286e777bd06c77d1f4}{printh} (int x)
+\item 
+void \hyperlink{print_8c_a6547f253ed90524bb266d63c17e6d598}{printic} (int x, unsigned char color)
+\item 
+void \hyperlink{print_8c_aae14f26f524b8163e88dc1d54cae9697}{backspace} ()
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \hyperlink{print_8c_a935d9542d3e94bc687783fed3bde8dc7}{text\+\_\+x} = 0
+\item 
+unsigned int \hyperlink{print_8c_a4119e87efc00be6b9124ea2b17fca4d4}{text\+\_\+y} = 0
+\item 
+unsigned char \hyperlink{print_8c_a0599dcd9e2f4c281145f0f5fc0537cd5}{text\+\_\+color} = 0x0F
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\index{print.\+c@{print.\+c}!M\+A\+X\+\_\+\+V\+R\+AM@{M\+A\+X\+\_\+\+V\+R\+AM}}
+\index{M\+A\+X\+\_\+\+V\+R\+AM@{M\+A\+X\+\_\+\+V\+R\+AM}!print.\+c@{print.\+c}}
+\subsubsection[{\texorpdfstring{M\+A\+X\+\_\+\+V\+R\+AM}{MAX_VRAM}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+A\+X\+\_\+\+V\+R\+AM~{\bf V\+I\+D\+E\+O\+\_\+\+M\+E\+M\+O\+RY} + 4000}\hypertarget{print_8c_ab24b1044c39a7ad798afc89a8741af4d}{}\label{print_8c_ab24b1044c39a7ad798afc89a8741af4d}
+\index{print.\+c@{print.\+c}!M\+A\+X\+\_\+\+V\+R\+AM@{M\+A\+X\+\_\+\+V\+R\+AM}}
+\index{M\+A\+X\+\_\+\+V\+R\+AM@{M\+A\+X\+\_\+\+V\+R\+AM}!print.\+c@{print.\+c}}
+\subsubsection[{\texorpdfstring{M\+A\+X\+\_\+\+V\+R\+AM}{MAX_VRAM}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+A\+X\+\_\+\+V\+R\+AM~{\bf V\+I\+D\+E\+O\+\_\+\+M\+E\+M\+O\+RY} + 4000}\hypertarget{print_8c_ab24b1044c39a7ad798afc89a8741af4d}{}\label{print_8c_ab24b1044c39a7ad798afc89a8741af4d}
+
+
+\subsection{Function Documentation}
+\index{print.\+c@{print.\+c}!backspace@{backspace}}
+\index{backspace@{backspace}!print.\+c@{print.\+c}}
+\subsubsection[{\texorpdfstring{backspace()}{backspace()}}]{\setlength{\rightskip}{0pt plus 5cm}void backspace (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{print_8c_aae14f26f524b8163e88dc1d54cae9697}{}\label{print_8c_aae14f26f524b8163e88dc1d54cae9697}
+\index{print.\+c@{print.\+c}!clear\+\_\+screen@{clear\+\_\+screen}}
+\index{clear\+\_\+screen@{clear\+\_\+screen}!print.\+c@{print.\+c}}
+\subsubsection[{\texorpdfstring{clear\+\_\+screen()}{clear_screen()}}]{\setlength{\rightskip}{0pt plus 5cm}void clear\+\_\+screen (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{print_8c_a4953d1edcbbfc7e420c423ded1d5621a}{}\label{print_8c_a4953d1edcbbfc7e420c423ded1d5621a}
+\index{print.\+c@{print.\+c}!get\+\_\+color@{get\+\_\+color}}
+\index{get\+\_\+color@{get\+\_\+color}!print.\+c@{print.\+c}}
+\subsubsection[{\texorpdfstring{get\+\_\+color()}{get_color()}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char get\+\_\+color (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{print_8c_ab10ccb7d523d4b02bfd596dfdb636926}{}\label{print_8c_ab10ccb7d523d4b02bfd596dfdb636926}
+\index{print.\+c@{print.\+c}!get\+\_\+digit\+\_\+count@{get\+\_\+digit\+\_\+count}}
+\index{get\+\_\+digit\+\_\+count@{get\+\_\+digit\+\_\+count}!print.\+c@{print.\+c}}
+\subsubsection[{\texorpdfstring{get\+\_\+digit\+\_\+count(int x)}{get_digit_count(int x)}}]{\setlength{\rightskip}{0pt plus 5cm}int get\+\_\+digit\+\_\+count (
+\begin{DoxyParamCaption}
+\item[{int}]{x}
+\end{DoxyParamCaption}
+)}\hypertarget{print_8c_a3f8f5ef04cb80d7219b1e6a87e3907f3}{}\label{print_8c_a3f8f5ef04cb80d7219b1e6a87e3907f3}
+\index{print.\+c@{print.\+c}!init\+\_\+text@{init\+\_\+text}}
+\index{init\+\_\+text@{init\+\_\+text}!print.\+c@{print.\+c}}
+\subsubsection[{\texorpdfstring{init\+\_\+text()}{init_text()}}]{\setlength{\rightskip}{0pt plus 5cm}void init\+\_\+text (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{print_8c_ac63452665e8d34260ec6489a5def12fd}{}\label{print_8c_ac63452665e8d34260ec6489a5def12fd}
+\index{print.\+c@{print.\+c}!nwline@{nwline}}
+\index{nwline@{nwline}!print.\+c@{print.\+c}}
+\subsubsection[{\texorpdfstring{nwline()}{nwline()}}]{\setlength{\rightskip}{0pt plus 5cm}void nwline (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{print_8c_a9ea3d571128a12ff8c68b2151da0dcda}{}\label{print_8c_a9ea3d571128a12ff8c68b2151da0dcda}
+\index{print.\+c@{print.\+c}!print\+\_\+char@{print\+\_\+char}}
+\index{print\+\_\+char@{print\+\_\+char}!print.\+c@{print.\+c}}
+\subsubsection[{\texorpdfstring{print\+\_\+char(unsigned char c, unsigned char color, int x, int y)}{print_char(unsigned char c, unsigned char color, int x, int y)}}]{\setlength{\rightskip}{0pt plus 5cm}void print\+\_\+char (
+\begin{DoxyParamCaption}
+\item[{unsigned char}]{c, }
+\item[{unsigned char}]{color, }
+\item[{int}]{x, }
+\item[{int}]{y}
+\end{DoxyParamCaption}
+)}\hypertarget{print_8c_a0f5d6c002dfaaf7a94d392733bc4ffef}{}\label{print_8c_a0f5d6c002dfaaf7a94d392733bc4ffef}
+\index{print.\+c@{print.\+c}!print\+\_\+int@{print\+\_\+int}}
+\index{print\+\_\+int@{print\+\_\+int}!print.\+c@{print.\+c}}
+\subsubsection[{\texorpdfstring{print\+\_\+int(int v, unsigned char color, int x, int y)}{print_int(int v, unsigned char color, int x, int y)}}]{\setlength{\rightskip}{0pt plus 5cm}void print\+\_\+int (
+\begin{DoxyParamCaption}
+\item[{int}]{v, }
+\item[{unsigned char}]{color, }
+\item[{int}]{x, }
+\item[{int}]{y}
+\end{DoxyParamCaption}
+)}\hypertarget{print_8c_a2422306bcdce1dc86e94454c1ddf9a77}{}\label{print_8c_a2422306bcdce1dc86e94454c1ddf9a77}
+\index{print.\+c@{print.\+c}!print\+\_\+string@{print\+\_\+string}}
+\index{print\+\_\+string@{print\+\_\+string}!print.\+c@{print.\+c}}
+\subsubsection[{\texorpdfstring{print\+\_\+string(unsigned char $\ast$str, char color, int x, int y)}{print_string(unsigned char *str, char color, int x, int y)}}]{\setlength{\rightskip}{0pt plus 5cm}void print\+\_\+string (
+\begin{DoxyParamCaption}
+\item[{unsigned char $\ast$}]{str, }
+\item[{char}]{color, }
+\item[{int}]{x, }
+\item[{int}]{y}
+\end{DoxyParamCaption}
+)}\hypertarget{print_8c_afcfcdbc316d468f171f7116ba34e2b77}{}\label{print_8c_afcfcdbc316d468f171f7116ba34e2b77}
+\index{print.\+c@{print.\+c}!printc@{printc}}
+\index{printc@{printc}!print.\+c@{print.\+c}}
+\subsubsection[{\texorpdfstring{printc(char c)}{printc(char c)}}]{\setlength{\rightskip}{0pt plus 5cm}void printc (
+\begin{DoxyParamCaption}
+\item[{char}]{c}
+\end{DoxyParamCaption}
+)}\hypertarget{print_8c_a7ead26e52916805b53cb705997cb90bb}{}\label{print_8c_a7ead26e52916805b53cb705997cb90bb}
+\index{print.\+c@{print.\+c}!printh@{printh}}
+\index{printh@{printh}!print.\+c@{print.\+c}}
+\subsubsection[{\texorpdfstring{printh(int x)}{printh(int x)}}]{\setlength{\rightskip}{0pt plus 5cm}void printh (
+\begin{DoxyParamCaption}
+\item[{int}]{x}
+\end{DoxyParamCaption}
+)}\hypertarget{print_8c_aeebe98d3f5a254286e777bd06c77d1f4}{}\label{print_8c_aeebe98d3f5a254286e777bd06c77d1f4}
+\index{print.\+c@{print.\+c}!printi@{printi}}
+\index{printi@{printi}!print.\+c@{print.\+c}}
+\subsubsection[{\texorpdfstring{printi(int x)}{printi(int x)}}]{\setlength{\rightskip}{0pt plus 5cm}void printi (
+\begin{DoxyParamCaption}
+\item[{int}]{x}
+\end{DoxyParamCaption}
+)}\hypertarget{print_8c_ac4cbae7f43f2a950ed177d915dbc372c}{}\label{print_8c_ac4cbae7f43f2a950ed177d915dbc372c}
+\index{print.\+c@{print.\+c}!printic@{printic}}
+\index{printic@{printic}!print.\+c@{print.\+c}}
+\subsubsection[{\texorpdfstring{printic(int x, unsigned char color)}{printic(int x, unsigned char color)}}]{\setlength{\rightskip}{0pt plus 5cm}void printic (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{unsigned char}]{color}
+\end{DoxyParamCaption}
+)}\hypertarget{print_8c_a6547f253ed90524bb266d63c17e6d598}{}\label{print_8c_a6547f253ed90524bb266d63c17e6d598}
+\index{print.\+c@{print.\+c}!prints@{prints}}
+\index{prints@{prints}!print.\+c@{print.\+c}}
+\subsubsection[{\texorpdfstring{prints(char $\ast$s)}{prints(char *s)}}]{\setlength{\rightskip}{0pt plus 5cm}void prints (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{s}
+\end{DoxyParamCaption}
+)}\hypertarget{print_8c_a59d782324f5eb209c4ce2011b577f6b2}{}\label{print_8c_a59d782324f5eb209c4ce2011b577f6b2}
+\index{print.\+c@{print.\+c}!scroll@{scroll}}
+\index{scroll@{scroll}!print.\+c@{print.\+c}}
+\subsubsection[{\texorpdfstring{scroll()}{scroll()}}]{\setlength{\rightskip}{0pt plus 5cm}void scroll (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{print_8c_a3971e219fb69093f8cbc4484bd36a080}{}\label{print_8c_a3971e219fb69093f8cbc4484bd36a080}
+\index{print.\+c@{print.\+c}!set\+\_\+color@{set\+\_\+color}}
+\index{set\+\_\+color@{set\+\_\+color}!print.\+c@{print.\+c}}
+\subsubsection[{\texorpdfstring{set\+\_\+color(unsigned char color)}{set_color(unsigned char color)}}]{\setlength{\rightskip}{0pt plus 5cm}void set\+\_\+color (
+\begin{DoxyParamCaption}
+\item[{unsigned char}]{color}
+\end{DoxyParamCaption}
+)}\hypertarget{print_8c_a9d1e85dd5dd2332df34da5264ef206c7}{}\label{print_8c_a9d1e85dd5dd2332df34da5264ef206c7}
+\index{print.\+c@{print.\+c}!set\+\_\+cursor\+\_\+pos@{set\+\_\+cursor\+\_\+pos}}
+\index{set\+\_\+cursor\+\_\+pos@{set\+\_\+cursor\+\_\+pos}!print.\+c@{print.\+c}}
+\subsubsection[{\texorpdfstring{set\+\_\+cursor\+\_\+pos(unsigned short x, unsigned short y)}{set_cursor_pos(unsigned short x, unsigned short y)}}]{\setlength{\rightskip}{0pt plus 5cm}void set\+\_\+cursor\+\_\+pos (
+\begin{DoxyParamCaption}
+\item[{unsigned short}]{x, }
+\item[{unsigned short}]{y}
+\end{DoxyParamCaption}
+)}\hypertarget{print_8c_aeb4ff9842404ee13cfcb6e43f4572da0}{}\label{print_8c_aeb4ff9842404ee13cfcb6e43f4572da0}
+\index{print.\+c@{print.\+c}!set\+\_\+screen@{set\+\_\+screen}}
+\index{set\+\_\+screen@{set\+\_\+screen}!print.\+c@{print.\+c}}
+\subsubsection[{\texorpdfstring{set\+\_\+screen(unsigned char c, unsigned char color)}{set_screen(unsigned char c, unsigned char color)}}]{\setlength{\rightskip}{0pt plus 5cm}void set\+\_\+screen (
+\begin{DoxyParamCaption}
+\item[{unsigned char}]{c, }
+\item[{unsigned char}]{color}
+\end{DoxyParamCaption}
+)}\hypertarget{print_8c_a26d226bc617f43f9ec848f9596da7858}{}\label{print_8c_a26d226bc617f43f9ec848f9596da7858}
+\index{print.\+c@{print.\+c}!ten\+\_\+power@{ten\+\_\+power}}
+\index{ten\+\_\+power@{ten\+\_\+power}!print.\+c@{print.\+c}}
+\subsubsection[{\texorpdfstring{ten\+\_\+power(int x)}{ten_power(int x)}}]{\setlength{\rightskip}{0pt plus 5cm}int ten\+\_\+power (
+\begin{DoxyParamCaption}
+\item[{int}]{x}
+\end{DoxyParamCaption}
+)}\hypertarget{print_8c_a989189a21c848cf9d534da163e3b1dca}{}\label{print_8c_a989189a21c848cf9d534da163e3b1dca}
+
+
+\subsection{Variable Documentation}
+\index{print.\+c@{print.\+c}!text\+\_\+color@{text\+\_\+color}}
+\index{text\+\_\+color@{text\+\_\+color}!print.\+c@{print.\+c}}
+\subsubsection[{\texorpdfstring{text\+\_\+color}{text_color}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char text\+\_\+color = 0x0F}\hypertarget{print_8c_a0599dcd9e2f4c281145f0f5fc0537cd5}{}\label{print_8c_a0599dcd9e2f4c281145f0f5fc0537cd5}
+\index{print.\+c@{print.\+c}!text\+\_\+x@{text\+\_\+x}}
+\index{text\+\_\+x@{text\+\_\+x}!print.\+c@{print.\+c}}
+\subsubsection[{\texorpdfstring{text\+\_\+x}{text_x}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int text\+\_\+x = 0}\hypertarget{print_8c_a935d9542d3e94bc687783fed3bde8dc7}{}\label{print_8c_a935d9542d3e94bc687783fed3bde8dc7}
+\index{print.\+c@{print.\+c}!text\+\_\+y@{text\+\_\+y}}
+\index{text\+\_\+y@{text\+\_\+y}!print.\+c@{print.\+c}}
+\subsubsection[{\texorpdfstring{text\+\_\+y}{text_y}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int text\+\_\+y = 0}\hypertarget{print_8c_a4119e87efc00be6b9124ea2b17fca4d4}{}\label{print_8c_a4119e87efc00be6b9124ea2b17fca4d4}

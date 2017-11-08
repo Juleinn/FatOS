@@ -1,0 +1,111 @@
+\hypertarget{memorymap_8h}{}\section{kernel/\+I\+O/memorymap.h File Reference}
+\label{memorymap_8h}\index{kernel/\+I\+O/memorymap.\+h@{kernel/\+I\+O/memorymap.\+h}}
+{\ttfamily \#include \char`\"{}print.\+h\char`\"{}}\\*
+Include dependency graph for memorymap.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structMemorymap__entry}{Memorymap\+\_\+entry}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{memorymap_8h_af57358678fd400716a31b8dddf508cb6}{M\+E\+M\+O\+R\+Y\+M\+A\+P\+\_\+\+E\+N\+T\+R\+Y\+C\+O\+U\+NT}~0x7c00  /$\ast$ Adress of the memorymap entrycount in memory $\ast$/
+\item 
+\#define \hyperlink{memorymap_8h_a981fb855a4ea97b50cb168d746f4ed7d}{M\+E\+M\+O\+R\+Y\+M\+A\+P\+\_\+\+B\+A\+S\+E\+A\+D\+D\+R\+E\+SS}~0x7c01 /$\ast$ Address of the first memorymap entry $\ast$/
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structMemorymap__entry}{Memorymap\+\_\+entry} \hyperlink{memorymap_8h_ab1cf1c261292f8c4b8ace47dcfa74908}{Memorymap\+\_\+entry}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structMemorymap__entry}{Memorymap\+\_\+entry} \hyperlink{memorymap_8h_aafbdca8e614c3d9bae35391321a5a002}{\+\_\+\+\_\+attribute\+\_\+\+\_\+} ((packed))
+\item 
+void \hyperlink{memorymap_8h_a77caabd4d75192c75cde24e5ffafbd65}{print\+\_\+memorymap} (char color)
+\item 
+int \hyperlink{memorymap_8h_a2f012681b7b7af5e455e7f4a81ce93bf}{memorymap\+\_\+get\+\_\+entrycount} ()
+\item 
+\hyperlink{structMemorymap__entry}{Memorymap\+\_\+entry} \hyperlink{memorymap_8h_aa4c2b11cac6cef8680c909c0efb91a72}{memorymap\+\_\+get\+\_\+entry} (int i)
+\item 
+int \hyperlink{memorymap_8h_a26a6858555f1c40abdb3f33d82b32c84}{memorymap\+\_\+get\+\_\+\+R\+A\+M\+\_\+size} ()
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+unsigned long long \hyperlink{memorymap_8h_ab9a4dce0614accb28d032f898ec3b1b2}{base\+\_\+address}
+\item 
+unsigned long long \hyperlink{memorymap_8h_a8c2a0089a6664c2e9af4e71d4b3b9532}{length}
+\item 
+unsigned int \hyperlink{memorymap_8h_a4bfea42429249a1f65204f0c0f34704a}{type}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\index{memorymap.\+h@{memorymap.\+h}!M\+E\+M\+O\+R\+Y\+M\+A\+P\+\_\+\+B\+A\+S\+E\+A\+D\+D\+R\+E\+SS@{M\+E\+M\+O\+R\+Y\+M\+A\+P\+\_\+\+B\+A\+S\+E\+A\+D\+D\+R\+E\+SS}}
+\index{M\+E\+M\+O\+R\+Y\+M\+A\+P\+\_\+\+B\+A\+S\+E\+A\+D\+D\+R\+E\+SS@{M\+E\+M\+O\+R\+Y\+M\+A\+P\+\_\+\+B\+A\+S\+E\+A\+D\+D\+R\+E\+SS}!memorymap.\+h@{memorymap.\+h}}
+\subsubsection[{\texorpdfstring{M\+E\+M\+O\+R\+Y\+M\+A\+P\+\_\+\+B\+A\+S\+E\+A\+D\+D\+R\+E\+SS}{MEMORYMAP_BASEADDRESS}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+E\+M\+O\+R\+Y\+M\+A\+P\+\_\+\+B\+A\+S\+E\+A\+D\+D\+R\+E\+SS~0x7c01 /$\ast$ Address of the first memorymap entry $\ast$/}\hypertarget{memorymap_8h_a981fb855a4ea97b50cb168d746f4ed7d}{}\label{memorymap_8h_a981fb855a4ea97b50cb168d746f4ed7d}
+\index{memorymap.\+h@{memorymap.\+h}!M\+E\+M\+O\+R\+Y\+M\+A\+P\+\_\+\+E\+N\+T\+R\+Y\+C\+O\+U\+NT@{M\+E\+M\+O\+R\+Y\+M\+A\+P\+\_\+\+E\+N\+T\+R\+Y\+C\+O\+U\+NT}}
+\index{M\+E\+M\+O\+R\+Y\+M\+A\+P\+\_\+\+E\+N\+T\+R\+Y\+C\+O\+U\+NT@{M\+E\+M\+O\+R\+Y\+M\+A\+P\+\_\+\+E\+N\+T\+R\+Y\+C\+O\+U\+NT}!memorymap.\+h@{memorymap.\+h}}
+\subsubsection[{\texorpdfstring{M\+E\+M\+O\+R\+Y\+M\+A\+P\+\_\+\+E\+N\+T\+R\+Y\+C\+O\+U\+NT}{MEMORYMAP_ENTRYCOUNT}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+E\+M\+O\+R\+Y\+M\+A\+P\+\_\+\+E\+N\+T\+R\+Y\+C\+O\+U\+NT~0x7c00  /$\ast$ Adress of the memorymap entrycount in memory $\ast$/}\hypertarget{memorymap_8h_af57358678fd400716a31b8dddf508cb6}{}\label{memorymap_8h_af57358678fd400716a31b8dddf508cb6}
+
+
+\subsection{Typedef Documentation}
+\index{memorymap.\+h@{memorymap.\+h}!Memorymap\+\_\+entry@{Memorymap\+\_\+entry}}
+\index{Memorymap\+\_\+entry@{Memorymap\+\_\+entry}!memorymap.\+h@{memorymap.\+h}}
+\subsubsection[{\texorpdfstring{Memorymap\+\_\+entry}{Memorymap_entry}}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf Memorymap\+\_\+entry} {\bf Memorymap\+\_\+entry}}\hypertarget{memorymap_8h_ab1cf1c261292f8c4b8ace47dcfa74908}{}\label{memorymap_8h_ab1cf1c261292f8c4b8ace47dcfa74908}
+
+
+\subsection{Function Documentation}
+\index{memorymap.\+h@{memorymap.\+h}!\+\_\+\+\_\+attribute\+\_\+\+\_\+@{\+\_\+\+\_\+attribute\+\_\+\+\_\+}}
+\index{\+\_\+\+\_\+attribute\+\_\+\+\_\+@{\+\_\+\+\_\+attribute\+\_\+\+\_\+}!memorymap.\+h@{memorymap.\+h}}
+\subsubsection[{\texorpdfstring{\+\_\+\+\_\+attribute\+\_\+\+\_\+((packed))}{__attribute__((packed))}}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf Memorymap\+\_\+entry} \+\_\+\+\_\+attribute\+\_\+\+\_\+ (
+\begin{DoxyParamCaption}
+\item[{(packed)}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{memorymap_8h_aafbdca8e614c3d9bae35391321a5a002}{}\label{memorymap_8h_aafbdca8e614c3d9bae35391321a5a002}
+\index{memorymap.\+h@{memorymap.\+h}!memorymap\+\_\+get\+\_\+entry@{memorymap\+\_\+get\+\_\+entry}}
+\index{memorymap\+\_\+get\+\_\+entry@{memorymap\+\_\+get\+\_\+entry}!memorymap.\+h@{memorymap.\+h}}
+\subsubsection[{\texorpdfstring{memorymap\+\_\+get\+\_\+entry(int i)}{memorymap_get_entry(int i)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Memorymap\+\_\+entry} memorymap\+\_\+get\+\_\+entry (
+\begin{DoxyParamCaption}
+\item[{int}]{i}
+\end{DoxyParamCaption}
+)}\hypertarget{memorymap_8h_aa4c2b11cac6cef8680c909c0efb91a72}{}\label{memorymap_8h_aa4c2b11cac6cef8680c909c0efb91a72}
+\index{memorymap.\+h@{memorymap.\+h}!memorymap\+\_\+get\+\_\+entrycount@{memorymap\+\_\+get\+\_\+entrycount}}
+\index{memorymap\+\_\+get\+\_\+entrycount@{memorymap\+\_\+get\+\_\+entrycount}!memorymap.\+h@{memorymap.\+h}}
+\subsubsection[{\texorpdfstring{memorymap\+\_\+get\+\_\+entrycount()}{memorymap_get_entrycount()}}]{\setlength{\rightskip}{0pt plus 5cm}int memorymap\+\_\+get\+\_\+entrycount (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{memorymap_8h_a2f012681b7b7af5e455e7f4a81ce93bf}{}\label{memorymap_8h_a2f012681b7b7af5e455e7f4a81ce93bf}
+\index{memorymap.\+h@{memorymap.\+h}!memorymap\+\_\+get\+\_\+\+R\+A\+M\+\_\+size@{memorymap\+\_\+get\+\_\+\+R\+A\+M\+\_\+size}}
+\index{memorymap\+\_\+get\+\_\+\+R\+A\+M\+\_\+size@{memorymap\+\_\+get\+\_\+\+R\+A\+M\+\_\+size}!memorymap.\+h@{memorymap.\+h}}
+\subsubsection[{\texorpdfstring{memorymap\+\_\+get\+\_\+\+R\+A\+M\+\_\+size()}{memorymap_get_RAM_size()}}]{\setlength{\rightskip}{0pt plus 5cm}int memorymap\+\_\+get\+\_\+\+R\+A\+M\+\_\+size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{memorymap_8h_a26a6858555f1c40abdb3f33d82b32c84}{}\label{memorymap_8h_a26a6858555f1c40abdb3f33d82b32c84}
+\index{memorymap.\+h@{memorymap.\+h}!print\+\_\+memorymap@{print\+\_\+memorymap}}
+\index{print\+\_\+memorymap@{print\+\_\+memorymap}!memorymap.\+h@{memorymap.\+h}}
+\subsubsection[{\texorpdfstring{print\+\_\+memorymap(char color)}{print_memorymap(char color)}}]{\setlength{\rightskip}{0pt plus 5cm}void print\+\_\+memorymap (
+\begin{DoxyParamCaption}
+\item[{char}]{color}
+\end{DoxyParamCaption}
+)}\hypertarget{memorymap_8h_a77caabd4d75192c75cde24e5ffafbd65}{}\label{memorymap_8h_a77caabd4d75192c75cde24e5ffafbd65}
+
+
+\subsection{Variable Documentation}
+\index{memorymap.\+h@{memorymap.\+h}!base\+\_\+address@{base\+\_\+address}}
+\index{base\+\_\+address@{base\+\_\+address}!memorymap.\+h@{memorymap.\+h}}
+\subsubsection[{\texorpdfstring{base\+\_\+address}{base_address}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long long base\+\_\+address}\hypertarget{memorymap_8h_ab9a4dce0614accb28d032f898ec3b1b2}{}\label{memorymap_8h_ab9a4dce0614accb28d032f898ec3b1b2}
+\index{memorymap.\+h@{memorymap.\+h}!length@{length}}
+\index{length@{length}!memorymap.\+h@{memorymap.\+h}}
+\subsubsection[{\texorpdfstring{length}{length}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long long length}\hypertarget{memorymap_8h_a8c2a0089a6664c2e9af4e71d4b3b9532}{}\label{memorymap_8h_a8c2a0089a6664c2e9af4e71d4b3b9532}
+\index{memorymap.\+h@{memorymap.\+h}!type@{type}}
+\index{type@{type}!memorymap.\+h@{memorymap.\+h}}
+\subsubsection[{\texorpdfstring{type}{type}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int type}\hypertarget{memorymap_8h_a4bfea42429249a1f65204f0c0f34704a}{}\label{memorymap_8h_a4bfea42429249a1f65204f0c0f34704a}
