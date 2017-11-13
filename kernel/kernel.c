@@ -11,7 +11,8 @@
 #include "memory.h"
 #include "interruption.h"
 #include "memorymanager.h"
-#include "fs.h"
+#include "sysfile.h"
+
 
 /**
 @brief OS kernel entry point
@@ -29,13 +30,16 @@ int main(){
 
 	/* test mem manager */
 	memorymanager_init();
-	filesystems_init();
 
-	FileSystem * fs0 = getFirstFileSystem();
+	sysfile_init();
 
+	int file = sys_fopen("0/FAT.bin", SYSFD_MODE_READ);
+	sysfd_printfdlist();
 
-	filesystem_appendBytes(fs0, fs0->root,
-    "/subdir/subfile1.bin", 100);
+	char buffer[512] = "0/";
+	
+	sys_fread(file, buffer, 0, 512);
+	prints(buffer);
 
 	console();
 

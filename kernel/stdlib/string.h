@@ -22,4 +22,7 @@ int strIndexOf(char* str, char c);
 /* Counts the occurences of a given char */
 int chrCount(const char* str, const char c);
 
+/* Performs a deep copy of s1 into s2 */
+void strcpy(const char * str1, char * str2);
+
 #endif

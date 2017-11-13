@@ -4,8 +4,6 @@ all: genclr flp
 OBJ=kernel.o $(filter-out kernel.o,$(wildcard *.o))
 # OBJ = kernel.o interruption.o idt.o    isrs.o  kernel.o  memory.o  print.o
 
-
-
 flp: mbr.bin stage2.bin kernel.bin
 	# MBR
 	dd if=mbr.bin of=fatos.flp conv=notrunc seek=0 bs=512
@@ -17,6 +15,8 @@ flp: mbr.bin stage2.bin kernel.bin
 	dd if=kernel.bin of=fatos.flp conv=notrunc bs=512 seek=13
 	# copy subdir file
 	dd if=subdir of=fatos.flp conv=notrunc bs=512 seek=76
+	# copy subfile1.bin test file
+	dd if=subfile1.bin of=fatos.flp conv=notrunc bs=512 seek=77
 
 # generates a file of 10 empty sectors of 512 bytes
 genclr:

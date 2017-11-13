@@ -1,8 +1,8 @@
 CC = i386-elf-gcc
-SRC=$(wildcard kernel/*.c) $(wildcard kernel/*/*.c) $(wildcard kernel/*/*.as)
+SRC=$(wildcard kernel/*.c) $(wildcard kernel/*/*.c) $(wildcard kernel/*/*/*.c) $(wildcard kernel/*/*.as)
 OBJ=$(SRC:%.c=%.o) $(SRC:%.as=%.o)
 BUILDIR=build/
-HEADER_DIRS=$(addprefix -I./, $(sort $(dir $(wildcard kernel/*/))))
+HEADER_DIRS=$(addprefix -I./, $(sort $(dir $(wildcard kernel/*/)))) $(addprefix -I./, $(sort $(dir $(wildcard kernel/*/*/))))
 
 all: binary
 

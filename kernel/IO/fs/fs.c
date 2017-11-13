@@ -9,19 +9,6 @@
 /* Pointer to first filesystem to be loaded (boot filesystem)*/
 FileSystem * firstFileSystem;
 
-// can be replaced by macro later
-unsigned short filesystem_getNextSector(unsigned short sector, FileSystem * fs)
-{
-    // just read the sector value contained in FAT
-    // does not perform any verification on data, just strips used flag
-    return (*((unsigned short*)((int) fs->FATpointer + 2*sector))) & 0x7FFF;
-}
-
-unsigned short filesystem_getNextSectorRaw(unsigned short sector, FileSystem * fs)
-{
-    return (*((unsigned short*)((int) fs->FATpointer + 2*sector)));
-}
-
 void filesystems_init()
 {
     // create boot filesystem entry
@@ -57,45 +44,7 @@ void filesystem_init(FileSystem * fs)
   // }
 
   // load the filelist
-  filesystem_LoadFileList(fs);
-}
-
-unsigned short filesystem_getFileSectors(unsigned short firstSector, FileSystem * fs)
-{
-    // just loop through until end of file
-    // impose maximum number in case FAT is corrupt
-    // no not read anything outside memory
-
-    unsigned short n = 1; // number of sectors
-    unsigned short currentSector = firstSector;
-
-    // check if first sector valid :
-    if((*((unsigned short*)((int) fs->FATpointer + 2*firstSector))) & 0x8000)
-    {
-        while(filesystem_getNextSector(currentSector, fs) != 0)
-        {
-            n++;
-            currentSector = filesystem_getNextSector(currentSector, fs);
-        }
-        return n;
-    }
-    else
-    {
-        prints("Invalid first sector\n");
-        return 0;
-    }
-}
-
-unsigned short filesystem_getNthSector(unsigned short firstSector, int n, FileSystem * fs)
-{
-    unsigned short currentSector = firstSector;
-    int i;
-    for(i=0; i<n; i++)
-    {
-        currentSector = filesystem_getNextSector(currentSector, fs);
-        // prints("currentSector = ");printi((int)currentSector);prints("\n");
-    }
-    return currentSector;
+  filesystem_LoadRootFileList(fs);
 }
 
 int filesystem_readbytesByFirstSector(unsigned short firstSector, int startByte, int length, char* buffer, FileSystem * fs)
@@ -187,38 +136,6 @@ FileSystem * getFirstFileSystem()
     return firstFileSystem;
 }
 
-void filesystem_LoadFileList(FileSystem * fs)
-{
-    int sectors = filesystem_getFileSectors(11, fs);
-    fs->root.data = (char*) sys_alloc(sectors * SECTOR_SIZE);
-    fs->root.length = sectors * SECTOR_SIZE;
-    fs->root.firstSector = 11;
-    filesystem_readbytesByFirstSector(11, 0, sectors*SECTOR_SIZE, fs->root.data, fs);
-}
-
-FileList filesystem_loadSubFileList(FileSystem * fs, FileList fl, 
-    char * subFileListName)
-{
-    FileList subfl;
-    /* First sector is returned raw */
-    int firstSector = filesystem_findFirstSector(subFileListName, fl) & 0x7FFF;
-
-    if(firstSector == 0)
-    {
-        subfl.length = 0;
-        return subfl;
-    }
-    
-
-    int sectors = filesystem_getFileSectors(firstSector & 0x7FFF, fs);
-    subfl.data = (char*) sys_alloc(sectors * SECTOR_SIZE);
-    filesystem_readbytesByFirstSector(firstSector, 0, sectors*SECTOR_SIZE, subfl.data, fs);
-    
-    subfl.length = sectors * SECTOR_SIZE;
-    subfl.firstSector = firstSector;
-    return subfl;
-}
-
 FileSystem * getFileSystemByDriveId(int id)
 {
     FileSystem * currentFileSystem = firstFileSystem;
@@ -232,73 +149,6 @@ FileSystem * getFileSystemByDriveId(int id)
     return (void*)0;
 }
 
-void filesystem_list(FileSystem * fs, FileList fl)
-{
-    // entry : "NAME"\0 SIZE(16bits) FIRSTSECTOR(16bits)
-    // prints("filename : Size : first Sector\n");
-
-    int pos = 0;
-    while(pos < fl.length)// make sure to parse all data, in case files have been deleted
-    {
-        if(fl.data[pos] != 0) // new entry
-        {
-            // output format = NAME : SIZE : FIRSTSECTOR
-            prints(&(fl.data[pos]));prints(" ");
-            pos += strlen(&(fl.data[pos])) + 1;
-            unsigned short size = *((unsigned short*)&(fl.data[pos]));
-            unsigned short firstSector = *((unsigned short*)&(fl.data[pos+2]));
-            if(firstSector & 0x8000)
-                prints(" (d) ");
-            else
-                prints(" (f) ");
-            unsigned short sectorCount = filesystem_getFileSectors(firstSector & 0x7FFF, fs);
-            printi((int)size);prints(" ");printi((int)firstSector & 0x7FFF);
-            prints(" ");
-            printi(sectorCount);
-            prints("\n");
-            pos += 4;
-        }
-        else
-        {
-            pos++;
-        }
-    }
-}
-
-unsigned short filesystem_findFirstSector(char * filename, FileList fl)
-{
-    int pos = 0;
-    while(pos < fl.length)
-    {
-        if(fl.data[pos] != 0)
-        {
-            if(strcmp(&(fl.data[pos]), filename) == 0) // entry found
-            {
-                // retrieve the corresponding first sector
-                pos += strlen(&(fl.data[pos])) + 3;
-                unsigned short firstSector = *((unsigned short*)(&(fl.data[pos])));
-                return firstSector;
-            }
-            else
-            {
-                pos += strlen(&(fl.data[pos])) + 5;
-            }
-        }
-        else
-        {
-            pos++;
-        }
-    }
-    return 0;// this means nothing found
-}
-
-unsigned short filesystem_getLastSector(unsigned short firstSector, FileSystem * fs)
-{
-    unsigned short currentSector = firstSector;
-    while(filesystem_getNextSector(currentSector, fs))
-        currentSector = filesystem_getNextSector(currentSector, fs);
-    return currentSector;
-}
 
 unsigned short filesystem_findEmptySector(unsigned short first, FileSystem * fs)
 {
@@ -376,7 +226,7 @@ int filesystem_appendBytes(FileSystem * fs, FileList fl,
 
         /* Then load corresponding subfilelist */
         FileList subfl;
-        subfl = filesystem_loadSubFileList(fs, fl, (char*) (filename+1));
+        subfl = filesystem_loadSubFileListByName(fs, fl, (char*) (filename+1));
         if(subfl.length == 0)
         {
             prints("Not found\n");
@@ -391,105 +241,6 @@ int filesystem_appendBytes(FileSystem * fs, FileList fl,
         filesystem_fileListFreeBuffer(subfl);
         return res;
     } 
-}
-
-int filesystem_getBytes(FileList fl, char* filename)
-{
-    // entry : "NAME"\0 SIZE(16bits) FIRSTSECTOR(16bits)
-
-    int pos = 0;
-    while(pos < fl.length)// make sure to parse all data, in case files have been deleted
-    {
-        if(fl.data[pos] != 0) // new entry
-        {
-            // output format = NAME : SIZE : FIRSTSECTOR
-            // prints(&(fileListData[pos]));prints(" ");
-            if(strcmp((char*) (fl.data + pos), filename) == 0)
-            {
-                pos += strlen(&(fl.data[pos])) + 1;
-                unsigned short size = *((unsigned short*)&(fl.data[pos]));
-                return size;
-            }
-            pos += strlen(&(fl.data[pos])) + 5;
-        }
-        else
-        {
-            pos++;
-        }
-    }
-    return -1;
-}
-
-int filesystem_setBytes(FileList fl, char* filename, 
-    int newSize)
-{
-    // entry : "NAME"\0 SIZE(16bits) FIRSTSECTOR(16bits)
-
-    int pos = 0;
-    while(pos < fl.length)// make sure to parse all data, in case files have been deleted
-    {
-        if(fl.data[pos] != 0) // new entry
-        {
-            // output format = NAME : SIZE : FIRSTSECTOR
-            // prints(&(fileListData[pos]));prints(" ");
-            if(strcmp((char*) ((fl.data) + pos), filename) == 0)
-            {
-                pos += strlen(&(fl.data[pos])) + 1;
-                *((unsigned short*)&(fl.data[pos])) = (unsigned short) newSize;
-                return 0;
-
-                // rewrite the whole table here
-
-            }
-            pos += strlen(&(fl.data[pos])) + 5;
-        }
-        else
-        {
-            pos++;
-        }
-    }
-    return -1;
-}
-
-int filesystem_subList(FileSystem * fs, FileList fl, char * subListName)
-{
-    if(strcmp(subListName, "/") == 0)
-    {
-
-        // already in the right directory, display and return
-        filesystem_list(fs, fl);
-        return 0;
-    } 
-    else
-    {
-
-        /* Strip of first part of subListName */
-        int tmpIndex = strIndexOf((char*) (subListName+1), '/') + 1;
-        subListName[tmpIndex] = 0; // cut everything after 2nd '/'
-        
-
-        /* Then load corresponding subfilelist */
-        FileList subfl;
-        subfl = filesystem_loadSubFileList(fs, fl, (char*) (subListName+1));
-        if(subfl.length == 0)
-        {
-            prints("Not found\n");
-            return -1;
-        }
-
-        /* Now use only the remaining part of the subListName */
-        subListName = (char*) (subListName + tmpIndex);
-        subListName[0] = '/';
-        int res = filesystem_subList(fs, subfl, subListName);
-
-        filesystem_fileListFreeBuffer(subfl);
-        return res;
-    }
-}
-
-void filesystem_fileListFreeBuffer(FileList fl)
-{
-    sys_free(fl.data);
 }
 
 int filesystems_driveList(char * fullPath)
