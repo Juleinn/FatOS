@@ -13,7 +13,6 @@
 #include "memorymanager.h"
 #include "sysfile.h"
 
-
 /**
 @brief OS kernel entry point
 @return 0 after console exited
@@ -21,11 +20,10 @@
 int main(){
 	clear_screen();
 	init_text();
-
 	// set up clock speed
 	timer_init();
 	idt_setup();
-
+	
 	clear_screen();
 
 	/* test mem manager */
